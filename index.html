@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-lang-key="title">Bidar District Bhoomi Complaint</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #004d40; /* Deep Teal */
+            --primary-light: #4db6ac; /* Muted Teal */
+            --secondary-color: #fdd835; /* Gold */
+            --background-color: #e8f5e9; /* Light Green */
+            --card-bg: #ffffff;
+            --text-color: #212121;
+            --muted-text: #757575;
+            --border-color: #cfd8dc;
+            --input-bg: #f5f5f5;
+            --success-bg: #c8e6c9;
+            --success-text: #2e7d32;
+            --error-bg: #ffcdd2;
+            --error-text: #c62828;
+            --button-hover: #00332c;
+            --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 1.5rem;
+            transition: background-color 0.5s ease;
+        }
+        .container {
+            background-color: var(--card-bg);
+            padding: 3.5rem;
+            border-radius: 16px;
+            box-shadow: var(--box-shadow);
+            width: 100%;
+            max-width: 750px;
+            box-sizing: border-box;
+            animation: fadeIn 0.8s ease-in-out;
+            transition: max-width 0.5s ease-in-out, padding 0.5s ease-in-out;
+            position: relative;
+        }
+        .container.login-view {
+            max-width: 450px;
+            padding: 3rem;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2.5rem;
+            flex-wrap: wrap;
+            position: relative;
+        }
+        .header::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: -15px;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: var(--primary-light);
+            border-radius: 2px;
+        }
+        h1 {
+            color: var(--primary-color);
+            margin: 0;
+            font-size: 2.8rem;
+            font-weight: 700;
+            text-align: center;
+            flex-grow: 1;
+        }
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+        }
+        h2 {
+            color: var(--primary-color);
+            border-bottom: 3px solid var(--primary-light);
+            padding-bottom: 0.75rem;
+            margin-top: 2rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.6rem;
+            font-weight: 600;
+        }
+        .form-group {
+            margin-bottom: 1.8rem;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+            color: var(--muted-text);
+            font-size: 1.1rem;
+        }
+        select, textarea, input[type="text"], input[type="password"], input[type="file"] {
+            width: 100%;
+            padding: 1.1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 1rem;
+            box-sizing: border-box;
+            background-color: var(--input-bg);
+            transition: border-color 0.3s, box-shadow 0.3s, background-color 0.3s;
+        }
+        select:focus, textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[type="file"]:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 12px rgba(0, 77, 64, 0.25);
+            outline: none;
+            background-color: var(--card-bg);
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 1.25rem;
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            border: none;
+            border-radius: 8px;
+            font-size: 1.25rem;
+            font-weight: bold;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+            transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+            box-shadow: 0 4px 15px rgba(0, 77, 64, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        button:hover:not([disabled]) {
+            background-color: var(--button-hover);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        button[disabled] {
+            background-color: #a5d6a7;
+            cursor: not-allowed;
+        }
+        #logoutButton {
+            display: none;
+            width: auto;
+            margin-left: 1rem;
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            background-color: #b71c1c;
+            color: var(--secondary-color);
+            box-shadow: none;
+        }
+        #logoutButton:hover {
+            background-color: #8c1616;
+            transform: translateY(-2px);
+        }
+        .message {
+            margin-top: 2rem;
+            text-align: center;
+            font-weight: 600;
+            padding: 1.2rem;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            line-height: 1.5;
+            min-height: 3rem;
+        }
+        .message.success {
+            background-color: var(--success-bg);
+            color: var(--success-text);
+            border: 1px solid #c3e6cb;
+            animation: slideIn 0.5s ease-out;
+        }
+        .message.error {
+            background-color: var(--error-bg);
+            color: var(--error-text);
+            border: 1px solid #f5c6cb;
+            animation: shake 0.5s ease-in-out;
+        }
+        .lang-button {
+            width: auto;
+            padding: 0.7rem 1.4rem;
+            font-size: 1rem;
+            font-weight: 500;
+            border-radius: 25px;
+            background-color: #9e9e9e;
+            transition: background-color 0.3s;
+            box-shadow: none;
+        }
+        .lang-button:hover {
+            background-color: #616161;
+            transform: none;
+            box-shadow: none;
+        }
+        .form-container.hidden {
+            display: none;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-5px); }
+            40%, 80% { transform: translateX(5px); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container login-view">
+    <div class="header">
+        <h1 data-lang-key="mainHeading">Bhoomi Complaint</h1>
+        <button id="langToggle" class="lang-button" data-lang-key="langToggle">ಕನ್ನಡ</button>
+    </div>
+
+    <div id="loginForm" class="form-container">
+        <h2 data-lang-key="loginHeading">Taluk Login</h2>
+        <form id="login">
+            <div class="form-group">
+                <label for="loginTaluk" data-lang-key="selectTaluk">Select Taluk:</label>
+                <select id="loginTaluk" name="loginTaluk" required>
+                    <option value="" data-lang-key="selectTalukOption">--Select Taluk--</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="password" data-lang-key="passwordLabel">Password:</label>
+                <input type="password" id="password" name="password" data-lang-key="passwordPlaceholder" placeholder="Enter password" required>
+            </div>
+            <button type="submit" data-lang-key="loginButton">Login</button>
+            <p class="message" id="loginMessage"></p>
+        </form>
+    </div>
+
+    <div id="complaintFormContainer" class="form-container hidden">
+        <div class="header" style="margin-bottom: 1rem;">
+            <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+                <h1 id="talukHeading"></h1>
+                <button id="logoutButton" data-lang-key="logoutButton">Logout</button>
+            </div>
+        </div>
+        <form id="complaintForm" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="taluk" data-lang-key="selectTaluk">Select Taluk:</label>
+                <select id="taluk" name="taluk" disabled required>
+                    <option value="" data-lang-key="selectTalukOption">--Select Taluk--</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="hobli" data-lang-key="selectHobli">Select Hobli:</label>
+                <select id="hobli" name="hobli" disabled required>
+                    <option value="" data-lang-key="selectHobliOption">--Select Hobli--</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="village" data-lang-key="selectVillage">Select Village:</label>
+                <select id="village" name="village" disabled required>
+                    <option value="" data-lang-key="selectVillageOption">--Select Village--</option>
+                </select>
+            </div>
+
+            <h2 data-lang-key="mutationDetails">Mutation Details</h2>
+            <div class="form-group">
+                <label for="mutationType" data-lang-key="mutationType">Mutation Type:</label>
+                <select id="mutationType" name="mutationType">
+                    <option value="" data-lang-key="selectMutationType">--Select Mutation Type--</option>
+                    <option value="Court Order" data-lang-key="courtOrder">Court Order</option>
+                    <option value="Court Stay" data-lang-key="courtStay">Court Stay</option>
+                    <option value="Land Acquisition" data-lang-key="landAcquisition">Land Acquisition</option>
+                    <option value="Land Conversion" data-lang-key="landConversion">Land Conversion</option>
+                    <option value="Pledge/Release" data-lang-key="pledgeRelease">Pledge/Release</option>
+                    <option value="Podi" data-lang-key="podi">Podi</option>
+                    <option value="Govt Order" data-lang-key="govtOrder">Govt Order</option>
+                    <option value="Movement of RTC" data-lang-key="movementOfRTC">Movement of RTC</option>
+                    <option value="Intimation slip" data-lang-key="intimationSlip">Intimation slip</option>
+                    <option value="Inheritance" data-lang-key="inheritance">Inheritance</option>
+                    <option value="Others" data-lang-key="others">Others</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="transactionNo" data-lang-key="transactionNo">Transaction No / Year:</label>
+                <input type="text" id="transactionNo" name="transactionNo" data-lang-key="transactionNoPlaceholder" placeholder="Enter Transaction No / Year">
+            </div>
+            <div class="form-group">
+                <label for="applicationNo" data-lang-key="applicationNo">Application No / Year:</label>
+                <input type="text" id="applicationNo" name="applicationNo" data-lang-key="applicationNoPlaceholder" placeholder="Enter Application No / Year">
+            </div>
+            
+            <div class="form-group">
+                <label for="fileUpload" data-lang-key="fileUploadLabel">Upload the Error Image (jpg/pdf/png):</label>
+                <input type="file" id="fileUpload" name="fileUpload" accept="image/jpeg,image/png,application/pdf">
+            </div>
+
+            <div class="form-group">
+                <label for="complaintText" data-lang-key="complaintDetails">Complaint Details:</label>
+                <textarea id="complaintText" name="complaintText" rows="5" data-lang-key="complaintDetailsPlaceholder" placeholder="Enter your complaint details here..." required></textarea>
+            </div>
+
+            <button type="submit" data-lang-key="submitButton">Submit Complaint</button>
+            <p class="message" id="formMessage"></p>
+        </form>
+    </div>
+</div>
+
+<script>
+    const locationData = [{
+        code: "01",
+        en: "BASAVAKALYAN",
+        kn: "ಬಸವಕಲ್ಯಾಣ",
+        hoblis: [{
+            code: "01",
+            en: "BASAVAKALYANA",
+            kn: "ಬಸವಕಲ್ಯಾಣ",
+            villages: [{ code: "01", en: "BASAVAKALYANA", kn: "ಬಸವಕಲ್ಯಾಣ" }, { code: "02", en: "YADALAPURA", kn: "ಯಾದಲಪುರ" }, { code: "03", en: "SHIVAPURA", kn: "ಶಿವಪುರ" }, { code: "04", en: "TRIPURANKA", kn: "ತ್ರಿಪುರಾಂಕ" }, { code: "05", en: "TALABOGA", kn: "ತಲಬೋಗ" }, { code: "06", en: "PRATAPURA", kn: "ಪ್ರತಾಪುರ" }, { code: "07", en: "MORAKHANDI", kn: "ಮೋರಖಂಡಿ" }, { code: "08", en: "GOWRA", kn: "ಗೌರ" }, { code: "09", en: "JANAPURA", kn: "ಜನಪುರ" }, { code: "10", en: "GOKULA", kn: "ಗೋಕುಲ" }, { code: "11", en: "KITTA", kn: "ಕಿತ್ತ" }, { code: "12", en: "DHANNURA K", kn: "ಧನ್ನೂರ ಕೆ" }, { code: "13", en: "KHANDALA", kn: "ಖಂಡಾಲ" }, { code: "14", en: "KHANAPURA K", kn: "ಖಾನಾಪುರ ಕೆ" }, { code: "15", en: "NEELAKANTA", kn: "ನೀಲಕಂಠ" }, { code: "16", en: "LAHESHVARA", kn: "ಲಾಹೇಶ್ವರ" }, { code: "17", en: "NARAYANAPURA", kn: "ನಾರಾಯಣಪುರ" }, { code: "18", en: "BETABALAKUNDA", kn: "ಬೆಟಬಲಕುಂದ" }]
+        }, {
+            code: "02",
+            en: "MANTALA",
+            kn: "ಮಂಟಾಳ",
+            villages: [{ code: "01", en: "MANTALA", kn: "ಮಂಟಾಳ" }, { code: "02", en: "ILYALA", kn: "ಇಲ್ಯಾಲ" }, { code: "03", en: "GUNDURA", kn: "ಗುಂಡೂರ" }, { code: "04", en: "ALAGUDA", kn: "ಅಳಗುದಾ" }, { code: "05", en: "VATTARAGA", kn: "ವತ್ತರಗಾ" }, { code: "06", en: "GOWDA GAON", kn: "ಗೌಡ ಗಾಂವ" }, { code: "07", en: "SHIVAPURA K", kn: "ಶಿವಪುರ ಕೆ" }, { code: "08", en: "TALAMADAGI", kn: "ತಳಮಡಗಿ" }, { code: "09", en: "KADAVATI", kn: "ಕಡವತಿ" }, { code: "10", en: "BAGADALA", kn: "ಬಗದಲಾ" }, { code: "11", en: "SONALA", kn: "ಸೋನಾಳ" }, { code: "12", en: "BADALA", kn: "ಬದಳ" }, { code: "13", en: "KALAKATTI", kn: "ಕಲಕತ್ತಿ" }, { code: "14", en: "SONGALA", kn: "ಸೋಂಗಲಾ" }, { code: "15", en: "BOMMANALA", kn: "ಬೊಮ್ಮನಾಳ" }, { code: "16", en: "MUGANALA", kn: "ಮುಗನಾಳ" }, { code: "17", en: "HIREGAON", kn: "ಹಿರೇಗಾಂವ" }, { code: "18", en: "KHAMMABADI", kn: "ಖಮ್ಮಾಬಾದಿ" }, { code: "19", en: "KOLANURU", kn: "ಕೋಳನೂರು" }, { code: "20", en: "KODAMBALA", kn: "ಕೊಡಂಬಳ" }, { code: "21", en: "HIREMATHA", kn: "ಹಿರೇಮಠ" }]
+        }, {
+            code: "03",
+            en: "RAJESHVARA",
+            kn: "ರಾಜೇಶ್ವರ",
+            villages: [{ code: "01", en: "RAJESHVARA", kn: "ರಾಜೇಶ್ವರ" }, { code: "02", en: "HALYALA", kn: "ಹಲ್ಯಾಳ" }, { code: "03", en: "KOLURA", kn: "ಕೋಳುರ" }, { code: "04", en: "KASARAGALLI", kn: "ಕಸರಗಲ್ಲಿ" }, { code: "05", en: "KHANAPURA", kn: "ಖಾನಾಪುರ" }, { code: "06", en: "MAHADAPUR", kn: "ಮಹಾದಾಪುರ" }, { code: "07", en: "KAMALANAGAR", kn: "ಕಮಲನಗರ" }, { code: "08", en: "HANAMANALA", kn: "ಹಣಮನಾಳ" }, { code: "09", en: "KARADIKOLA", kn: "ಕರಡಿಕೋಳ" }, { code: "10", en: "NAREGANALA", kn: "ನರೆಗನಾಳ" }, { code: "11", en: "HINDALA", kn: "ಹಿಂದಾಳ" }, { code: "12", en: "SADAKANALA", kn: "ಸದಕನಾಳ" }, { code: "13", en: "KALABAGUNJ", kn: "ಕಲಬಗುಂಜ" }, { code: "14", en: "KALKERA", kn: "ಕಳಕೇರಾ" }, { code: "15", en: "KASABA", kn: "ಕಸಬಾ" }, { code: "16", en: "SAMPUR", kn: "ಸಂಪುರ" }, { code: "17", en: "JALASANGAVI", kn: "ಜಲಸಂಗಾವಿ" }, { code: "18", en: "NIVARGA", kn: "ನಿವರಗಾ" }]
+        }, {
+            code: "04",
+            en: "MUDABI",
+            kn: "ಮುಡಾಬಿ",
+            villages: [{ code: "01", en: "MUDABI", kn: "ಮುಡಾಬಿ" }, { code: "02", en: "JAMAGI", kn: "ಜಮಗಿ" }, { code: "03", en: "MADIYALA", kn: "ಮಡಿಯಾಳ" }, { code: "04", en: "HULLALA", kn: "ಹುಲ್ಲಾಳ" }, { code: "05", en: "KAMALAPUR", kn: "ಕಮಲಾಪುರ" }, { code: "06", en: "DHANNURA", kn: "ಧನ್ನೂರ" }, { code: "07", en: "SUNTHAN", kn: "ಸುಂಥಾನ" }, { code: "08", en: "KALLUR", kn: "ಕಲ್ಲೂರ" }, { code: "09", en: "CHIKALI", kn: "ಚಿಕಾಲಿ" }, { code: "10", en: "SOGGA", kn: "ಸೊಗ್ಗಾ" }, { code: "11", en: "KOKANI", kn: "ಕೊಕಣಿ" }, { code: "12", en: "KOLURA", kn: "ಕೋಳೂರ" }, { code: "13", en: "SADAKANALA", kn: "ಸದಕನಾಳ" }, { code: "14", en: "CHIKAMUGANALA", kn: "ಚಿಕ್ಕಮುಗನಾಳ" }, { code: "15", en: "CHIKAMUGANAL", kn: "ಚಿಕ್ಕಮುಗನಾಳ" }, { code: "16", en: "SADAKANALA", kn: "ಸದಕನಾಳ" }, { code: "17", en: "GHOLAPAKA", kn: "ಘೋಳಪಾಕ" }, { code: "18", en: "SAITAPURA", kn: "ಸೈತಾಪುರ" }, { code: "19", en: "KAMALAPUR", kn: "ಕಮಲಾಪುರ" }, { code: "20", en: "JAMAGI", kn: "ಜಮಗಿ" }, { code: "21", en: "SOGGA", kn: "ಸೊಗ್ಗಾ" }, { code: "22", en: "KOKANI", kn: "ಕೊಕಣಿ" }, { code: "23", en: "CHIKAMUGNAL", kn: "ಚಿಕ್ಕಮುಗನಾಳ" }]
+        }, {
+            code: "05",
+            en: "KOHINURA",
+            kn: "ಕೋಹಿನೂರ",
+            villages: [{ code: "01", en: "KOHINURA", kn: "ಕೋಹಿನೂರ" }, { code: "02", en: "KOLAR", kn: "ಕೋಲಾರ" }, { code: "03", en: "NANDAPUR", kn: "ನಂದಾಪುರ" }, { code: "04", en: "BHATAMBRA", kn: "ಭತ್ತಂಬ್ರಾ" }, { code: "05", en: "GURJALA", kn: "ಗುರ್ಜಾಳ" }, { code: "06", en: "HONGA", kn: "ಹೊಂಗಾ" }, { code: "07", en: "HAMPURE", kn: "ಹಂಪುರೆ" }, { code: "08", en: "NARAYANAPUR", kn: "ನಾರಾಯಣಪುರ" }, { code: "09", en: "NANDUR", kn: "ನಂದೂರ" }, { code: "10", en: "KHANAPUR", kn: "ಖಾನಾಪುರ" }, { code: "11", en: "GIRANIYALA", kn: "ಗಿರಣಿಯಾಳ" }, { code: "12", en: "KALLAKADE", kn: "ಕಲ್ಲಕಡೆ" }, { code: "13", en: "SHETAKARA", kn: "ಶೇತಕಾರ" }, { code: "14", en: "CHETI", kn: "ಚೇತಿ" }, { code: "15", en: "MARATHAVADI", kn: "ಮರಾಠವಾಡ" }, { code: "16", en: "SULYAGAON", kn: "ಸುಲ್ಯಾಗಾಂವ" }, { code: "17", en: "JIDAGA", kn: "ಜೀದಗಾ" }, { code: "18", en: "TADAKELA", kn: "ತಡಕೇಲಾ" }]
+        }]
+    }, {
+        code: "02",
+        en: "BHALKI",
+        kn: "ಭಾಲ್ಕಿ",
+        hoblis: [{
+            code: "01",
+            en: "BHALKI",
+            kn: "ಭಾಲ್ಕಿ",
+            villages: [{ code: "01", en: "BHALKI", kn: "ಭಾಲ್ಕಿ" }, { code: "02", en: "BAJULAGA", kn: "ಬಾಜುಳಗಾ" }, { code: "03", en: "BELURA", kn: "ಬೆಳೂರಾ" }, { code: "04", en: "BOLEGAON", kn: "ಬೋಳೇಗಾಂವ" }, { code: "05", en: "CHITTADA", kn: "ಚಿತ್ತಾಡಾ" }, { code: "06", en: "DHANURA", kn: "ಧನೂರಾ" }, { code: "07", en: "HALADIKHEDA", kn: "ಹಳದಿಖೇಡಾ" }, { code: "08", en: "HALAKHEDA", kn: "ಹಳಖೇಡಾ" }, { code: "09", en: "KHANAPUR", kn: "ಖಾನಾಪುರ" }, { code: "10", en: "KOLAR", kn: "ಕೋಳಾರ" }, { code: "11", en: "KODAMBALA", kn: "ಕೊಡಂಬಳ" }, { code: "12", en: "KODAMBALA", kn: "ಕೊಡಂಬಳ" }, { code: "13", en: "LADI", kn: "ಲಾಡಿ" }, { code: "14", en: "LOHATA", kn: "ಲೋಹಟಾ" }, { code: "15", en: "MAHAGAON", kn: "ಮಹಾಗಾಂವ" }, { code: "16", en: "MADIYALA", kn: "ಮಡಿಯಾಳ" }, { code: "17", en: "NEMJABAD", kn: "ನೇಮಜಾಬಾದ" }, { code: "18", en: "RUDRAVADI", kn: "ರುದ್ರವಾಡಿ" }, { code: "19", en: "SADALA", kn: "ಸಾದಳ" }, { code: "20", en: "SANGAVI", kn: "ಸಾಂಗವಿ" }, { code: "21", en: "SONALA", kn: "ಸೋನಾಳ" }, { code: "22", en: "SULYAGAON", kn: "ಸುಲ್ಯಾಗಾಂವ" }, { code: "23", en: "TADASALA", kn: "ತಡಸಲಾ" }, { code: "24", en: "ANANDAVADI", kn: "ಆನಂದವಾಡಿ" }, { code: "25", en: "UDABALA", kn: "ಉಡಬಳ" }, { code: "26", en: "HAKANALA", kn: "ಹಕನಾಳ" }]
+        }, {
+            code: "02",
+            en: "SAYAGANVA",
+            kn: "ಸಾಯಗಾಂವ",
+            villages: [{ code: "01", en: "SAYAGANVA", kn: "ಸಾಯಗಾಂವ" }, { code: "17", en: "ALAVAYI", kn: "ಅಳವಾಯಿ" }, { code: "16", en: "ATTARAGA", kn: "ಅತ್ತರಗಾ" }, { code: "22", en: "BOLEGANVA", kn: "ಬೋಳೇಗಾಂವ" }, { code: "20", en: "CHIKALI", kn: "ಚಿಕಾಲಿ" }, { code: "15", en: "GADIJOLA", kn: "ಗಡಿಜೋಳಾ" }, { code: "04", en: "GAREHALLI", kn: "ಗಾರೆಹಳ್ಳಿ" }, { code: "18", en: "GUNGAMATA", kn: "ಗುಂಗಾಮಠ" }, { code: "21", en: "GANGANABEEDA", kn: "ಗಂಗನಬೀಡಾ" }, { code: "05", en: "GUNDURA", kn: "ಗುಂಡೂರ" }, { code: "06", en: "HIREMATHA", kn: "ಹಿರೇಮಠ" }, { code: "07", en: "HIREGAON", kn: "ಹಿರೇಗಾಂವ" }, { code: "08", en: "KAMTHANA", kn: "ಕಮಠಾಣ" }, { code: "10", en: "KARADIKHEDA", kn: "ಕರಡಿಖೇಡಾ" }, { code: "11", en: "KODAMBALA", kn: "ಕೊಡಂಬಳ" }, { code: "12", en: "KODAMBALA", kn: "ಕೊಡಂಬಳ" }, { code: "13", en: "NITTURA", kn: "ನಿಟ್ಟೂರ" }, { code: "14", en: "RAMATIRTHA", kn: "ರಾಮತೀರ್ಥ" }, { code: "01", en: "SAYAGANVA", kn: "ಸಾಯಗಾಂವ" }, { code: "02", en: "SHETAKARA", kn: "ಶೇತಕಾರ" }, { code: "03", en: "TADOLA", kn: "ತಡೋಳಾ" }, { code: "19", en: "SADALA", kn: "ಸಾದಳ" }, { code: "23", en: "SHIVAPUR", kn: "ಶಿವಪುರ" }]
+        }, {
+            code: "03",
+            en: "NITTURABH",
+            kn: "ನಿಟ್ಟೂರಬಿ",
+            villages: [{ code: "01", en: "NITTURABH", kn: "ನಿಟ್ಟೂರಬಿ" }, { code: "02", en: "BASAVANAHALLI", kn: "ಬಸವನಹಳ್ಳಿ" }, { code: "03", en: "BIRANAHALLI", kn: "ಬಿರನಹಳ್ಳಿ" }, { code: "04", en: "DEVANAHALLI", kn: "ದೇವನಹಳ್ಳಿ" }, { code: "05", en: "DHANNURA", kn: "ಧನ್ನೂರ" }, { code: "06", en: "GANGANABEEDA", kn: "ಗಂಗನಬೀಡಾ" }, { code: "07", en: "GHOLAPAK", kn: "ಘೋಳಪಾಕ" }, { code: "08", en: "GULALAHALLI", kn: "ಗುಲಾಳಹಳ್ಳಿ" }, { code: "09", en: "HOSURA", kn: "ಹೋಸುರ" }, { code: "10", en: "JAMGI", kn: "ಜಮಗಿ" }, { code: "11", en: "KAMBLAGA", kn: "ಕಂಬಳಗಾ" }, { code: "12", en: "KASARAGAON", kn: "ಕಸರಗಾಂವ" }, { code: "13", en: "KODAMBALA", kn: "ಕೊಡಂಬಳ" }, { code: "14", en: "MOGANAL", kn: "ಮೊಗನಾಳ" }, { code: "15", en: "NANDURA", kn: "ನಂದೂರ" }, { code: "16", en: "RAKSHYAL", kn: "ರಕ್ಷ್ಯಾಳ" }, { code: "17", en: "SADAKANALA", kn: "ಸದಕನಾಳ" }, { code: "18", en: "SADDAMARGI", kn: "ಸದ್ದಮರಗಿ" }, { code: "19", en: "WAGI", kn: "ವಾಗೀ" }]
+        }, {
+            code: "04",
+            en: "KHATAKA CHINCHULI",
+            kn: "ಖಟಕ ಚಿಂಚೋಳಿ",
+            villages: [{ code: "01", en: "KHATAKA CHINCHULI", kn: "ಖಟಕ ಚಿಂಚೋಳಿ" }, { code: "02", en: "BASAVANAHALLI", kn: "ಬಸವನಹಳ್ಳಿ" }, { code: "03", en: "BAREKOT", kn: "ಬಾರೇಕೋಟ್" }, { code: "04", en: "BHATAMBRA", kn: "ಭತ್ತಂಬ್ರಾ" }, { code: "05", en: "BIRANAL", kn: "ಬಿರಣಾಳ" }, { code: "06", en: "GANGA", kn: "ಗಂಗಾ" }, { code: "07", en: "GANGANABEEDA", kn: "ಗಂಗನಬೀಡಾ" }, { code: "08", en: "GIRANIYAL", kn: "ಗಿರಣಿಯಾಳ" }, { code: "09", en: "GOLAYAHALLI", kn: "ಗೋಳಯಹಳ್ಳಿ" }, { code: "10", en: "HATANAL", kn: "ಹತ್ತನಾಳ" }, { code: "11", en: "JALAKI", kn: "ಜಲಕಿ" }, { code: "12", en: "JAMGE", kn: "ಜಮಗೇ" }, { code: "13", en: "KAMALAPUR", kn: "ಕಮಲಾಪುರ" }, { code: "14", en: "KARADIKOLA", kn: "ಕರಡಿಕೋಳ" }, { code: "15", en: "KERUR", kn: "ಕೇರೂರ" }, { code: "16", en: "KODAMBALA", kn: "ಕೊಡಂಬಳ" }, { code: "17", en: "NANDIGAON", kn: "ನಂದಿಗಾಂವ" }, { code: "18", en: "NANDURA", kn: "ನಂದೂರ" }, { code: "19", en: "NEELUR", kn: "ನೀಲೂರ" }, { code: "20", en: "SHADAGANVA", kn: "ಷಡಗನವಾ" }]
+        }, {
+            code: "05",
+            en: "LAKHANAGANVA",
+            kn: "ಲಖನಗಾಂವ",
+            villages: [{ code: "01", en: "LAKHANAGANVA", kn: "ಲಖನಗಾಂವ" }, { code: "02", en: "ALAGUDA", kn: "ಅಳಗುದಾ" }, { code: "03", en: "ANANTAKODI", kn: "ಅನಂತಕೋಡಿ" }, { code: "04", en: "BADALA", kn: "ಬದಳ" }, { code: "05", en: "BASAVANAHALLI", kn: "ಬಸವನಹಳ್ಳಿ" }, { code: "06", en: "HANAMANAHALLI", kn: "ಹಣಮನಹಳ್ಳಿ" }, { code: "07", en: "HADAGI", kn: "ಹಡಗಿ" }, { code: "08", en: "HANDIKERA", kn: "ಹಂದಿಕೇರಾ" }, { code: "09", en: "JABIRABAD", kn: "ಜಾಬಿರಬಾದ" }, { code: "10", en: "JAVALI", kn: "ಜಾವಳಿ" }, { code: "11", en: "KALYANARAYA", kn: "ಕಲ್ಯಾಣರಾಯ" }, { code: "12", en: "KONMELA", kn: "ಕೋನಮೇಲಾ" }, { code: "13", en: "KODAMBAL", kn: "ಕೊಡಂಬಳ" }, { code: "14", en: "LAGAVANTARAI", kn: "ಲಗವಂತರಾಯ" }, { code: "15", en: "MALAPUR", kn: "ಮಲ್ಲಾಪುರ" }, { code: "16", en: "MATALA", kn: "ಮಠಳ" }, { code: "17", en: "MUDHOL", kn: "ಮುದೋಳ" }, { code: "18", en: "RAILAPUR", kn: "ರೈಲಾಪುರ" }, { code: "19", en: "SANGAMESHWAR", kn: "ಸಂಗಮೇಶ್ವರ" }, { code: "20", en: "UDABALA", kn: "ಉಡಬಳ" }, { code: "21", en: "YELAKHA", kn: "ಯೆಳಖಾ" }, { code: "22", en: "GIRANIYALA", kn: "ಗಿರಣಿಯಾಳ" }, { code: "23", en: "MALLAPUR", kn: "ಮಲ್ಲಾಪುರ" }]
+        }, {
+            code: "06",
+            en: "HALABARGA",
+            kn: "ಹಲಬರ್ಗಾ",
+            villages: [{ code: "01", en: "HALABARGA", kn: "ಹಲಬರ್ಗಾ" }, { code: "02", en: "BAREKOT", kn: "ಬಾರೇಕೋಟ್" }, { code: "03", en: "HALADIKHEDA", kn: "ಹಳದಿಖೇಡಾ" }, { code: "04", en: "HALEGAON", kn: "ಹಳೇಗಾಂವ" }, { code: "05", en: "HANDIKERA", kn: "ಹಂದಿಕೇರಾ" }, { code: "06", en: "HOSUR", kn: "ಹೊಸೂರ" }, { code: "07", en: "HOSUR", kn: "ಹೊಸೂರ" }, { code: "08", en: "HIREGAON", kn: "ಹಿರೇಗಾಂವ" }, { code: "09", en: "MAKKANAHALLI", kn: "ಮಕ್ಕನಹಳ್ಳಿ" }, { code: "10", en: "MADANAPUR", kn: "ಮದನಾಪುರ" }, { code: "11", en: "MOTAGA", kn: "ಮೋಟಗಾ" }, { code: "12", en: "NARAYANAPUR", kn: "ನಾರಾಯಣಪುರ" }, { code: "13", en: "NANDGAON", kn: "ನಂದಗಾಂವ" }, { code: "14", en: "OKALI", kn: "ಓಕಾಲಿ" }, { code: "15", en: "SAHANAND", kn: "ಸಾಹನಂದ" }, { code: "16", en: "SINDHOLA", kn: "ಸಿಂಧೋಳಾ" }, { code: "17", en: "SANTAPUR", kn: "ಸಂತಾಪುರ" }, { code: "18", en: "MOGANAL", kn: "ಮೊಗನಾಳ" }, { code: "19", en: "GANGANABEEDA", kn: "ಗಂಗನಬೀಡಾ" }, { code: "20", en: "KODAMBAL", kn: "ಕೊಡಂಬಳ" }, { code: "21", en: "HONGA", kn: "ಹೊಂಗಾ" }, { code: "22", en: "NANDIGAV", kn: "ನಂದಿಗಾಂವ" }]
+        }]
+    }, {
+        code: "03",
+        en: "AURAD",
+        kn: "ಔರಾದ್",
+        hoblis: [{
+            code: "01",
+            en: "OWRADABI",
+            kn: "ಔರಾದಬಿ",
+            villages: [{ code: "01", en: "OWRADABI", kn: "ಔರಾದಬಿ" }, { code: "02", en: "KADALE", kn: "ಕಡಲೇ" }, { code: "03", en: "JALAKI", kn: "ಜಲಕಿ" }, { code: "04", en: "JALKI B", kn: "ಜಲಕಿ ಬಿ" }, { code: "05", en: "BHOSAGA", kn: "ಭೋಸಗಾ" }, { code: "06", en: "ALAKHALLI", kn: "ಅಳಖಳ್ಳಿ" }, { code: "07", en: "BELLURA", kn: "ಬೆಳೂರಾ" }, { code: "08", en: "DEVANDI", kn: "ದೇವಂದಿ" }, { code: "09", en: "DHARAMASAGAR", kn: "ಧರ್ಮಸಾಗರ" }, { code: "10", en: "GANGANABEEDA", kn: "ಗಂಗನಬೀಡಾ" }, { code: "11", en: "HALLI", kn: "ಹಳ್ಳಿ" }, { code: "12", en: "KADAMBHA", kn: "ಕದಂಭ" }, { code: "13", en: "KHADAK", kn: "ಖಡಕ" }, { code: "14", en: "KALASA", kn: "ಕಲಸ" }, { code: "15", en: "LAKHANA", kn: "ಲಖನಾ" }, { code: "16", en: "MASALA", kn: "ಮಸಲಾ" }, { code: "17", en: "MARAKAL", kn: "ಮರಕಲ್" }, { code: "18", en: "MIRZA", kn: "ಮಿರ್ಜಾ" }, { code: "19", en: "NIDODA", kn: "ನಿದೋಡಾ" }, { code: "20", en: "NIRGUDI", kn: "ನೀರಗುಡಿ" }, { code: "21", en: "NULIBASA", kn: "ನುಲಿಬಾಸಾ" }, { code: "22", en: "RAMAPUR", kn: "ರಾಮಾಪುರ" }, { code: "23", en: "SHAKARAGANV", kn: "ಶಕರಗಾಂವ" }, { code: "24", en: "SHIRUR", kn: "ಶಿರೂರ" }, { code: "25", en: "SIDDHESWAR", kn: "ಸಿದ್ಧೇಶ್ವರ" }, { code: "26", en: "SONALA", kn: "ಸೋನಾಳ" }, { code: "27", en: "SULTANABAD", kn: "ಸುಲ್ತಾನಬಾದ" }, { code: "28", en: "TAWARAGA", kn: "ತವರಗಾ" }, { code: "29", en: "VARABATTI", kn: "ವರಬತ್ತಿ" }, { code: "30", en: "WADDANAKERA", kn: "ವಡ್ಡನಕೇರಾ" }, { code: "31", en: "HALAKERI", kn: "ಹಳಕೇರಿ" }, { code: "32", en: "MASANADA", kn: "ಮಸನದ" }, { code: "33", en: "MOGANAL", kn: "ಮೊಗನಾಳ" }, { code: "34", en: "ALAKHALLI", kn: "ಅಳಖಳ್ಳಿ" }]
+        }, {
+            code: "02",
+            en: "CHINTAKI",
+            kn: "ಚಿಂತಾಕಿ",
+            villages: [{ code: "01", en: "CHINTAKI", kn: "ಚಿಂತಾಕಿ" }, { code: "02", en: "BAMBALAGI", kn: "ಬಂಬಳಗಿ" }, { code: "03", en: "DEVANAHALLI", kn: "ದೇವನಹಳ್ಳಿ" }, { code: "04", en: "GANGANABEEDA", kn: "ಗಂಗನಬೀಡಾ" }, { code: "05", en: "GUNDURA", kn: "ಗುಂಡೂರ" }, { code: "06", en: "JAMBALAGI", kn: "ಜಂಬಳಗಿ" }, { code: "07", en: "JEELAGA", kn: "ಜೀಲಗಾ" }, { code: "08", en: "KABBULE", kn: "ಕಬ್ಬುಲೆ" }, { code: "09", en: "KALLALI", kn: "ಕಲ್ಲಾಲಿ" }, { code: "10", en: "KAREGOWRA", kn: "ಕರೆಗೌರಾ" }, { code: "11", en: "KINNIGAON", kn: "ಕಿನ್ನಿಗಾಂವ" }, { code: "12", en: "KALLI", kn: "ಕಲ್ಲಿ" }, { code: "13", en: "LINGAPUR", kn: "ಲಿಂಗಾಪುರ" }, { code: "14", en: "NANDAGAON", kn: "ನಂದಗಾಂವ" }, { code: "15", en: "SANJIVAPUR", kn: "ಸಂಜೀವಾಪುರ" }, { code: "16", en: "SANGAM", kn: "ಸಂಗಮ" }, { code: "17", en: "SONARIKHEDA", kn: "ಸೊನರಿಖೇಡಾ" }, { code: "18", en: "TAJANAGAR", kn: "ತಾಜನಗರ" }, { code: "19", en: "VADALAGAON", kn: "ವಡಲಗಾಂವ" }, { code: "20", en: "WADAGAON", kn: "ವಾಡಗಾಂವ" }, { code: "21", en: "YELSANGI", kn: "ಯೆಳಸಂಗಿ" }, { code: "22", en: "CHINCHOLI", kn: "ಚಿಂಚೋಳಿ" }, { code: "23", en: "HALAKERI", kn: "ಹಳಕೇರಿ" }, { code: "24", en: "GANGANABEEDA", kn: "ಗಂಗನಬೀಡಾ" }, { code: "25", en: "GUNDUR", kn: "ಗುಂಡೂರ" }]
+        }, {
+            code: "03",
+            en: "SANTAPURA",
+            kn: "ಸಂತಪುರ",
+            villages: [{ code: "01", en: "SANTAPURA", kn: "ಸಂತಾಪುರ" }, { code: "02", en: "DEGGANURA", kn: "ದೆಗ್ಗನೂರಾ" }, { code: "03", en: "DONGARAGAON", kn: "ಡೊಂಗರಗಾಂವ" }, { code: "04", en: "GORACHINCHOLI", kn: "ಗೋರಾಚಿಂಚೋಳಿ" }, { code: "05", en: "HALAKERI", kn: "ಹಳಕೇರಿ" }, { code: "06", en: "HAKANALA", kn: "ಹಕನಾಳ" }, { code: "07", en: "HALLI", kn: "ಹಳ್ಳಿ" }, { code: "08", en: "KADAVATI", kn: "ಕಡವತಿ" }, { code: "09", en: "KAMBHALAGA", kn: "ಕಂಬಳಗಾ" }, { code: "10", en: "KODAMBELA", kn: "ಕೊಡಂಬಳ" }, { code: "11", en: "KOLUR", kn: "ಕೋಳೂರ" }, { code: "12", en: "KONAL", kn: "ಕೋನಾಳ" }, { code: "13", en: "MADIYALA", kn: "ಮಡಿಯಾಳ" }, { code: "14", en: "MUGANAL", kn: "ಮೊಗನಾಳ" }, { code: "15", en: "RAHIMPUR", kn: "ರಹೀಂಪುರ" }, { code: "16", en: "RAKSHYAL", kn: "ರಕ್ಷ್ಯಾಳ" }, { code: "17", en: "RAMATIRTHA", kn: "ರಾಮತೀರ್ಥ" }, { code: "18", en: "RAMAPUR", kn: "ರಾಮಾಪುರ" }, { code: "19", en: "REBANA", kn: "ರೆಬನಾ" }, { code: "20", en: "SANGAMESHWAR", kn: "ಸಂಗಮೇಶ್ವರ" }, { code: "21", en: "SAYADAPUR", kn: "ಸಯದಾಪುರ" }, { code: "22", en: "SAYADAPURA", kn: "ಸಯದಾಪುರ" }, { code: "23", en: "SHIVAPUR", kn: "ಶಿವಪುರ" }, { code: "24", en: "SINDOL", kn: "ಸಿಂದೋಳ" }, { code: "25", en: "TADAPUR", kn: "ತಡಪುರ" }, { code: "26", en: "YELAKHA", kn: "ಯೆಳಖಾ" }, { code: "27", en: "ZARANI", kn: "ಝರಣಿ" }, { code: "28", en: "DHANURA", kn: "ಧನೂರಾ" }, { code: "29", en: "DHANURA", kn: "ಧನೂರಾ" }, { code: "30", en: "HANGA", kn: "ಹಂಗಾ" }, { code: "31", en: "KALLI", kn: "ಕಲ್ಲಿ" }, { code: "32", en: "KUDALE", kn: "ಕುಡಲೇ" }, { code: "33", en: "KODAMBALA", kn: "ಕೊಡಂಬಳ" }, { code: "34", en: "NALA", kn: "ನಾಳ" }, { code: "35", en: "KALLAKADE", kn: "ಕಲ್ಲಕಡೆ" }, { code: "36", en: "MOGANAL", kn: "ಮೊಗನಾಳ" }]
+        }, {
+            code: "04",
+            en: "TANAKUSANURA",
+            kn: "ತನಕುಸನೂರ",
+            villages: [{ code: "01", en: "TANAKUSANURA", kn: "ತನಕುಸನೂರ" }, { code: "02", en: "DAREGANV", kn: "ದಾರೆಗಾಂವ" }, { code: "03", en: "HALLI", kn: "ಹಳ್ಳಿ" }, { code: "04", en: "HOSAKERI", kn: "ಹೊಸಕೇರಿ" }, { code: "05", en: "HODALIKHED", kn: "ಹೋಡಲಿಖೇಡ" }, { code: "06", en: "KAMTHANA", kn: "ಕಮಠಾಣ" }, { code: "07", en: "KHAMBAG", kn: "ಖಂಬಾಗ" }, { code: "08", en: "KURUBHALLI", kn: "ಕುರುಬಹಳ್ಳಿ" }, { code: "09", en: "MALLEGAON", kn: "ಮಲ್ಲೆಗಾಂವ" }, { code: "10", en: "SAMPUR", kn: "ಸಂಪುರ" }, { code: "11", en: "SHETKARA", kn: "ಶೇತ್ಕರಾ" }, { code: "12", en: "SULTANAPUR", kn: "ಸುಲ್ತಾನಾಪುರ" }]
+        }, {
+            code: "05",
+            en: "DABAKA",
+            kn: "ಡಾಬಕಾ",
+            villages: [{ code: "01", en: "DABAKA", kn: "ಡಾಬಕಾ" }, { code: "02", en: "JALAKI", kn: "ಜಲಕಿ" }, { code: "03", en: "KODAMBALA", kn: "ಕೊಡಂಬಳ" }, { code: "04", en: "ALAKHALLI", kn: "ಅಳಖಳ್ಳಿ" }, { code: "05", en: "MOGANAL", kn: "ಮೊಗನಾಳ" }, { code: "06", en: "KHADAKA", kn: "ಖಡಕ" }, { code: "07", en: "NIDODA", kn: "ನಿದೋಡಾ" }, { code: "08", en: "KODAMBALA", kn: "ಕೊಡಂಬಳ" }, { code: "09", en: "DABAKA", kn: "ಡಾಬಕಾ" }, { code: "10", en: "BHOSAGA", kn: "ಭೋಸಗಾ" }]
+        }]
+    }, {
+        code: "04",
+        en: "BIDAR",
+        kn: "ಬೀದರ್",
+        hoblis: [{
+            code: "01",
+            en: "BEEDARA UTTARA",
+            kn: "ಬೀದರ್ ಉತ್ತರ",
+            villages: [{ code: "01", en: "BEEDARA UTTARA", kn: "ಬೀದರ್ ಉತ್ತರ" }, { code: "02", en: "ALAMBOOR", kn: "ಅಳಂಬೂರ" }, { code: "03", en: "BADALA", kn: "ಬದಳ" }, { code: "04", en: "GHATABALAPURA", kn: "ಘಟಬಲಪುರ" }, { code: "05", en: "HALADAKERI", kn: "ಹಳದಕೇರಿ" }, { code: "06", en: "HALEGALLI", kn: "ಹಳೆಗಲ್ಲಿ" }, { code: "07", en: "HALEGAON", kn: "ಹಳೇಗಾಂವ" }, { code: "08", en: "JANAVADA", kn: "ಜನವಾಡ" }, { code: "09", en: "KALLUR", kn: "ಕಲ್ಲೂರ" }, { code: "10", en: "KHAJAPUR", kn: "ಖಾಜಾಪುರ" }, { code: "11", en: "KHANDALA", kn: "ಖಂಡಾಲ" }, { code: "12", en: "KAREGOWRA", kn: "ಕರೆಗೌರಾ" }, { code: "13", en: "KHAJAPURA", kn: "ಖಾಜಾಪುರ" }, { code: "14", en: "KODAGI", kn: "ಕೊಡಗಿ" }, { code: "15", en: "KOLAR", kn: "ಕೋಲಾರ" }, { code: "16", en: "MADAKATTI", kn: "ಮಡಕತ್ತಿ" }, { code: "17", en: "MANHALLI", kn: "ಮನ್ನಹಳ್ಳಿ" }, { code: "18", en: "MARAKALA", kn: "ಮರಕಲ್" }, { code: "19", en: "NARAYANAPUR", kn: "ನಾರಾಯಣಪುರ" }, { code: "20", en: "NANDIGAON", kn: "ನಂದಿಗಾಂವ" }, { code: "21", en: "SANGAMESHWAR", kn: "ಸಂಗಮೇಶ್ವರ" }, { code: "22", en: "SHELGI", kn: "ಶೇಲ್ಗಿ" }, { code: "23", en: "YADALAPUR", kn: "ಯಾದಲಪುರ" }, { code: "24", en: "TALAMADAGI", kn: "ತಳಮಡಗಿ" }, { code: "25", en: "CHITAGUPPA", kn: "ಚಿಟಗುಪ್ಪ" }, { code: "26", en: "CHINCHOLI", kn: "ಚಿಂಚೋಳಿ" }, { code: "27", en: "HALEGALLI", kn: "ಹಳೆಗಲ್ಲಿ" }, { code: "28", en: "SANGAM", kn: "ಸಂಗಮ" }, { code: "29", en: "SONALA", kn: "ಸೋನಾಳ" }, { code: "30", en: "KODAMBAL", kn: "ಕೊಡಂಬಳ" }, { code: "31", en: "MOGANAL", kn: "ಮೊಗನಾಳ" }, { code: "32", en: "MOGANAL", kn: "ಮೊಗನಾಳ" }, { code: "33", en: "KHANAPURA", kn: "ಖಾನಾಪುರ" }, { code: "34", en: "KALLAKADE", kn: "ಕಲ್ಲಕಡೆ" }, { code: "35", en: "MUGANAL", kn: "ಮುಗನಾಳ" }, { code: "36", en: "KOLAR", kn: "ಕೋಲಾರ" }]
+        }, {
+            code: "02",
+            en: "BEEDARADAKSHINA",
+            kn: "ಬೀದರ್ ದಕ್ಷಿಣ",
+            villages: [{ code: "01", en: "BEEDARADAKSHINA", kn: "ಬೀದರ್ ದಕ್ಷಿಣ" }, { code: "02", en: "ARALLI", kn: "ಅರಳ್ಳಿ" }, { code: "03", en: "BELLURA", kn: "ಬೆಳೂರಾ" }, { code: "04", en: "BELLI", kn: "ಬೆಲ್ಲಿ" }, { code: "05", en: "CHAKRA", kn: "ಚಕ್ರ" }, { code: "06", en: "GHOLAPAKA", kn: "ಘೋಳಪಾಕ" }, { code: "07", en: "GHOLAPAKA", kn: "ಘೋಳಪಾಕ" }, { code: "08", en: "JANGAMMAVADI", kn: "ಜಂಗಮ್ಮವಾಡಿ" }, { code: "09", en: "KAMATANA", kn: "ಕಮಠಾಣ" }, { code: "10", en: "MUDABALA", kn: "ಮುಡಬಳ" }, { code: "11", en: "MALLAPUR", kn: "ಮಲ್ಲಾಪುರ" }, { code: "12", en: "MIRZA", kn: "ಮಿರ್ಜಾ" }, { code: "13", en: "RAMAPUR", kn: "ರಾಮಾಪುರ" }, { code: "14", en: "SHETAKARA", kn: "ಶೇತಕಾರ" }, { code: "15", en: "SINDHOLA", kn: "ಸಿಂಧೋಳಾ" }, { code: "16", en: "SONAGERA", kn: "ಸೋನಗೇರಾ" }, { code: "17", en: "SULTANPUR", kn: "ಸುಲ್ತಾನಪುರ" }, { code: "18", en: "UTARANALLA", kn: "ಉತ್ತರನಾಳ" }, { code: "19", en: "WADDANAKERI", kn: "ವಡ್ಡನಕೇರಿ" }, { code: "20", en: "HALABARGA", kn: "ಹಲಬರ್ಗಾ" }, { code: "21", en: "KOLUR", kn: "ಕೋಳೂರ" }, { code: "22", en: "MOGANAL", kn: "ಮೊಗನಾಳ" }, { code: "23", en: "SINDHOLA", kn: "ಸಿಂಧೋಳಾ" }, { code: "24", en: "GHOLAPAKA", kn: "ಘೋಳಪಾಕ" }]
+        }, {
+            code: "03",
+            en: "MANNALLI",
+            kn: "ಮನ್ನಳ್ಳಿ",
+            villages: [{ code: "01", en: "MANNALLI", kn: "ಮನ್ನಳ್ಳಿ" }, { code: "02", en: "DHANURA", kn: "ಧನೂರಾ" }, { code: "03", en: "GUMMANAL", kn: "ಗುಮ್ಮನಾಳ" }, { code: "04", en: "HONNAL", kn: "ಹೊನ್ನಾಳ" }, { code: "05", en: "HALEGALLI", kn: "ಹಳೆಗಲ್ಲಿ" }, { code: "06", en: "HALLI", kn: "ಹಳ್ಳಿ" }, { code: "07", en: "HIREMATHA", kn: "ಹಿರೇಮಠ" }, { code: "08", en: "JAMBAGI", kn: "ಜಂಬಗಿ" }, { code: "09", en: "JABIRABAD", kn: "ಜಾಬಿರಬಾದ" }, { code: "10", en: "KONAMALA", kn: "ಕೋನಮಲಾ" }, { code: "11", en: "KALYANI", kn: "ಕಲ್ಯಾಣಿ" }, { code: "12", en: "KHATAK CHINCHOLI", kn: "ಖಟಕ ಚಿಂಚೋಳಿ" }, { code: "13", en: "LAKHANAGANVA", kn: "ಲಖನಗಾಂವ" }, { code: "14", en: "MUGANAL", kn: "ಮುಗನಾಳ" }, { code: "15", en: "NITTUR", kn: "ನಿಟ್ಟೂರ" }, { code: "16", en: "SONALA", kn: "ಸೋನಾಳ" }, { code: "17", en: "SADALAPUR", kn: "ಸಾದಲಾಪುರ" }, { code: "18", en: "YAKATPURA", kn: "ಯಕಾತ್ಪುರ" }, { code: "19", en: "KODAMBALA", kn: "ಕೊಡಂಬಳ" }, { code: "20", en: "JAMBAGI", kn: "ಜಂಬಗಿ" }, { code: "21", en: "MAKKANAHALLI", kn: "ಮಕ್ಕನಹಳ್ಳಿ" }, { code: "22", en: "DUBALAGUNDI", kn: "ದುಬಲಗುಂಡಿ" }]
+        }, {
+            code: "04",
+            en: "BAGADALA",
+            kn: "ಬಗಡಾಲ",
+            villages: [{ code: "01", en: "BAGADALA", kn: "ಬಗಡಾಲ" }, { code: "02", en: "BASAVANAHALLI", kn: "ಬಸವನಹಳ್ಳಿ" }, { code: "03", en: "CHINTAKI", kn: "ಚಿಂತಾಕಿ" }, { code: "04", en: "DHANURA", kn: "ಧನೂರಾ" }, { code: "05", en: "GUMMANAL", kn: "ಗುಮ್ಮನಾಳ" }, { code: "06", en: "HALLI", kn: "ಹಳ್ಳಿ" }, { code: "07", en: "HULLAL", kn: "ಹುಲ್ಲಾಳ" }, { code: "08", en: "HAKANALA", kn: "ಹಕನಾಳ" }, { code: "09", en: "KANHAL", kn: "ಕನ್ಹಾಳ" }, { code: "10", en: "KOLUR", kn: "ಕೋಳೂರ" }, { code: "11", en: "MADIYAL", kn: "ಮಡಿಯಾಳ" }, { code: "12", en: "MALLAPUR", kn: "ಮಲ್ಲಾಪುರ" }, { code: "13", en: "NAREGANALA", kn: "ನರೆಗನಾಳ" }, { code: "14", en: "NARAYANAPUR", kn: "ನಾರಾಯಣಪುರ" }, { code: "15", en: "SANTAPUR", kn: "ಸಂತಾಪುರ" }, { code: "16", en: "SIDDHESWAR", kn: "ಸಿದ್ಧೇಶ್ವರ" }, { code: "17", en: "SINDHOLA", kn: "ಸಿಂಧೋಳಾ" }, { code: "18", en: "SRINAGAR", kn: "ಶ್ರೀನಗರ" }, { code: "19", en: "SAYANALA", kn: "ಸಯನಾಳ" }, { code: "20", en: "YELADGI", kn: "ಯಲದಗಿ" }, { code: "21", en: "GHOLAPAKA", kn: "ಘೋಳಪಾಕ" }, { code: "22", en: "SAYADAPURA", kn: "ಸಯದಾಪುರ" }, { code: "23", en: "CHIKALI", kn: "ಚಿಕಾಲಿ" }, { code: "24", en: "MAKKANAHALLI", kn: "ಮಕ್ಕನಹಳ್ಳಿ" }]
+        }, {
+            code: "05",
+            en: "KAMATANA",
+            kn: "ಕಾಮಠಾಣ",
+            villages: [{ code: "01", en: "KAMATANA", kn: "ಕಾಮಠಾಣ" }, { code: "02", en: "CHANDUR", kn: "ಚಾಂದೂರ" }, { code: "03", en: "DAREGANVA", kn: "ದಾರೆಗಾಂವ" }, { code: "04", en: "DILWARA", kn: "ದಿಲ್ವಾರಾ" }, { code: "05", en: "JANGAMMAVADI", kn: "ಜಂಗಮ್ಮವಾಡಿ" }, { code: "06", en: "JANAVADA", kn: "ಜನವಾಡ" }, { code: "07", en: "KADAMADDI", kn: "ಕಡಮದ್ದಿ" }, { code: "08", en: "KODAGI", kn: "ಕೊಡಗಿ" }, { code: "09", en: "KOLUR", kn: "ಕೋಳೂರ" }, { code: "10", en: "LAGAVANTARAI", kn: "ಲಗವಂತರಾಯ" }, { code: "11", en: "NALA", kn: "ನಾಳ" }, { code: "12", en: "NAGANAHALLI", kn: "ನಾಗನಹಳ್ಳಿ" }, { code: "13", en: "RAKSHYAL", kn: "ರಕ್ಷ್ಯಾಳ" }, { code: "14", en: "SAYADAPURA", kn: "ಸಯದಾಪುರ" }, { code: "15", en: "TALAMADAGI", kn: "ತಳಮಡಗಿ" }, { code: "16", en: "MUGANAL", kn: "ಮುಗನಾಳ" }, { code: "17", en: "GHOLAPAKA", kn: "ಘೋಳಪಾಕ" }, { code: "18", en: "KAMBLAGA", kn: "ಕಂಬಳಗಾ" }, { code: "19", en: "TALAMADAGI", kn: "ತಳಮಡಗಿ" }, { code: "20", en: "KAREGOWRA", kn: "ಕರೆಗೌರಾ" }]
+        }, {
+            code: "06",
+            en: "JANAVADA",
+            kn: "ಜನವಾಡ",
+            villages: [{ code: "01", en: "JANAVADA", kn: "ಜನವಾಡ" }, { code: "02", en: "ALAGUDA", kn: "ಅಳಗುದಾ" }, { code: "03", en: "BUDAGI", kn: "ಬುಡಗಿ" }, { code: "04", en: "DHANUR", kn: "ಧನೂರ" }, { code: "05", en: "GUMMANALA", kn: "ಗುಮ್ಮನಾಳ" }, { code: "06", en: "HIREGAON", kn: "ಹಿರೇಗಾಂವ" }, { code: "07", en: "HOSAKERI", kn: "ಹೊಸಕೇರಿ" }, { code: "08", en: "HULLALA", kn: "ಹುಲ್ಲಾಳ" }, { code: "09", en: "KAREGOWRA", kn: "ಕರೆಗೌರಾ" }, { code: "10", en: "KOKANI", kn: "ಕೊಕಣಿ" }, { code: "11", en: "MADIYALA", kn: "ಮಡಿಯಾಳ" }, { code: "12", en: "NANDIGAON", kn: "ನಂದಿಗಾಂವ" }, { code: "13", en: "NANDURA", kn: "ನಂದೂರ" }, { code: "14", en: "NAREGANALA", kn: "ನರೆಗನಾಳ" }, { code: "15", en: "SONALA", kn: "ಸೋನಾಳ" }, { code: "16", en: "UTARANALLA", kn: "ಉತ್ತರನಾಳ" }, { code: "17", en: "YAKATPURA", kn: "ಯಕಾತ್ಪುರ" }, { code: "18", en: "HUMNABAD", kn: "ಹುಮ್ನಾಬಾದ್" }, { code: "19", en: "KAMTHANA", kn: "ಕಮಠಾಣ" }, { code: "20", en: "DHANURA", kn: "ಧನೂರಾ" }, { code: "21", en: "KADAMADDI", kn: "ಕಡಮದ್ದಿ" }, { code: "22", en: "CHIKALI", kn: "ಚಿಕಾಲಿ" }, { code: "23", en: "KODAMBALA", kn: "ಕೊಡಂಬಳ" }, { code: "24", en: "HALABARGA", kn: "ಹಲಬರ್ಗಾ" }, { code: "25", en: "JIDAGA", kn: "ಜೀದಗಾ" }]
+        }]
+    }, {
+        code: "05",
+        en: "HUMNABAD",
+        kn: "ಹುಮ್ನಾಬಾದ್",
+        hoblis: [{
+            code: "01",
+            en: "HUMANABADA",
+            kn: "ಹುಮನಾಬಾದ",
+            villages: [{ code: "01", en: "HUMANABADA", kn: "ಹುಮನಾಬಾದ" }, { code: "02", en: "BELKERA", kn: "ಬೆಲ್ಕೇರಾ" }, { code: "03", en: "GHATABALAPURA", kn: "ಘಟಬಲಪುರ" }, { code: "04", en: "GUNDURA", kn: "ಗುಂಡೂರ" }, { code: "05", en: "KONAL", kn: "ಕೋನಾಳ" }, { code: "06", en: "LOHAT", kn: "ಲೋಹಟ" }, { code: "07", en: "MADIYALA", kn: "ಮಡಿಯಾಳ" }, { code: "08", en: "MAHADAPURA", kn: "ಮಹಾದಾಪುರ" }, { code: "09", en: "NAWADAGI", kn: "ನವಡಗಿ" }, { code: "10", en: "NAGARAL", kn: "ನಾಗರಾಳ" }, { code: "11", en: "SAHAGANV", kn: "ಸಾಹಗಾಂವ" }, { code: "12", en: "SONALA", kn: "ಸೋನಾಳ" }, { code: "13", en: "TADAPUR", kn: "ತಡಪುರ" }, { code: "14", en: "WAGI", kn: "ವಾಗೀ" }, { code: "15", en: "YANAGI", kn: "ಯಾನಗಿ" }, { code: "16", en: "YELSANGI", kn: "ಯೆಳಸಂಗಿ" }]
+        }, {
+            code: "02",
+            en: "HALLILIKHEDABI",
+            kn: "ಹಳ್ಳಿಖೇಡಾ ಬಿ",
+            villages: [{ code: "01", en: "HALLILIKHEDABI", kn: "ಹಳ್ಳಿಖೇಡಾ ಬಿ" }, { code: "02", en: "BASAVANAHALLI", kn: "ಬಸವನಹಳ್ಳಿ" }, { code: "03", en: "BUDAGI", kn: "ಬುಡಗಿ" }, { code: "04", en: "CHANNAYIKHEDA", kn: "ಚನ್ನಾಯಿಖೇಡಾ" }, { code: "05", en: "HALEGALLI", kn: "ಹಳೆಗಲ್ಲಿ" }, { code: "06", en: "HATTARGA", kn: "ಹತ್ತರಗಾ" }, { code: "07", en: "HUMNAWAD", kn: "ಹುಮ್ನವಾಡ" }, { code: "08", en: "KAREGOWRA", kn: "ಕರೆಗೌರಾ" }, { code: "09", en: "KADAMADDI", kn: "ಕಡಮದ್ದಿ" }, { code: "10", en: "KOLUR", kn: "ಕೋಳೂರ" }, { code: "11", en: "SADDAMARGI", kn: "ಸದ್ದಮರಗಿ" }, { code: "12", en: "SAYADAPURA", kn: "ಸಯದಾಪುರ" }, { code: "13", en: "SAYADAPURA", kn: "ಸಯದಾಪುರ" }, { code: "14", en: "SHIRUR", kn: "ಶಿರೂರ" }, { code: "15", en: "SIRAGAPUR", kn: "ಸಿರಗಾಪುರ" }, { code: "16", en: "YEKATPUR", kn: "ಯೇಕತ್ಪುರ" }, { code: "17", en: "YEKATPUR", kn: "ಯೇಕತ್ಪುರ" }]
+        }, {
+            code: "03",
+            en: "DUBALAGUNDI",
+            kn: "ದುಬಲಗುಂಡಿ",
+            villages: [{ code: "01", en: "DUBALAGUNDI", kn: "ದುಬಲಗುಂಡಿ" }, { code: "02", en: "ANANTAKODI", kn: "ಅನಂತಕೋಡಿ" }, { code: "03", en: "DEVANAHALLI", kn: "ದೇವನಹಳ್ಳಿ" }, { code: "04", en: "DABAKA", kn: "ಡಾಬಕಾ" }, { code: "05", en: "DHANURA", kn: "ಧನೂರಾ" }, { code: "06", en: "GHOLAPAKA", kn: "ಘೋಳಪಾಕ" }, { code: "07", en: "GUMMANALA", kn: "ಗುಮ್ಮನಾಳ" }, { code: "08", en: "JAMBAGI", kn: "ಜಂಬಗಿ" }, { code: "09", en: "KODAMBALA", kn: "ಕೊಡಂಬಳ" }, { code: "10", en: "MUGANAL", kn: "ಮುಗನಾಳ" }, { code: "11", en: "NITTUR", kn: "ನಿಟ್ಟೂರ" }, { code: "12", en: "NITTUR", kn: "ನಿಟ್ಟೂರ" }, { code: "13", en: "RAKSHYAL", kn: "ರಕ್ಷ್ಯಾಳ" }, { code: "14", en: "SANGAM", kn: "ಸಂಗಮ" }, { code: "15", en: "SHELGI", kn: "ಶೇಲ್ಗಿ" }, { code: "16", en: "TAWARAGA", kn: "ತವರಗಾ" }, { code: "17", en: "VADAGAON", kn: "ವಾಡಗಾಂವ" }, { code: "18", en: "YADALAPUR", kn: "ಯಾದಲಪುರ" }]
+        }]
+    }, {
+        code: "06",
+        en: "CHITAGUPPA",
+        kn: "ಚಿಟಗುಪ್ಪ",
+        hoblis: [{
+            code: "01",
+            en: "CHITAGUPPA",
+            kn: "ಚಿಟಗುಪ್ಪ",
+            villages: [{ code: "01", en: "CHITAGUPPA", kn: "ಚಿಟಗುಪ್ಪ" }, { code: "02", en: "DHANURA", kn: "ಧನೂರಾ" }, { code: "03", en: "GORACHINCHOLI", kn: "ಗೋರಾಚಿಂಚೋಳಿ" }, { code: "04", en: "GHOLAPAK", kn: "ಘೋಳಪಾಕ" }, { code: "05", en: "HOSKERI", kn: "ಹೊಸ್ಕೇರಿ" }, { code: "06", en: "KAMALAPUR", kn: "ಕಮಲಾಪುರ" }, { code: "07", en: "KAREGOWRA", kn: "ಕರೆಗೌರಾ" }, { code: "08", en: "KODAMBALA", kn: "ಕೊಡಂಬಳ" }, { code: "09", en: "KOLUR", kn: "ಕೋಳೂರ" }, { code: "10", en: "LOHATA", kn: "ಲೋಹಟಾ" }, { code: "11", en: "MAHADAPURA", kn: "ಮಹಾದಾಪುರ" }, { code: "12", en: "MOTAGA", kn: "ಮೋಟಗಾ" }, { code: "13", en: "NIRNA", kn: "ನಿರ್ಣಾ" }, { code: "14", en: "SHIVANI", kn: "ಶಿವಣಿ" }, { code: "15", en: "SINDHOLA", kn: "ಸಿಂಧೋಳಾ" }, { code: "16", en: "TALAMADAGI", kn: "ತಳಮಡಗಿ" }]
+        }, {
+            code: "02",
+            en: "NIRNA",
+            kn: "ನಿರ್ಣಾ",
+            villages: [{ code: "01", en: "NIRNA", kn: "ನಿರ್ಣಾ" }, { code: "02", en: "CHAKRA", kn: "ಚಕ್ರ" }, { code: "03", en: "GHOLAPAKA", kn: "ಘೋಳಪಾಕ" }, { code: "04", en: "HIREGAON", kn: "ಹಿರೇಗಾಂವ" }, { code: "05", en: "HONGA", kn: "ಹೊಂಗಾ" }, { code: "06", en: "KANHAL", kn: "ಕನ್ಹಾಳ" }, { code: "07", en: "KAREGOWRA", kn: "ಕರೆಗೌರಾ" }, { code: "08", en: "KASARAGAON", kn: "ಕಸರಗಾಂವ" }, { code: "09", en: "KODAMBAL", kn: "ಕೊಡಂಬಳ" }, { code: "10", en: "NITTUR", kn: "ನಿಟ್ಟೂರ" }, { code: "11", en: "NANDURA", kn: "ನಂದೂರ" }]
+        }, {
+            code: "03",
+            en: "BEMALAKHEDA",
+            kn: "ಬೇಮಳಖೇಡ",
+            villages: [{ code: "01", en: "BEMALAKHEDA", kn: "ಬೇಮಳಖೇಡ" }, { code: "02", en: "DHANURA", kn: "ಧನೂರಾ" }, { code: "03", en: "GUMMANALA", kn: "ಗುಮ್ಮನಾಳ" }, { code: "04", en: "JALAKI", kn: "ಜಲಕಿ" }, { code: "05", en: "KARADIKOLA", kn: "ಕರಡಿಕೋಳ" }, { code: "06", en: "KASARAGAON", kn: "ಕಸರಗಾಂವ" }, { code: "07", en: "MUGANAL", kn: "ಮುಗನಾಳ" }, { code: "08", en: "NALA", kn: "ನಾಳ" }, { code: "09", en: "SAYADAPUR", kn: "ಸಯದಾಪುರ" }, { code: "10", en: "VADAGAON", kn: "ವಾಡಗಾಂವ" }]
+        }]
+    }, {
+        code: "07",
+        en: "KAMALANAGARA",
+        kn: "ಕಮಲಾನಗರ",
+        hoblis: [{
+            code: "04",
+            en: "TANAKUSANURA",
+            kn: "ತನಕುಸನೂರ",
+            villages: [{ code: "01", en: "TANAKUSANURA", kn: "ತನಕುಸನೂರ" }, { code: "02", en: "DAREGANV", kn: "ದಾರೆಗಾಂವ" }, { code: "03", en: "HALLI", kn: "ಹಳ್ಳಿ" }, { code: "04", en: "HOSAKERI", kn: "ಹೊಸಕೇರಿ" }, { code: "05", en: "HODALIKHED", kn: "ಹೋಡಲಿಖೇಡ" }, { code: "06", en: "KAMTHANA", kn: "ಕಮಠಾಣ" }, { code: "07", en: "KHAMBAG", kn: "ಖಂಬಾಗ" }, { code: "08", en: "KURUBHALLI", kn: "ಕುರುಬಹಳ್ಳಿ" }, { code: "09", en: "MALLEGAON", kn: "ಮಲ್ಲೆಗಾಂವ" }, { code: "10", en: "SAMPUR", kn: "ಸಂಪುರ" }, { code: "11", en: "SHETKARA", kn: "ಶೇತ್ಕರಾ" }, { code: "12", en: "SULTANAPUR", kn: "ಸುಲ್ತಾನಾಪುರ" }]
+        }, {
+            code: "05",
+            en: "KAMALANAGARA",
+            kn: "ಕಮಲಾನಗರ",
+            villages: [{ code: "01", en: "KAMALANAGARA", kn: "ಕಮಲಾನಗರ" }, { code: "02", en: "ARALLI", kn: "ಅರಳ್ಳಿ" }, { code: "03", en: "AANDURA", kn: "ಆಂದೂರಾ" }, { code: "04", en: "BAREKOT", kn: "ಬಾರೇಕೋಟ್" }, { code: "05", en: "CHANDUR", kn: "ಚಾಂದೂರ" }, { code: "06", en: "DEVANDI", kn: "ದೇವಂದಿ" }, { code: "07", en: "GANGANABEEDA", kn: "ಗಂಗನಬೀಡಾ" }, { code: "08", en: "HULEGAON", kn: "ಹುಲೇಗಾಂವ" }, { code: "09", en: "HALLI", kn: "ಹಳ್ಳಿ" }, { code: "10", en: "HONNALI", kn: "ಹೊನ್ನಾಳಿ" }, { code: "11", en: "KHAJAPUR", kn: "ಖಾಜಾಪುರ" }, { code: "12", en: "LAKHANAGANVA", kn: "ಲಖನಗಾಂವ" }, { code: "13", en: "MANHALLI", kn: "ಮನ್ನಹಳ್ಳಿ" }, { code: "14", en: "MUDHOL", kn: "ಮುದೋಳ" }, { code: "15", en: "RAMAPUR", kn: "ರಾಮಾಪುರ" }, { code: "16", en: "RAKSHYAL", kn: "ರಕ್ಷ್ಯಾಳ" }, { code: "17", en: "SAYADAPURA", kn: "ಸಯದಾಪುರ" }, { code: "18", en: "SAYADAPUR", kn: "ಸಯದಾಪುರ" }, { code: "19", en: "SAYANALA", kn: "ಸಯನಾಳ" }, { code: "20", en: "SINDHOLA", kn: "ಸಿಂಧೋಳಾ" }, { code: "21", en: "SHETAKARA", kn: "ಶೇತಕಾರ" }, { code: "22", en: "UTARANALLA", kn: "ಉತ್ತರನಾಳ" }, { code: "23", en: "WAGI", kn: "ವಾಗೀ" }, { code: "24", en: "HALLI", kn: "ಹಳ್ಳಿ" }, { code: "25", en: "AANDURA", kn: "ಆಂದೂರಾ" }]
+        }, {
+            code: "06",
+            en: "DABAKA",
+            kn: "ಡಾಬಕಾ",
+            villages: [{ code: "01", en: "DABAKA", kn: "ಡಾಬಕಾ" }, { code: "02", en: "ALAKHALLI", kn: "ಅಳಖಳ್ಳಿ" }, { code: "03", en: "MOGANAL", kn: "ಮೊಗನಾಳ" }, { code: "04", en: "KHADAKA", kn: "ಖಡಕ" }, { code: "05", en: "NIDODA", kn: "ನಿದೋಡಾ" }, { code: "06", en: "KODAMBALA", kn: "ಕೊಡಂಬಳ" }, { code: "07", en: "BHOSAGA", kn: "ಭೋಸಗಾ" }, { code: "08", en: "DABAKA", kn: "ಡಾಬಕಾ" }, { code: "09", en: "JALAKI", kn: "ಜಲಕಿ" }, { code: "10", en: "ALAKHALLI", kn: "ಅಳಖಳ್ಳಿ" }, { code: "11", en: "VILLAGE", kn: "ಗ್ರಾಮ" }, { code: "12", en: "MOGANAL", kn: "ಮೊಗನಾಳ" }, { code: "13", en: "NIDODA", kn: "ನಿದೋಡಾ" }, { code: "14", en: "KODAMBALA", kn: "ಕೊಡಂಬಳ" }, { code: "15", en: "BHOSAGA", kn: "ಭೋಸಗಾ" }]
+        }]
+    }, {
+        code: "08",
+        en: "HULASURA",
+        kn: "ಹುಲಸೂರ",
+        hoblis: [{
+            code: "06",
+            en: "HULASURA",
+            kn: "ಹುಲಸೂರ",
+            villages: [{ code: "01", en: "HULASURA", kn: "ಹುಲಸೂರ" }, { code: "02", en: "SOLADABAKA", kn: "ಸೋಲಡಾಬಕಾ" }, { code: "03", en: "KODAMBELA", kn: "ಕೊಡಂಬಳ" }, { code: "04", en: "HANDIKERA", kn: "ಹಂದಿಕೇರಾ" }, { code: "05", en: "HULASURA M", kn: "ಹುಲಸೂರ ಎಮ್" }, { code: "06", en: "CHIKALI", kn: "ಚಿಕಾಲಿ" }, { code: "07", en: "KAMBHALAGA", kn: "ಕಂಬಳಗಾ" }, { code: "08", en: "YELAKHA", kn: "ಯೆಳಖಾ" }, { code: "09", en: "GIRANIYALA", kn: "ಗಿರಣಿಯಾಳ" }, { code: "10", en: "DHANUR", kn: "ಧನೂರ" }, { code: "11", en: "HAMPURE", kn: "ಹಂಪುರೆ" }, { code: "12", en: "NAREGANALA", kn: "ನರೆಗನಾಳ" }, { code: "13", en: "KOLARA K", kn: "ಕೋಳಾರ ಕೆ" }, { code: "14", en: "SULYAGAON", kn: "ಸುಲ್ಯಾಗಾಂವ" }, { code: "15", en: "HONGA", kn: "ಹೊಂಗಾ" }, { code: "16", en: "JAMBULADADDA", kn: "ಜಂಬುಳದದ್ದ" }, { code: "17", en: "KODAMBELA", kn: "ಕೊಡಂಬಳ" }, { code: "18", en: "MARATHAVADI", kn: "ಮರಾಠವಾಡಿ" }]
+        }]
+    }];
+    
+    const translations = {
+        en: {
+            title: "Bidar District Bhoomi Complaint",
+            mainHeading: "Bhoomi Complaint",
+            langToggle: "ಕನ್ನಡ",
+            loginHeading: "Taluk Login",
+            selectTaluk: "Select Taluk:",
+            passwordLabel: "Password:",
+            passwordPlaceholder: "Enter password",
+            loginButton: "Login",
+            logoutButton: "Logout",
+            selectHobli: "Select Hobli:",
+            selectVillage: "Select Village:",
+            selectTalukOption: "--Select Taluk--",
+            selectHobliOption: "--Select Hobli--",
+            selectVillageOption: "--Select Village--",
+            mutationDetails: "Mutation Details",
+            mutationType: "Mutation Type:",
+            selectMutationType: "--Select Mutation Type--",
+            courtOrder: "Court Order",
+            courtStay: "Court Stay",
+            landAcquisition: "Land Acquisition",
+            landConversion: "Land Conversion",
+            pledgeRelease: "Pledge/Release",
+            podi: "Podi",
+            govtOrder: "Govt Order",
+            movementOfRTC: "Movement of RTC",
+            intimationSlip: "Intimation slip",
+            inheritance: "Inheritance",
+            others: "Others",
+            transactionNo: "Transaction No / Year:",
+            transactionNoPlaceholder: "Enter Transaction No / Year",
+            applicationNo: "Application No / Year:",
+            applicationNoPlaceholder: "Enter Application No / Year",
+            fileUploadLabel: "Upload the Error Image (jpg/pdf/png):",
+            complaintDetails: "Complaint Details:",
+            complaintDetailsPlaceholder: "Enter your complaint details here...",
+            submitButton: "Submit Complaint",
+            fillFieldsAlert: "Please fill in all the required fields.",
+            submittingMessage: "Submitting...",
+            successMessage: "Complaint submitted successfully!",
+            failedMessage: "Submission failed. Please try again.",
+            errorMessage: "An error occurred. Please try again.",
+            uniqueNoAlert: "Your Complaint Number Is:",
+            loginFailed: "Invalid Taluk or password. Please try again.",
+        },
+        kn: {
+            title: "ಬೀದರ್ ಜಿಲ್ಲಾ ಭೂಮಿ ದೂರು",
+            mainHeading: "ಭೂಮಿ ದೂರು",
+            langToggle: "English",
+            loginHeading: "ತಾಲ್ಲೂಕು ಲಾಗಿನ್",
+            selectTaluk: "ತಾಲ್ಲೂಕು ಆಯ್ಕೆ ಮಾಡಿ:",
+            passwordLabel: "ಪಾಸ್‌ವರ್ಡ್:",
+            passwordPlaceholder: "ಪಾಸ್‌ವರ್ಡ್ ನಮೂದಿಸಿ",
+            loginButton: "ಲಾಗಿನ್",
+            logoutButton: "ಲಾಗ್ಔಟ್",
+            selectHobli: "ಹೋಬಳಿ ಆಯ್ಕೆ ಮಾಡಿ:",
+            selectVillage: "ಗ್ರಾಮ ಆಯ್ಕೆ ಮಾಡಿ:",
+            selectTalukOption: "--ತಾಲ್ಲೂಕು ಆಯ್ಕೆ ಮಾಡಿ--",
+            selectHobliOption: "--ಹೋಬಳಿ ಆಯ್ಕೆ ಮಾಡಿ--",
+            selectVillageOption: "--ಗ್ರಾಮ ಆಯ್ಕೆ ಮಾಡಿ--",
+            mutationDetails: "ಮ್ಯುಟೇಷನ್ ವಿವರಗಳು",
+            mutationType: "ಮ್ಯುಟೇಷನ್ ವಿಧ:",
+            selectMutationType: "--ಮ್ಯುಟೇಷನ್ ವಿಧ ಆಯ್ಕೆ ಮಾಡಿ--",
+            courtOrder: "ನ್ಯಾಯಾಲಯದ ಆದೇಶ",
+            courtStay: "ನ್ಯಾಯಾಲಯದ ತಡೆ",
+            landAcquisition: "ಭೂಸ್ವಾಧೀನ",
+            landConversion: "ಭೂಪರಿವರ್ತನೆ",
+            pledgeRelease: "ಅಡಮಾನ/ವಿಮೋಚನೆ",
+            podi: "ಪೋಡಿ",
+            govtOrder: "ಸರ್ಕಾರಿ ಆದೇಶ",
+            movementOfRTC: "ಆರ್‌ಟಿಸಿ ಚಲನೆ",
+            intimationSlip: "ಮಾಹಿತಿ ಪತ್ರ",
+            inheritance: "ಉತ್ತರಾಧಿಕಾರ",
+            others: "ಇತರರು",
+            transactionNo: "ವಹಿವಾಟು ಸಂಖ್ಯೆ / ವರ್ಷ:",
+            transactionNoPlaceholder: "ವಹಿವಾಟು ಸಂಖ್ಯೆ / ವರ್ಷ ನಮೂದಿಸಿ",
+            applicationNo: "ಅರ್ಜಿ ಸಂಖ್ಯೆ / ವರ್ಷ:",
+            applicationNoPlaceholder: "ಅರ್ಜಿ ಸಂಖ್ಯೆ / ವರ್ಷ ನಮೂದಿಸಿ",
+            fileUploadLabel: "ದೋಷದ ಚಿತ್ರವನ್ನು ಅಪ್‌ಲೋಡ್ ಮಾಡಿ (jpg/pdf/png):",
+            complaintDetails: "ದೂರು ವಿವರಗಳು:",
+            complaintDetailsPlaceholder: "ನಿಮ್ಮ ದೂರು ವಿವರಗಳನ್ನು ಇಲ್ಲಿ ನಮೂದಿಸಿ...",
+            submitButton: "ದೂರು ಸಲ್ಲಿಸಿ",
+            fillFieldsAlert: "ದಯವಿಟ್ಟು ಎಲ್ಲಾ ಅಗತ್ಯ ಕ್ಷೇತ್ರಗಳನ್ನು ಭರ್ತಿ ಮಾಡಿ.",
+            submittingMessage: "ಸಲ್ಲಿಸಲಾಗುತ್ತಿದೆ...",
+            successMessage: "ದೂರು ಯಶಸ್ವಿಯಾಗಿ ಸಲ್ಲಿಕೆಯಾಗಿದೆ!",
+            failedMessage: "ಸಲ್ಲಿಕೆ ವಿಫಲವಾಗಿದೆ. ದಯವಿಟ್ಟು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.",
+            errorMessage: "ದೋಷ ಸಂಭವಿಸಿದೆ. ದಯವಿಟ್ಟು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.",
+            uniqueNoAlert: "ನಿಮ್ಮ ದೂರು ಸಂಖ್ಯೆ:",
+            loginFailed: "ಅಮಾನ್ಯ ತಾಲ್ಲೂಕು ಅಥವಾ ಪಾಸ್‌ವರ್ಡ್. ದಯವಿಟ್ಟು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.",
+        }
+    };
+    
+    // Add Taluk codes to the password map for a more secure login
+    const talukPasswords = {
+        "BASAVAKALYAN (01)": "B'kalyan01",
+        "BHALKI (02)": "Bhalki02",
+        "AURAD (03)": "Aurad03",
+        "BIDAR (04)": "Bidar04",
+        "HUMNABAD (05)": "Humnabad05",
+        "CHITAGUPPA (06)": "Chitguppa06",
+        "KAMALANAGARA (07)": "Kamal07",
+        "HULASURA (08)": "Hulasur08"
+    };
+
+    let currentLanguage = 'en';
+    let loggedInTaluk = null;
+
+    const loginTalukSelect = document.getElementById('loginTaluk');
+    const loginForm = document.getElementById('login');
+    const loginMessage = document.getElementById('loginMessage');
+    const complaintFormContainer = document.getElementById('complaintFormContainer');
+    const complaintForm = document.getElementById('complaintForm');
+    const logoutButton = document.getElementById('logoutButton');
+    const mainContainer = document.querySelector('.container');
+    const talukHeading = document.getElementById('talukHeading');
+
+    const talukSelect = document.getElementById('taluk');
+    const hobliSelect = document.getElementById('hobli');
+    const villageSelect = document.getElementById('village');
+    const submitBtn = document.querySelector('#complaintForm button[type="submit"]');
+
+    function populateDropdown(selectElement, items, placeholderKey) {
+        selectElement.innerHTML = `<option value="">${translations[currentLanguage][placeholderKey]}</option>`;
+        items.forEach(item => {
+            const newOption = document.createElement('option');
+            // Store the full formatted string as the value for form submission
+            newOption.value = `${item.en} (${item.code})`;
+            // Set the display text based on the current language
+            newOption.textContent = `${item[currentLanguage]} (${item.code})`;
+            selectElement.appendChild(newOption);
+        });
+        if (items.length > 0) {
+            selectElement.disabled = false;
+        }
+    }
+
+    function extractCode(value) {
+        const match = value.match(/\((\d+)\)/);
+        return match ? match[1] : '';
+    }
+
+    function findItemByValue(list, value) {
+        const code = extractCode(value);
+        return list.find(item => item.code === code);
+    }
+    
+    function updateTextContent() {
+        document.querySelectorAll('[data-lang-key]').forEach(element => {
+            const key = element.getAttribute('data-lang-key');
+            if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                element.placeholder = translations[currentLanguage][key];
+            } else {
+                element.textContent = translations[currentLanguage][key];
+            }
+        });
+
+        // Re-populate login dropdown
+        populateDropdown(loginTalukSelect, locationData, 'selectTalukOption');
+
+        // Check if a user is logged in
+        if (loggedInTaluk) {
+            // Re-populate complaint form dropdowns for the logged-in taluk only
+            const talukObj = findItemByValue(locationData, loggedInTaluk);
+            if (talukObj) {
+                talukSelect.innerHTML = ''; // Clear previous options
+                const newOption = document.createElement('option');
+                newOption.value = `${talukObj.en} (${talukObj.code})`;
+                newOption.textContent = `${talukObj[currentLanguage]} (${talukObj.code})`;
+                talukSelect.appendChild(newOption);
+                talukSelect.value = newOption.value; // Set the value
+                talukSelect.disabled = true; // Keep it disabled
+
+                // Update the taluk heading with the correct localized name
+                talukHeading.textContent = talukObj[currentLanguage];
+
+                // Update Hobli and Village dropdowns based on current state
+                const selectedHobli = hobliSelect.value;
+                const hobliObj = findItemByValue(talukObj.hoblis, selectedHobli);
+                populateDropdown(hobliSelect, talukObj.hoblis, 'selectHobliOption');
+                if (hobliObj) {
+                    hobliSelect.value = selectedHobli;
+                    const selectedVillage = villageSelect.value;
+                    const villageObj = findItemByValue(hobliObj.villages, selectedVillage);
+                    populateDropdown(villageSelect, hobliObj.villages, 'selectVillageOption');
+                    if (villageObj) {
+                        villageSelect.value = selectedVillage;
+                    }
+                }
+            }
+        }
+    }
+
+    function toggleLanguage() {
+        currentLanguage = currentLanguage === 'en' ? 'kn' : 'en';
+        updateTextContent();
+        document.title = translations[currentLanguage].title;
+    }
+
+    function login() {
+        const talukValue = loginTalukSelect.value;
+        const passwordInput = document.getElementById('password');
+        const password = passwordInput.value;
+
+        if (!talukValue || !password) {
+            loginMessage.textContent = translations[currentLanguage].loginFailed;
+            loginMessage.className = "message error";
+            return;
+        }
+
+        const expectedPassword = talukPasswords[talukValue];
+        if (password === expectedPassword) {
+            loggedInTaluk = talukValue; // Set the logged-in taluk
+            loginMessage.textContent = "";
+            loginMessage.className = "message";
+            
+            document.getElementById('loginForm').classList.add('hidden');
+            complaintFormContainer.classList.remove('hidden');
+            mainContainer.classList.remove('login-view');
+            logoutButton.style.display = 'block';
+
+            const talukObj = findItemByValue(locationData, talukValue);
+            talukHeading.textContent = talukObj[currentLanguage];
+            document.title = `${talukObj[currentLanguage]} ${translations[currentLanguage].title.split(' ')[2]}`;
+
+            // Populate the single taluk option in the complaint form
+            talukSelect.innerHTML = '';
+            const newOption = document.createElement('option');
+            newOption.value = `${talukObj.en} (${talukObj.code})`;
+            newOption.textContent = `${talukObj[currentLanguage]} (${talukObj.code})`;
+            talukSelect.appendChild(newOption);
+            talukSelect.value = newOption.value; // Set the value
+            talukSelect.disabled = true; // Keep it disabled
+
+            if (talukObj) {
+                populateDropdown(hobliSelect, talukObj.hoblis, 'selectHobliOption');
+            }
+
+        } else {
+            loginMessage.textContent = translations[currentLanguage].loginFailed;
+            loginMessage.className = "message error";
+            passwordInput.value = "";
+        }
+    }
+
+    function logout() {
+        complaintForm.reset();
+        talukSelect.disabled = false;
+        hobliSelect.disabled = true;
+        villageSelect.disabled = true;
+        
+        document.getElementById('loginForm').classList.remove('hidden');
+        complaintFormContainer.classList.add('hidden');
+        mainContainer.classList.add('login-view');
+        logoutButton.style.display = 'none';
+
+        talukHeading.textContent = "";
+        document.title = translations[currentLanguage].title;
+        
+        loginMessage.textContent = "";
+        document.getElementById('password').value = "";
+        loggedInTaluk = null;
+        
+        // Re-populate login dropdown after logout
+        populateDropdown(loginTalukSelect, locationData, 'selectTalukOption');
+    }
+
+    window.onload = function() {
+        updateTextContent();
+    };
+
+    document.getElementById('langToggle').addEventListener('click', toggleLanguage);
+    loginForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        login();
+    });
+    logoutButton.addEventListener('click', logout);
+
+    talukSelect.addEventListener('change', function() {
+        const selectedTalukValue = this.value;
+        hobliSelect.innerHTML = `<option value="">${translations[currentLanguage].selectHobliOption}</option>`;
+        villageSelect.innerHTML = `<option value="">${translations[currentLanguage].selectVillageOption}</option>`;
+        hobliSelect.disabled = true;
+        villageSelect.disabled = true;
+
+        if (selectedTalukValue) {
+            const talukObj = findItemByValue(locationData, selectedTalukValue);
+            if (talukObj) {
+                populateDropdown(hobliSelect, talukObj.hoblis, 'selectHobliOption');
+            }
+        }
+    });
+
+    hobliSelect.addEventListener('change', function() {
+        const selectedTalukValue = talukSelect.value;
+        const selectedHobliValue = this.value;
+        villageSelect.innerHTML = `<option value="">${translations[currentLanguage].selectVillageOption}</option>`;
+        villageSelect.disabled = true;
+
+        if (selectedHobliValue) {
+            const talukObj = findItemByValue(locationData, selectedTalukValue);
+            if (talukObj) {
+                const hobliObj = findItemByValue(talukObj.hoblis, selectedHobliValue);
+                if (hobliObj) {
+                    populateDropdown(villageSelect, hobliObj.villages, 'selectVillageOption');
+                }
+            }
+        }
+    });
+
+    complaintForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        const taluk = talukSelect.value;
+        const hobli = hobliSelect.value;
+        const village = villageSelect.value;
+        const complaintText = document.getElementById('complaintText').value;
+
+        if (!taluk || !hobli || !village || !complaintText) {
+            alert(translations[currentLanguage].fillFieldsAlert);
+            return;
+        }
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = translations[currentLanguage].submittingMessage;
+        
+        const talukObj = findItemByValue(locationData, taluk);
+        const hobliObj = findItemByValue(talukObj.hoblis, hobli);
+        const villageObj = findItemByValue(hobliObj.villages, village);
+
+        const talukCode = talukObj.code;
+        const hobliCode = hobliObj.code;
+        const villageCode = villageObj.code;
+        const complaintIndex = Math.floor(Math.random() * 99) + 1;
+        const uniqueComplaintNo = `${talukCode}${hobliCode}${villageCode}${String(complaintIndex).padStart(2, '0')}`;
+
+        const formData = new FormData(complaintForm);
+        formData.append('uniqueNo', uniqueComplaintNo);
+        
+        const formMessage = document.getElementById('formMessage');
+        formMessage.textContent = translations[currentLanguage].submittingMessage;
+        formMessage.className = "message";
+
+        // IMPORTANT: Update this URL to your deployed Google Apps Script URL
+        const webAppUrl = "https://script.google.com/macros/s/AKfycbxn7BkUv3x5uIhrSE3coO06gGGuvgakH95CjrTd2KQ3j9gnSEA-Q-6EKLE3U-vU939S/exec";
+
+        fetch(webAppUrl, {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {
+            if (response.ok) {
+                formMessage.textContent = translations[currentLanguage].successMessage;
+                formMessage.className = "message success";
+                complaintForm.reset();
+                hobliSelect.disabled = true;
+                villageSelect.disabled = true;
+                
+                alert(`${translations[currentLanguage].uniqueNoAlert} ${uniqueComplaintNo}`);
+            } else {
+                formMessage.textContent = translations[currentLanguage].failedMessage;
+                formMessage.className = "message error";
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            formMessage.textContent = translations[currentLanguage].errorMessage;
+            formMessage.className = "message error";
+        })
+        .finally(() => {
+            submitBtn.disabled = false;
+            submitBtn.textContent = translations[currentLanguage].submitButton;
+            setTimeout(() => {
+                formMessage.textContent = "";
+                formMessage.className = "message";
+            }, 5000);
+        });
+    });
+</script>
+
+</body>
+</html>
