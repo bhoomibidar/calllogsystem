@@ -250,10 +250,12 @@
         <form id="complaintForm" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="taluk" data-lang-key="selectTaluk">Select Taluk:</label>
-                <select id="taluk" name="taluk" disabled required>
+                <select id="taluk" name="taluk_display" disabled required>
                     <option value="" data-lang-key="selectTalukOption">--Select Taluk--</option>
                 </select>
             </div>
+            <input type="hidden" id="talukHidden" name="taluk">
+
             <div class="form-group">
                 <label for="hobli" data-lang-key="selectHobli">Select Hobli:</label>
                 <select id="hobli" name="hobli" disabled required>
@@ -1350,7 +1352,7 @@
     
     // Add Taluk codes to the password map for a more secure login
     const talukPasswords = {
-        "BASAVAKALYAN (1)": "Bkalyan01",
+        "BASAVAKALYAN (1)": "B'kalyan01",
         "BHALKI (2)": "Bhalki02",
         "AURAD (3)": "Aurad03",
         "BIDAR (4)": "Bidar04",
@@ -1373,6 +1375,7 @@
     const talukHeading = document.getElementById('talukHeading');
 
     const talukSelect = document.getElementById('taluk');
+    const talukHidden = document.getElementById('talukHidden');
     const hobliSelect = document.getElementById('hobli');
     const villageSelect = document.getElementById('village');
     const submitBtn = document.querySelector('#complaintForm button[type="submit"]');
@@ -1424,11 +1427,13 @@
             if (talukObj) {
                 talukSelect.innerHTML = ''; // Clear previous options
                 const newOption = document.createElement('option');
-                newOption.value = `${talukObj.en} (${talukObj.code})`;
+                const talukValue = `${talukObj.en} (${talukObj.code})`;
+                newOption.value = talukValue;
                 newOption.textContent = `${talukObj[currentLanguage]} (${talukObj.code})`;
                 talukSelect.appendChild(newOption);
                 talukSelect.value = newOption.value; // Set the value
                 talukSelect.disabled = true; // Keep it disabled
+                talukHidden.value = talukValue; // Update the hidden field
 
                 // Update the taluk heading with the correct localized name
                 talukHeading.textContent = talukObj[currentLanguage];
@@ -1485,11 +1490,14 @@
             // Populate the single taluk option in the complaint form
             talukSelect.innerHTML = '';
             const newOption = document.createElement('option');
-            newOption.value = `${talukObj.en} (${talukObj.code})`;
+            newOption.value = talukValue; // Use the same value for the display dropdown
             newOption.textContent = `${talukObj[currentLanguage]} (${talukObj.code})`;
             talukSelect.appendChild(newOption);
-            talukSelect.value = newOption.value; // Set the value
-            talukSelect.disabled = true; // Keep it disabled
+            talukSelect.value = newOption.value;
+            talukSelect.disabled = true;
+
+            // Set the value of the hidden input field
+            talukHidden.value = talukValue;
 
             if (talukObj) {
                 populateDropdown(hobliSelect, talukObj.hoblis, 'selectHobliOption');
@@ -1519,6 +1527,9 @@
         loginMessage.textContent = "";
         document.getElementById('password').value = "";
         loggedInTaluk = null;
+        
+        // Clear the hidden input value on logout
+        talukHidden.value = "";
         
         // Re-populate login dropdown after logout
         populateDropdown(loginTalukSelect, locationData, 'selectTalukOption');
@@ -1551,7 +1562,8 @@
     });
 
     hobliSelect.addEventListener('change', function() {
-        const selectedTalukValue = talukSelect.value;
+        // Use the value from the hidden input field
+        const selectedTalukValue = talukHidden.value;
         const selectedHobliValue = this.value;
         villageSelect.innerHTML = `<option value="">${translations[currentLanguage].selectVillageOption}</option>`;
         villageSelect.disabled = true;
@@ -1570,7 +1582,8 @@
     complaintForm.addEventListener('submit', function(event) {
         event.preventDefault();
         
-        const taluk = talukSelect.value;
+        // Get values from the form, including the hidden input
+        const taluk = talukHidden.value;
         const hobli = hobliSelect.value;
         const village = villageSelect.value;
         const complaintText = document.getElementById('complaintText').value;
