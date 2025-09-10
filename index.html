@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-lang-key="title">Bidar District Bhoomi Complaint</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         :root {
             --primary-color: #004d40; /* Deep Teal */
@@ -102,6 +103,7 @@
             font-weight: 600;
             color: var(--muted-text);
             font-size: 1.1rem;
+            transition: color 0.3s ease;
         }
         select, textarea, input[type="text"], input[type="password"], input[type="file"] {
             width: 100%;
@@ -118,6 +120,9 @@
             box-shadow: 0 0 12px rgba(0, 77, 64, 0.25);
             outline: none;
             background-color: var(--card-bg);
+        }
+        select:hover:not([disabled]), textarea:hover, input[type="text"]:hover, input[type="password"]:hover, input[type="file"]:hover {
+            border-color: var(--primary-light);
         }
         button {
             display: block;
@@ -267,6 +272,11 @@
                 <select id="village" name="village" disabled required>
                     <option value="" data-lang-key="selectVillageOption">--Select Village--</option>
                 </select>
+            </div>
+
+            <div class="form-group">
+                <label for="surveyNo" data-lang-key="surveyNo">Survey No:</label>
+                <input type="text" id="surveyNo" name="surveyNo" data-lang-key="surveyNoPlaceholder" placeholder="Enter Survey No">
             </div>
 
             <h2 data-lang-key="mutationDetails">Mutation Details</h2>
@@ -1270,6 +1280,8 @@
             logoutButton: "Logout",
             selectHobli: "Select Hobli:",
             selectVillage: "Select Village:",
+            surveyNo: "Survey No:",
+            surveyNoPlaceholder: "Enter Survey No",
             selectTalukOption: "--Select Taluk--",
             selectHobliOption: "--Select Hobli--",
             selectVillageOption: "--Select Village--",
@@ -1315,6 +1327,8 @@
             logoutButton: "ಲಾಗ್ಔಟ್",
             selectHobli: "ಹೋಬಳಿ ಆಯ್ಕೆ ಮಾಡಿ:",
             selectVillage: "ಗ್ರಾಮ ಆಯ್ಕೆ ಮಾಡಿ:",
+            surveyNo: "ಸಮೀಕ್ಷೆ ಸಂಖ್ಯೆ:",
+            surveyNoPlaceholder: "ಸಮೀಕ್ಷೆ ಸಂಖ್ಯೆ ನಮೂದಿಸಿ",
             selectTalukOption: "--ತಾಲ್ಲೂಕು ಆಯ್ಕೆ ಮಾಡಿ--",
             selectHobliOption: "--ಹೋಬಳಿ ಆಯ್ಕೆ ಮಾಡಿ--",
             selectVillageOption: "--ಗ್ರಾಮ ಆಯ್ಕೆ ಮಾಡಿ--",
@@ -1385,9 +1399,7 @@
         if (items) {
             items.forEach(item => {
                 const newOption = document.createElement('option');
-                // Store the full formatted string as the value for form submission
                 newOption.value = `${item.en} (${item.code})`;
-                // Set the display text based on the current language
                 newOption.textContent = `${item[currentLanguage]} (${item.code})`;
                 selectElement.appendChild(newOption);
             });
@@ -1417,28 +1429,24 @@
             }
         });
 
-        // Re-populate login dropdown
         populateDropdown(loginTalukSelect, locationData, 'selectTalukOption');
 
-        // Check if a user is logged in
         if (loggedInTaluk) {
-            // Re-populate complaint form dropdowns for the logged-in taluk only
             const talukObj = findItemByValue(locationData, loggedInTaluk);
             if (talukObj) {
-                talukSelect.innerHTML = ''; // Clear previous options
+                talukSelect.innerHTML = '';
                 const newOption = document.createElement('option');
                 const talukValue = `${talukObj.en} (${talukObj.code})`;
                 newOption.value = talukValue;
                 newOption.textContent = `${talukObj[currentLanguage]} (${talukObj.code})`;
                 talukSelect.appendChild(newOption);
-                talukSelect.value = newOption.value; // Set the value
-                talukSelect.disabled = true; // Keep it disabled
-                talukHidden.value = talukValue; // Update the hidden field
+                talukSelect.value = newOption.value;
+                talukSelect.disabled = true;
+                talukHidden.value = talukValue;
 
-                // Update the taluk heading with the correct localized name
                 talukHeading.textContent = talukObj[currentLanguage];
+                document.title = `${talukObj[currentLanguage]} ${translations[currentLanguage].title.split(' ')[2]}`;
 
-                // Update Hobli and Village dropdowns based on current state
                 const selectedHobli = hobliSelect.value;
                 const hobliObj = findItemByValue(talukObj.hoblis, selectedHobli);
                 populateDropdown(hobliSelect, talukObj.hoblis, 'selectHobliOption');
@@ -1474,7 +1482,7 @@
 
         const expectedPassword = talukPasswords[talukValue];
         if (password === expectedPassword) {
-            loggedInTaluk = talukValue; // Set the logged-in taluk
+            loggedInTaluk = talukValue;
             loginMessage.textContent = "";
             loginMessage.className = "message";
             
@@ -1487,16 +1495,14 @@
             talukHeading.textContent = talukObj[currentLanguage];
             document.title = `${talukObj[currentLanguage]} ${translations[currentLanguage].title.split(' ')[2]}`;
 
-            // Populate the single taluk option in the complaint form
             talukSelect.innerHTML = '';
             const newOption = document.createElement('option');
-            newOption.value = talukValue; // Use the same value for the display dropdown
+            newOption.value = talukValue;
             newOption.textContent = `${talukObj[currentLanguage]} (${talukObj.code})`;
             talukSelect.appendChild(newOption);
             talukSelect.value = newOption.value;
             talukSelect.disabled = true;
 
-            // Set the value of the hidden input field
             talukHidden.value = talukValue;
 
             if (talukObj) {
@@ -1528,10 +1534,8 @@
         document.getElementById('password').value = "";
         loggedInTaluk = null;
         
-        // Clear the hidden input value on logout
         talukHidden.value = "";
         
-        // Re-populate login dropdown after logout
         populateDropdown(loginTalukSelect, locationData, 'selectTalukOption');
     }
 
@@ -1562,7 +1566,6 @@
     });
 
     hobliSelect.addEventListener('change', function() {
-        // Use the value from the hidden input field
         const selectedTalukValue = talukHidden.value;
         const selectedHobliValue = this.value;
         villageSelect.innerHTML = `<option value="">${translations[currentLanguage].selectVillageOption}</option>`;
@@ -1578,17 +1581,23 @@
             }
         }
     });
+    
+    villageSelect.addEventListener('change', function() {
+        // You could add logic here for the survey no field if needed
+        // For example, if survey numbers depend on the village
+    });
+
 
     complaintForm.addEventListener('submit', function(event) {
         event.preventDefault();
         
-        // Get values from the form, including the hidden input
         const taluk = talukHidden.value;
         const hobli = hobliSelect.value;
         const village = villageSelect.value;
+        const surveyNo = document.getElementById('surveyNo').value;
         const complaintText = document.getElementById('complaintText').value;
 
-        if (!taluk || !hobli || !village || !complaintText) {
+        if (!taluk || !hobli || !village || !surveyNo || !complaintText) {
             alert(translations[currentLanguage].fillFieldsAlert);
             return;
         }
@@ -1613,7 +1622,6 @@
         formMessage.textContent = translations[currentLanguage].submittingMessage;
         formMessage.className = "message";
 
-        // IMPORTANT: Update this URL to your deployed Google Apps Script URL
         const webAppUrl = "https://script.google.com/macros/s/AKfycbxn7BkUv3x5uIhrSE3coO06gGGuvgakH95CjrTd2KQ3j9gnSEA-Q-6EKLE3U-vU939S/exec";
 
         fetch(webAppUrl, {
