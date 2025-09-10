@@ -311,208 +311,950 @@
 </div>
 
 <script>
-    const locationData = [{
-        code: "01",
-        en: "BASAVAKALYAN",
-        kn: "ಬಸವಕಲ್ಯಾಣ",
-        hoblis: [{
-            code: "01",
-            en: "BASAVAKALYANA",
-            kn: "ಬಸವಕಲ್ಯಾಣ",
-            villages: [{ code: "01", en: "BASAVAKALYANA", kn: "ಬಸವಕಲ್ಯಾಣ" }, { code: "02", en: "YADALAPURA", kn: "ಯಾದಲಪುರ" }, { code: "03", en: "SHIVAPURA", kn: "ಶಿವಪುರ" }, { code: "04", en: "TRIPURANKA", kn: "ತ್ರಿಪುರಾಂಕ" }, { code: "05", en: "TALABOGA", kn: "ತಲಬೋಗ" }, { code: "06", en: "PRATAPURA", kn: "ಪ್ರತಾಪುರ" }, { code: "07", en: "MORAKHANDI", kn: "ಮೋರಖಂಡಿ" }, { code: "08", en: "GOWRA", kn: "ಗೌರ" }, { code: "09", en: "JANAPURA", kn: "ಜನಪುರ" }, { code: "10", en: "GOKULA", kn: "ಗೋಕುಲ" }, { code: "11", en: "KITTA", kn: "ಕಿತ್ತ" }, { code: "12", en: "DHANNURA K", kn: "ಧನ್ನೂರ ಕೆ" }, { code: "13", en: "KHANDALA", kn: "ಖಂಡಾಲ" }, { code: "14", en: "KHANAPURA K", kn: "ಖಾನಾಪುರ ಕೆ" }, { code: "15", en: "NEELAKANTA", kn: "ನೀಲಕಂಠ" }, { code: "16", en: "LAHESHVARA", kn: "ಲಾಹೇಶ್ವರ" }, { code: "17", en: "NARAYANAPURA", kn: "ನಾರಾಯಣಪುರ" }, { code: "18", en: "BETABALAKUNDA", kn: "ಬೆಟಬಲಕುಂದ" }]
-        }, {
-            code: "02",
-            en: "MANTALA",
-            kn: "ಮಂಟಾಳ",
-            villages: [{ code: "01", en: "MANTALA", kn: "ಮಂಟಾಳ" }, { code: "02", en: "ILYALA", kn: "ಇಲ್ಯಾಲ" }, { code: "03", en: "GUNDURA", kn: "ಗುಂಡೂರ" }, { code: "04", en: "ALAGUDA", kn: "ಅಳಗುದಾ" }, { code: "05", en: "VATTARAGA", kn: "ವತ್ತರಗಾ" }, { code: "06", en: "GOWDA GAON", kn: "ಗೌಡ ಗಾಂವ" }, { code: "07", en: "SHIVAPURA K", kn: "ಶಿವಪುರ ಕೆ" }, { code: "08", en: "TALAMADAGI", kn: "ತಳಮಡಗಿ" }, { code: "09", en: "KADAVATI", kn: "ಕಡವತಿ" }, { code: "10", en: "BAGADALA", kn: "ಬಗದಲಾ" }, { code: "11", en: "SONALA", kn: "ಸೋನಾಳ" }, { code: "12", en: "BADALA", kn: "ಬದಳ" }, { code: "13", en: "KALAKATTI", kn: "ಕಲಕತ್ತಿ" }, { code: "14", en: "SONGALA", kn: "ಸೋಂಗಲಾ" }, { code: "15", en: "BOMMANALA", kn: "ಬೊಮ್ಮನಾಳ" }, { code: "16", en: "MUGANALA", kn: "ಮುಗನಾಳ" }, { code: "17", en: "HIREGAON", kn: "ಹಿರೇಗಾಂವ" }, { code: "18", en: "KHAMMABADI", kn: "ಖಮ್ಮಾಬಾದಿ" }, { code: "19", en: "KOLANURU", kn: "ಕೋಳನೂರು" }, { code: "20", en: "KODAMBALA", kn: "ಕೊಡಂಬಳ" }, { code: "21", en: "HIREMATHA", kn: "ಹಿರೇಮಠ" }]
-        }, {
-            code: "03",
-            en: "RAJESHVARA",
-            kn: "ರಾಜೇಶ್ವರ",
-            villages: [{ code: "01", en: "RAJESHVARA", kn: "ರಾಜೇಶ್ವರ" }, { code: "02", en: "HALYALA", kn: "ಹಲ್ಯಾಳ" }, { code: "03", en: "KOLURA", kn: "ಕೋಳುರ" }, { code: "04", en: "KASARAGALLI", kn: "ಕಸರಗಲ್ಲಿ" }, { code: "05", en: "KHANAPURA", kn: "ಖಾನಾಪುರ" }, { code: "06", en: "MAHADAPUR", kn: "ಮಹಾದಾಪುರ" }, { code: "07", en: "KAMALANAGAR", kn: "ಕಮಲನಗರ" }, { code: "08", en: "HANAMANALA", kn: "ಹಣಮನಾಳ" }, { code: "09", en: "KARADIKOLA", kn: "ಕರಡಿಕೋಳ" }, { code: "10", en: "NAREGANALA", kn: "ನರೆಗನಾಳ" }, { code: "11", en: "HINDALA", kn: "ಹಿಂದಾಳ" }, { code: "12", en: "SADAKANALA", kn: "ಸದಕನಾಳ" }, { code: "13", en: "KALABAGUNJ", kn: "ಕಲಬಗುಂಜ" }, { code: "14", en: "KALKERA", kn: "ಕಳಕೇರಾ" }, { code: "15", en: "KASABA", kn: "ಕಸಬಾ" }, { code: "16", en: "SAMPUR", kn: "ಸಂಪುರ" }, { code: "17", en: "JALASANGAVI", kn: "ಜಲಸಂಗಾವಿ" }, { code: "18", en: "NIVARGA", kn: "ನಿವರಗಾ" }]
-        }, {
-            code: "04",
-            en: "MUDABI",
-            kn: "ಮುಡಾಬಿ",
-            villages: [{ code: "01", en: "MUDABI", kn: "ಮುಡಾಬಿ" }, { code: "02", en: "JAMAGI", kn: "ಜಮಗಿ" }, { code: "03", en: "MADIYALA", kn: "ಮಡಿಯಾಳ" }, { code: "04", en: "HULLALA", kn: "ಹುಲ್ಲಾಳ" }, { code: "05", en: "KAMALAPUR", kn: "ಕಮಲಾಪುರ" }, { code: "06", en: "DHANNURA", kn: "ಧನ್ನೂರ" }, { code: "07", en: "SUNTHAN", kn: "ಸುಂಥಾನ" }, { code: "08", en: "KALLUR", kn: "ಕಲ್ಲೂರ" }, { code: "09", en: "CHIKALI", kn: "ಚಿಕಾಲಿ" }, { code: "10", en: "SOGGA", kn: "ಸೊಗ್ಗಾ" }, { code: "11", en: "KOKANI", kn: "ಕೊಕಣಿ" }, { code: "12", en: "KOLURA", kn: "ಕೋಳೂರ" }, { code: "13", en: "SADAKANALA", kn: "ಸದಕನಾಳ" }, { code: "14", en: "CHIKAMUGANALA", kn: "ಚಿಕ್ಕಮುಗನಾಳ" }, { code: "15", en: "CHIKAMUGANAL", kn: "ಚಿಕ್ಕಮುಗನಾಳ" }, { code: "16", en: "SADAKANALA", kn: "ಸದಕನಾಳ" }, { code: "17", en: "GHOLAPAKA", kn: "ಘೋಳಪಾಕ" }, { code: "18", en: "SAITAPURA", kn: "ಸೈತಾಪುರ" }, { code: "19", en: "KAMALAPUR", kn: "ಕಮಲಾಪುರ" }, { code: "20", en: "JAMAGI", kn: "ಜಮಗಿ" }, { code: "21", en: "SOGGA", kn: "ಸೊಗ್ಗಾ" }, { code: "22", en: "KOKANI", kn: "ಕೊಕಣಿ" }, { code: "23", en: "CHIKAMUGNAL", kn: "ಚಿಕ್ಕಮುಗನಾಳ" }]
-        }, {
-            code: "05",
-            en: "KOHINURA",
-            kn: "ಕೋಹಿನೂರ",
-            villages: [{ code: "01", en: "KOHINURA", kn: "ಕೋಹಿನೂರ" }, { code: "02", en: "KOLAR", kn: "ಕೋಲಾರ" }, { code: "03", en: "NANDAPUR", kn: "ನಂದಾಪುರ" }, { code: "04", en: "BHATAMBRA", kn: "ಭತ್ತಂಬ್ರಾ" }, { code: "05", en: "GURJALA", kn: "ಗುರ್ಜಾಳ" }, { code: "06", en: "HONGA", kn: "ಹೊಂಗಾ" }, { code: "07", en: "HAMPURE", kn: "ಹಂಪುರೆ" }, { code: "08", en: "NARAYANAPUR", kn: "ನಾರಾಯಣಪುರ" }, { code: "09", en: "NANDUR", kn: "ನಂದೂರ" }, { code: "10", en: "KHANAPUR", kn: "ಖಾನಾಪುರ" }, { code: "11", en: "GIRANIYALA", kn: "ಗಿರಣಿಯಾಳ" }, { code: "12", en: "KALLAKADE", kn: "ಕಲ್ಲಕಡೆ" }, { code: "13", en: "SHETAKARA", kn: "ಶೇತಕಾರ" }, { code: "14", en: "CHETI", kn: "ಚೇತಿ" }, { code: "15", en: "MARATHAVADI", kn: "ಮರಾಠವಾಡ" }, { code: "16", en: "SULYAGAON", kn: "ಸುಲ್ಯಾಗಾಂವ" }, { code: "17", en: "JIDAGA", kn: "ಜೀದಗಾ" }, { code: "18", en: "TADAKELA", kn: "ತಡಕೇಲಾ" }]
-        }]
-    }, {
-        code: "02",
-        en: "BHALKI",
-        kn: "ಭಾಲ್ಕಿ",
-        hoblis: [{
-            code: "01",
-            en: "BHALKI",
-            kn: "ಭಾಲ್ಕಿ",
-            villages: [{ code: "01", en: "BHALKI", kn: "ಭಾಲ್ಕಿ" }, { code: "02", en: "BAJULAGA", kn: "ಬಾಜುಳಗಾ" }, { code: "03", en: "BELURA", kn: "ಬೆಳೂರಾ" }, { code: "04", en: "BOLEGAON", kn: "ಬೋಳೇಗಾಂವ" }, { code: "05", en: "CHITTADA", kn: "ಚಿತ್ತಾಡಾ" }, { code: "06", en: "DHANURA", kn: "ಧನೂರಾ" }, { code: "07", en: "HALADIKHEDA", kn: "ಹಳದಿಖೇಡಾ" }, { code: "08", en: "HALAKHEDA", kn: "ಹಳಖೇಡಾ" }, { code: "09", en: "KHANAPUR", kn: "ಖಾನಾಪುರ" }, { code: "10", en: "KOLAR", kn: "ಕೋಳಾರ" }, { code: "11", en: "KODAMBALA", kn: "ಕೊಡಂಬಳ" }, { code: "12", en: "KODAMBALA", kn: "ಕೊಡಂಬಳ" }, { code: "13", en: "LADI", kn: "ಲಾಡಿ" }, { code: "14", en: "LOHATA", kn: "ಲೋಹಟಾ" }, { code: "15", en: "MAHAGAON", kn: "ಮಹಾಗಾಂವ" }, { code: "16", en: "MADIYALA", kn: "ಮಡಿಯಾಳ" }, { code: "17", en: "NEMJABAD", kn: "ನೇಮಜಾಬಾದ" }, { code: "18", en: "RUDRAVADI", kn: "ರುದ್ರವಾಡಿ" }, { code: "19", en: "SADALA", kn: "ಸಾದಳ" }, { code: "20", en: "SANGAVI", kn: "ಸಾಂಗವಿ" }, { code: "21", en: "SONALA", kn: "ಸೋನಾಳ" }, { code: "22", en: "SULYAGAON", kn: "ಸುಲ್ಯಾಗಾಂವ" }, { code: "23", en: "TADASALA", kn: "ತಡಸಲಾ" }, { code: "24", en: "ANANDAVADI", kn: "ಆನಂದವಾಡಿ" }, { code: "25", en: "UDABALA", kn: "ಉಡಬಳ" }, { code: "26", en: "HAKANALA", kn: "ಹಕನಾಳ" }]
-        }, {
-            code: "02",
-            en: "SAYAGANVA",
-            kn: "ಸಾಯಗಾಂವ",
-            villages: [{ code: "01", en: "SAYAGANVA", kn: "ಸಾಯಗಾಂವ" }, { code: "17", en: "ALAVAYI", kn: "ಅಳವಾಯಿ" }, { code: "16", en: "ATTARAGA", kn: "ಅತ್ತರಗಾ" }, { code: "22", en: "BOLEGANVA", kn: "ಬೋಳೇಗಾಂವ" }, { code: "20", en: "CHIKALI", kn: "ಚಿಕಾಲಿ" }, { code: "15", en: "GADIJOLA", kn: "ಗಡಿಜೋಳಾ" }, { code: "04", en: "GAREHALLI", kn: "ಗಾರೆಹಳ್ಳಿ" }, { code: "18", en: "GUNGAMATA", kn: "ಗುಂಗಾಮಠ" }, { code: "21", en: "GANGANABEEDA", kn: "ಗಂಗನಬೀಡಾ" }, { code: "05", en: "GUNDURA", kn: "ಗುಂಡೂರ" }, { code: "06", en: "HIREMATHA", kn: "ಹಿರೇಮಠ" }, { code: "07", en: "HIREGAON", kn: "ಹಿರೇಗಾಂವ" }, { code: "08", en: "KAMTHANA", kn: "ಕಮಠಾಣ" }, { code: "10", en: "KARADIKHEDA", kn: "ಕರಡಿಖೇಡಾ" }, { code: "11", en: "KODAMBALA", kn: "ಕೊಡಂಬಳ" }, { code: "12", en: "KODAMBALA", kn: "ಕೊಡಂಬಳ" }, { code: "13", en: "NITTURA", kn: "ನಿಟ್ಟೂರ" }, { code: "14", en: "RAMATIRTHA", kn: "ರಾಮತೀರ್ಥ" }, { code: "01", en: "SAYAGANVA", kn: "ಸಾಯಗಾಂವ" }, { code: "02", en: "SHETAKARA", kn: "ಶೇತಕಾರ" }, { code: "03", en: "TADOLA", kn: "ತಡೋಳಾ" }, { code: "19", en: "SADALA", kn: "ಸಾದಳ" }, { code: "23", en: "SHIVAPUR", kn: "ಶಿವಪುರ" }]
-        }, {
-            code: "03",
-            en: "NITTURABH",
-            kn: "ನಿಟ್ಟೂರಬಿ",
-            villages: [{ code: "01", en: "NITTURABH", kn: "ನಿಟ್ಟೂರಬಿ" }, { code: "02", en: "BASAVANAHALLI", kn: "ಬಸವನಹಳ್ಳಿ" }, { code: "03", en: "BIRANAHALLI", kn: "ಬಿರನಹಳ್ಳಿ" }, { code: "04", en: "DEVANAHALLI", kn: "ದೇವನಹಳ್ಳಿ" }, { code: "05", en: "DHANNURA", kn: "ಧನ್ನೂರ" }, { code: "06", en: "GANGANABEEDA", kn: "ಗಂಗನಬೀಡಾ" }, { code: "07", en: "GHOLAPAK", kn: "ಘೋಳಪಾಕ" }, { code: "08", en: "GULALAHALLI", kn: "ಗುಲಾಳಹಳ್ಳಿ" }, { code: "09", en: "HOSURA", kn: "ಹೋಸುರ" }, { code: "10", en: "JAMGI", kn: "ಜಮಗಿ" }, { code: "11", en: "KAMBLAGA", kn: "ಕಂಬಳಗಾ" }, { code: "12", en: "KASARAGAON", kn: "ಕಸರಗಾಂವ" }, { code: "13", en: "KODAMBALA", kn: "ಕೊಡಂಬಳ" }, { code: "14", en: "MOGANAL", kn: "ಮೊಗನಾಳ" }, { code: "15", en: "NANDURA", kn: "ನಂದೂರ" }, { code: "16", en: "RAKSHYAL", kn: "ರಕ್ಷ್ಯಾಳ" }, { code: "17", en: "SADAKANALA", kn: "ಸದಕನಾಳ" }, { code: "18", en: "SADDAMARGI", kn: "ಸದ್ದಮರಗಿ" }, { code: "19", en: "WAGI", kn: "ವಾಗೀ" }]
-        }, {
-            code: "04",
-            en: "KHATAKA CHINCHULI",
-            kn: "ಖಟಕ ಚಿಂಚೋಳಿ",
-            villages: [{ code: "01", en: "KHATAKA CHINCHULI", kn: "ಖಟಕ ಚಿಂಚೋಳಿ" }, { code: "02", en: "BASAVANAHALLI", kn: "ಬಸವನಹಳ್ಳಿ" }, { code: "03", en: "BAREKOT", kn: "ಬಾರೇಕೋಟ್" }, { code: "04", en: "BHATAMBRA", kn: "ಭತ್ತಂಬ್ರಾ" }, { code: "05", en: "BIRANAL", kn: "ಬಿರಣಾಳ" }, { code: "06", en: "GANGA", kn: "ಗಂಗಾ" }, { code: "07", en: "GANGANABEEDA", kn: "ಗಂಗನಬೀಡಾ" }, { code: "08", en: "GIRANIYAL", kn: "ಗಿರಣಿಯಾಳ" }, { code: "09", en: "GOLAYAHALLI", kn: "ಗೋಳಯಹಳ್ಳಿ" }, { code: "10", en: "HATANAL", kn: "ಹತ್ತನಾಳ" }, { code: "11", en: "JALAKI", kn: "ಜಲಕಿ" }, { code: "12", en: "JAMGE", kn: "ಜಮಗೇ" }, { code: "13", en: "KAMALAPUR", kn: "ಕಮಲಾಪುರ" }, { code: "14", en: "KARADIKOLA", kn: "ಕರಡಿಕೋಳ" }, { code: "15", en: "KERUR", kn: "ಕೇರೂರ" }, { code: "16", en: "KODAMBALA", kn: "ಕೊಡಂಬಳ" }, { code: "17", en: "NANDIGAON", kn: "ನಂದಿಗಾಂವ" }, { code: "18", en: "NANDURA", kn: "ನಂದೂರ" }, { code: "19", en: "NEELUR", kn: "ನೀಲೂರ" }, { code: "20", en: "SHADAGANVA", kn: "ಷಡಗನವಾ" }]
-        }, {
-            code: "05",
-            en: "LAKHANAGANVA",
-            kn: "ಲಖನಗಾಂವ",
-            villages: [{ code: "01", en: "LAKHANAGANVA", kn: "ಲಖನಗಾಂವ" }, { code: "02", en: "ALAGUDA", kn: "ಅಳಗುದಾ" }, { code: "03", en: "ANANTAKODI", kn: "ಅನಂತಕೋಡಿ" }, { code: "04", en: "BADALA", kn: "ಬದಳ" }, { code: "05", en: "BASAVANAHALLI", kn: "ಬಸವನಹಳ್ಳಿ" }, { code: "06", en: "HANAMANAHALLI", kn: "ಹಣಮನಹಳ್ಳಿ" }, { code: "07", en: "HADAGI", kn: "ಹಡಗಿ" }, { code: "08", en: "HANDIKERA", kn: "ಹಂದಿಕೇರಾ" }, { code: "09", en: "JABIRABAD", kn: "ಜಾಬಿರಬಾದ" }, { code: "10", en: "JAVALI", kn: "ಜಾವಳಿ" }, { code: "11", en: "KALYANARAYA", kn: "ಕಲ್ಯಾಣರಾಯ" }, { code: "12", en: "KONMELA", kn: "ಕೋನಮೇಲಾ" }, { code: "13", en: "KODAMBAL", kn: "ಕೊಡಂಬಳ" }, { code: "14", en: "LAGAVANTARAI", kn: "ಲಗವಂತರಾಯ" }, { code: "15", en: "MALAPUR", kn: "ಮಲ್ಲಾಪುರ" }, { code: "16", en: "MATALA", kn: "ಮಠಳ" }, { code: "17", en: "MUDHOL", kn: "ಮುದೋಳ" }, { code: "18", en: "RAILAPUR", kn: "ರೈಲಾಪುರ" }, { code: "19", en: "SANGAMESHWAR", kn: "ಸಂಗಮೇಶ್ವರ" }, { code: "20", en: "UDABALA", kn: "ಉಡಬಳ" }, { code: "21", en: "YELAKHA", kn: "ಯೆಳಖಾ" }, { code: "22", en: "GIRANIYALA", kn: "ಗಿರಣಿಯಾಳ" }, { code: "23", en: "MALLAPUR", kn: "ಮಲ್ಲಾಪುರ" }]
-        }, {
-            code: "06",
-            en: "HALABARGA",
-            kn: "ಹಲಬರ್ಗಾ",
-            villages: [{ code: "01", en: "HALABARGA", kn: "ಹಲಬರ್ಗಾ" }, { code: "02", en: "BAREKOT", kn: "ಬಾರೇಕೋಟ್" }, { code: "03", en: "HALADIKHEDA", kn: "ಹಳದಿಖೇಡಾ" }, { code: "04", en: "HALEGAON", kn: "ಹಳೇಗಾಂವ" }, { code: "05", en: "HANDIKERA", kn: "ಹಂದಿಕೇರಾ" }, { code: "06", en: "HOSUR", kn: "ಹೊಸೂರ" }, { code: "07", en: "HOSUR", kn: "ಹೊಸೂರ" }, { code: "08", en: "HIREGAON", kn: "ಹಿರೇಗಾಂವ" }, { code: "09", en: "MAKKANAHALLI", kn: "ಮಕ್ಕನಹಳ್ಳಿ" }, { code: "10", en: "MADANAPUR", kn: "ಮದನಾಪುರ" }, { code: "11", en: "MOTAGA", kn: "ಮೋಟಗಾ" }, { code: "12", en: "NARAYANAPUR", kn: "ನಾರಾಯಣಪುರ" }, { code: "13", en: "NANDGAON", kn: "ನಂದಗಾಂವ" }, { code: "14", en: "OKALI", kn: "ಓಕಾಲಿ" }, { code: "15", en: "SAHANAND", kn: "ಸಾಹನಂದ" }, { code: "16", en: "SINDHOLA", kn: "ಸಿಂಧೋಳಾ" }, { code: "17", en: "SANTAPUR", kn: "ಸಂತಾಪುರ" }, { code: "18", en: "MOGANAL", kn: "ಮೊಗನಾಳ" }, { code: "19", en: "GANGANABEEDA", kn: "ಗಂಗನಬೀಡಾ" }, { code: "20", en: "KODAMBAL", kn: "ಕೊಡಂಬಳ" }, { code: "21", en: "HONGA", kn: "ಹೊಂಗಾ" }, { code: "22", en: "NANDIGAV", kn: "ನಂದಿಗಾಂವ" }]
-        }]
-    }, {
-        code: "03",
-        en: "AURAD",
-        kn: "ಔರಾದ್",
-        hoblis: [{
-            code: "01",
-            en: "OWRADABI",
-            kn: "ಔರಾದಬಿ",
-            villages: [{ code: "01", en: "OWRADABI", kn: "ಔರಾದಬಿ" }, { code: "02", en: "KADALE", kn: "ಕಡಲೇ" }, { code: "03", en: "JALAKI", kn: "ಜಲಕಿ" }, { code: "04", en: "JALKI B", kn: "ಜಲಕಿ ಬಿ" }, { code: "05", en: "BHOSAGA", kn: "ಭೋಸಗಾ" }, { code: "06", en: "ALAKHALLI", kn: "ಅಳಖಳ್ಳಿ" }, { code: "07", en: "BELLURA", kn: "ಬೆಳೂರಾ" }, { code: "08", en: "DEVANDI", kn: "ದೇವಂದಿ" }, { code: "09", en: "DHARAMASAGAR", kn: "ಧರ್ಮಸಾಗರ" }, { code: "10", en: "GANGANABEEDA", kn: "ಗಂಗನಬೀಡಾ" }, { code: "11", en: "HALLI", kn: "ಹಳ್ಳಿ" }, { code: "12", en: "KADAMBHA", kn: "ಕದಂಭ" }, { code: "13", en: "KHADAK", kn: "ಖಡಕ" }, { code: "14", en: "KALASA", kn: "ಕಲಸ" }, { code: "15", en: "LAKHANA", kn: "ಲಖನಾ" }, { code: "16", en: "MASALA", kn: "ಮಸಲಾ" }, { code: "17", en: "MARAKAL", kn: "ಮರಕಲ್" }, { code: "18", en: "MIRZA", kn: "ಮಿರ್ಜಾ" }, { code: "19", en: "NIDODA", kn: "ನಿದೋಡಾ" }, { code: "20", en: "NIRGUDI", kn: "ನೀರಗುಡಿ" }, { code: "21", en: "NULIBASA", kn: "ನುಲಿಬಾಸಾ" }, { code: "22", en: "RAMAPUR", kn: "ರಾಮಾಪುರ" }, { code: "23", en: "SHAKARAGANV", kn: "ಶಕರಗಾಂವ" }, { code: "24", en: "SHIRUR", kn: "ಶಿರೂರ" }, { code: "25", en: "SIDDHESWAR", kn: "ಸಿದ್ಧೇಶ್ವರ" }, { code: "26", en: "SONALA", kn: "ಸೋನಾಳ" }, { code: "27", en: "SULTANABAD", kn: "ಸುಲ್ತಾನಬಾದ" }, { code: "28", en: "TAWARAGA", kn: "ತವರಗಾ" }, { code: "29", en: "VARABATTI", kn: "ವರಬತ್ತಿ" }, { code: "30", en: "WADDANAKERA", kn: "ವಡ್ಡನಕೇರಾ" }, { code: "31", en: "HALAKERI", kn: "ಹಳಕೇರಿ" }, { code: "32", en: "MASANADA", kn: "ಮಸನದ" }, { code: "33", en: "MOGANAL", kn: "ಮೊಗನಾಳ" }, { code: "34", en: "ALAKHALLI", kn: "ಅಳಖಳ್ಳಿ" }]
-        }, {
-            code: "02",
-            en: "CHINTAKI",
-            kn: "ಚಿಂತಾಕಿ",
-            villages: [{ code: "01", en: "CHINTAKI", kn: "ಚಿಂತಾಕಿ" }, { code: "02", en: "BAMBALAGI", kn: "ಬಂಬಳಗಿ" }, { code: "03", en: "DEVANAHALLI", kn: "ದೇವನಹಳ್ಳಿ" }, { code: "04", en: "GANGANABEEDA", kn: "ಗಂಗನಬೀಡಾ" }, { code: "05", en: "GUNDURA", kn: "ಗುಂಡೂರ" }, { code: "06", en: "JAMBALAGI", kn: "ಜಂಬಳಗಿ" }, { code: "07", en: "JEELAGA", kn: "ಜೀಲಗಾ" }, { code: "08", en: "KABBULE", kn: "ಕಬ್ಬುಲೆ" }, { code: "09", en: "KALLALI", kn: "ಕಲ್ಲಾಲಿ" }, { code: "10", en: "KAREGOWRA", kn: "ಕರೆಗೌರಾ" }, { code: "11", en: "KINNIGAON", kn: "ಕಿನ್ನಿಗಾಂವ" }, { code: "12", en: "KALLI", kn: "ಕಲ್ಲಿ" }, { code: "13", en: "LINGAPUR", kn: "ಲಿಂಗಾಪುರ" }, { code: "14", en: "NANDAGAON", kn: "ನಂದಗಾಂವ" }, { code: "15", en: "SANJIVAPUR", kn: "ಸಂಜೀವಾಪುರ" }, { code: "16", en: "SANGAM", kn: "ಸಂಗಮ" }, { code: "17", en: "SONARIKHEDA", kn: "ಸೊನರಿಖೇಡಾ" }, { code: "18", en: "TAJANAGAR", kn: "ತಾಜನಗರ" }, { code: "19", en: "VADALAGAON", kn: "ವಡಲಗಾಂವ" }, { code: "20", en: "WADAGAON", kn: "ವಾಡಗಾಂವ" }, { code: "21", en: "YELSANGI", kn: "ಯೆಳಸಂಗಿ" }, { code: "22", en: "CHINCHOLI", kn: "ಚಿಂಚೋಳಿ" }, { code: "23", en: "HALAKERI", kn: "ಹಳಕೇರಿ" }, { code: "24", en: "GANGANABEEDA", kn: "ಗಂಗನಬೀಡಾ" }, { code: "25", en: "GUNDUR", kn: "ಗುಂಡೂರ" }]
-        }, {
-            code: "03",
-            en: "SANTAPURA",
-            kn: "ಸಂತಪುರ",
-            villages: [{ code: "01", en: "SANTAPURA", kn: "ಸಂತಾಪುರ" }, { code: "02", en: "DEGGANURA", kn: "ದೆಗ್ಗನೂರಾ" }, { code: "03", en: "DONGARAGAON", kn: "ಡೊಂಗರಗಾಂವ" }, { code: "04", en: "GORACHINCHOLI", kn: "ಗೋರಾಚಿಂಚೋಳಿ" }, { code: "05", en: "HALAKERI", kn: "ಹಳಕೇರಿ" }, { code: "06", en: "HAKANALA", kn: "ಹಕನಾಳ" }, { code: "07", en: "HALLI", kn: "ಹಳ್ಳಿ" }, { code: "08", en: "KADAVATI", kn: "ಕಡವತಿ" }, { code: "09", en: "KAMBHALAGA", kn: "ಕಂಬಳಗಾ" }, { code: "10", en: "KODAMBELA", kn: "ಕೊಡಂಬಳ" }, { code: "11", en: "KOLUR", kn: "ಕೋಳೂರ" }, { code: "12", en: "KONAL", kn: "ಕೋನಾಳ" }, { code: "13", en: "MADIYALA", kn: "ಮಡಿಯಾಳ" }, { code: "14", en: "MUGANAL", kn: "ಮೊಗನಾಳ" }, { code: "15", en: "RAHIMPUR", kn: "ರಹೀಂಪುರ" }, { code: "16", en: "RAKSHYAL", kn: "ರಕ್ಷ್ಯಾಳ" }, { code: "17", en: "RAMATIRTHA", kn: "ರಾಮತೀರ್ಥ" }, { code: "18", en: "RAMAPUR", kn: "ರಾಮಾಪುರ" }, { code: "19", en: "REBANA", kn: "ರೆಬನಾ" }, { code: "20", en: "SANGAMESHWAR", kn: "ಸಂಗಮೇಶ್ವರ" }, { code: "21", en: "SAYADAPUR", kn: "ಸಯದಾಪುರ" }, { code: "22", en: "SAYADAPURA", kn: "ಸಯದಾಪುರ" }, { code: "23", en: "SHIVAPUR", kn: "ಶಿವಪುರ" }, { code: "24", en: "SINDOL", kn: "ಸಿಂದೋಳ" }, { code: "25", en: "TADAPUR", kn: "ತಡಪುರ" }, { code: "26", en: "YELAKHA", kn: "ಯೆಳಖಾ" }, { code: "27", en: "ZARANI", kn: "ಝರಣಿ" }, { code: "28", en: "DHANURA", kn: "ಧನೂರಾ" }, { code: "29", en: "DHANURA", kn: "ಧನೂರಾ" }, { code: "30", en: "HANGA", kn: "ಹಂಗಾ" }, { code: "31", en: "KALLI", kn: "ಕಲ್ಲಿ" }, { code: "32", en: "KUDALE", kn: "ಕುಡಲೇ" }, { code: "33", en: "KODAMBALA", kn: "ಕೊಡಂಬಳ" }, { code: "34", en: "NALA", kn: "ನಾಳ" }, { code: "35", en: "KALLAKADE", kn: "ಕಲ್ಲಕಡೆ" }, { code: "36", en: "MOGANAL", kn: "ಮೊಗನಾಳ" }]
-        }, {
-            code: "04",
-            en: "TANAKUSANURA",
-            kn: "ತನಕುಸನೂರ",
-            villages: [{ code: "01", en: "TANAKUSANURA", kn: "ತನಕುಸನೂರ" }, { code: "02", en: "DAREGANV", kn: "ದಾರೆಗಾಂವ" }, { code: "03", en: "HALLI", kn: "ಹಳ್ಳಿ" }, { code: "04", en: "HOSAKERI", kn: "ಹೊಸಕೇರಿ" }, { code: "05", en: "HODALIKHED", kn: "ಹೋಡಲಿಖೇಡ" }, { code: "06", en: "KAMTHANA", kn: "ಕಮಠಾಣ" }, { code: "07", en: "KHAMBAG", kn: "ಖಂಬಾಗ" }, { code: "08", en: "KURUBHALLI", kn: "ಕುರುಬಹಳ್ಳಿ" }, { code: "09", en: "MALLEGAON", kn: "ಮಲ್ಲೆಗಾಂವ" }, { code: "10", en: "SAMPUR", kn: "ಸಂಪುರ" }, { code: "11", en: "SHETKARA", kn: "ಶೇತ್ಕರಾ" }, { code: "12", en: "SULTANAPUR", kn: "ಸುಲ್ತಾನಾಪುರ" }]
-        }, {
-            code: "05",
-            en: "DABAKA",
-            kn: "ಡಾಬಕಾ",
-            villages: [{ code: "01", en: "DABAKA", kn: "ಡಾಬಕಾ" }, { code: "02", en: "JALAKI", kn: "ಜಲಕಿ" }, { code: "03", en: "KODAMBALA", kn: "ಕೊಡಂಬಳ" }, { code: "04", en: "ALAKHALLI", kn: "ಅಳಖಳ್ಳಿ" }, { code: "05", en: "MOGANAL", kn: "ಮೊಗನಾಳ" }, { code: "06", en: "KHADAKA", kn: "ಖಡಕ" }, { code: "07", en: "NIDODA", kn: "ನಿದೋಡಾ" }, { code: "08", en: "KODAMBALA", kn: "ಕೊಡಂಬಳ" }, { code: "09", en: "DABAKA", kn: "ಡಾಬಕಾ" }, { code: "10", en: "BHOSAGA", kn: "ಭೋಸಗಾ" }]
-        }]
-    }, {
-        code: "04",
-        en: "BIDAR",
-        kn: "ಬೀದರ್",
-        hoblis: [{
-            code: "01",
-            en: "BEEDARA UTTARA",
-            kn: "ಬೀದರ್ ಉತ್ತರ",
-            villages: [{ code: "01", en: "BEEDARA UTTARA", kn: "ಬೀದರ್ ಉತ್ತರ" }, { code: "02", en: "ALAMBOOR", kn: "ಅಳಂಬೂರ" }, { code: "03", en: "BADALA", kn: "ಬದಳ" }, { code: "04", en: "GHATABALAPURA", kn: "ಘಟಬಲಪುರ" }, { code: "05", en: "HALADAKERI", kn: "ಹಳದಕೇರಿ" }, { code: "06", en: "HALEGALLI", kn: "ಹಳೆಗಲ್ಲಿ" }, { code: "07", en: "HALEGAON", kn: "ಹಳೇಗಾಂವ" }, { code: "08", en: "JANAVADA", kn: "ಜನವಾಡ" }, { code: "09", en: "KALLUR", kn: "ಕಲ್ಲೂರ" }, { code: "10", en: "KHAJAPUR", kn: "ಖಾಜಾಪುರ" }, { code: "11", en: "KHANDALA", kn: "ಖಂಡಾಲ" }, { code: "12", en: "KAREGOWRA", kn: "ಕರೆಗೌರಾ" }, { code: "13", en: "KHAJAPURA", kn: "ಖಾಜಾಪುರ" }, { code: "14", en: "KODAGI", kn: "ಕೊಡಗಿ" }, { code: "15", en: "KOLAR", kn: "ಕೋಲಾರ" }, { code: "16", en: "MADAKATTI", kn: "ಮಡಕತ್ತಿ" }, { code: "17", en: "MANHALLI", kn: "ಮನ್ನಹಳ್ಳಿ" }, { code: "18", en: "MARAKALA", kn: "ಮರಕಲ್" }, { code: "19", en: "NARAYANAPUR", kn: "ನಾರಾಯಣಪುರ" }, { code: "20", en: "NANDIGAON", kn: "ನಂದಿಗಾಂವ" }, { code: "21", en: "SANGAMESHWAR", kn: "ಸಂಗಮೇಶ್ವರ" }, { code: "22", en: "SHELGI", kn: "ಶೇಲ್ಗಿ" }, { code: "23", en: "YADALAPUR", kn: "ಯಾದಲಪುರ" }, { code: "24", en: "TALAMADAGI", kn: "ತಳಮಡಗಿ" }, { code: "25", en: "CHITAGUPPA", kn: "ಚಿಟಗುಪ್ಪ" }, { code: "26", en: "CHINCHOLI", kn: "ಚಿಂಚೋಳಿ" }, { code: "27", en: "HALEGALLI", kn: "ಹಳೆಗಲ್ಲಿ" }, { code: "28", en: "SANGAM", kn: "ಸಂಗಮ" }, { code: "29", en: "SONALA", kn: "ಸೋನಾಳ" }, { code: "30", en: "KODAMBAL", kn: "ಕೊಡಂಬಳ" }, { code: "31", en: "MOGANAL", kn: "ಮೊಗನಾಳ" }, { code: "32", en: "MOGANAL", kn: "ಮೊಗನಾಳ" }, { code: "33", en: "KHANAPURA", kn: "ಖಾನಾಪುರ" }, { code: "34", en: "KALLAKADE", kn: "ಕಲ್ಲಕಡೆ" }, { code: "35", en: "MUGANAL", kn: "ಮುಗನಾಳ" }, { code: "36", en: "KOLAR", kn: "ಕೋಲಾರ" }]
-        }, {
-            code: "02",
-            en: "BEEDARADAKSHINA",
-            kn: "ಬೀದರ್ ದಕ್ಷಿಣ",
-            villages: [{ code: "01", en: "BEEDARADAKSHINA", kn: "ಬೀದರ್ ದಕ್ಷಿಣ" }, { code: "02", en: "ARALLI", kn: "ಅರಳ್ಳಿ" }, { code: "03", en: "BELLURA", kn: "ಬೆಳೂರಾ" }, { code: "04", en: "BELLI", kn: "ಬೆಲ್ಲಿ" }, { code: "05", en: "CHAKRA", kn: "ಚಕ್ರ" }, { code: "06", en: "GHOLAPAKA", kn: "ಘೋಳಪಾಕ" }, { code: "07", en: "GHOLAPAKA", kn: "ಘೋಳಪಾಕ" }, { code: "08", en: "JANGAMMAVADI", kn: "ಜಂಗಮ್ಮವಾಡಿ" }, { code: "09", en: "KAMATANA", kn: "ಕಮಠಾಣ" }, { code: "10", en: "MUDABALA", kn: "ಮುಡಬಳ" }, { code: "11", en: "MALLAPUR", kn: "ಮಲ್ಲಾಪುರ" }, { code: "12", en: "MIRZA", kn: "ಮಿರ್ಜಾ" }, { code: "13", en: "RAMAPUR", kn: "ರಾಮಾಪುರ" }, { code: "14", en: "SHETAKARA", kn: "ಶೇತಕಾರ" }, { code: "15", en: "SINDHOLA", kn: "ಸಿಂಧೋಳಾ" }, { code: "16", en: "SONAGERA", kn: "ಸೋನಗೇರಾ" }, { code: "17", en: "SULTANPUR", kn: "ಸುಲ್ತಾನಪುರ" }, { code: "18", en: "UTARANALLA", kn: "ಉತ್ತರನಾಳ" }, { code: "19", en: "WADDANAKERI", kn: "ವಡ್ಡನಕೇರಿ" }, { code: "20", en: "HALABARGA", kn: "ಹಲಬರ್ಗಾ" }, { code: "21", en: "KOLUR", kn: "ಕೋಳೂರ" }, { code: "22", en: "MOGANAL", kn: "ಮೊಗನಾಳ" }, { code: "23", en: "SINDHOLA", kn: "ಸಿಂಧೋಳಾ" }, { code: "24", en: "GHOLAPAKA", kn: "ಘೋಳಪಾಕ" }]
-        }, {
-            code: "03",
-            en: "MANNALLI",
-            kn: "ಮನ್ನಳ್ಳಿ",
-            villages: [{ code: "01", en: "MANNALLI", kn: "ಮನ್ನಳ್ಳಿ" }, { code: "02", en: "DHANURA", kn: "ಧನೂರಾ" }, { code: "03", en: "GUMMANAL", kn: "ಗುಮ್ಮನಾಳ" }, { code: "04", en: "HONNAL", kn: "ಹೊನ್ನಾಳ" }, { code: "05", en: "HALEGALLI", kn: "ಹಳೆಗಲ್ಲಿ" }, { code: "06", en: "HALLI", kn: "ಹಳ್ಳಿ" }, { code: "07", en: "HIREMATHA", kn: "ಹಿರೇಮಠ" }, { code: "08", en: "JAMBAGI", kn: "ಜಂಬಗಿ" }, { code: "09", en: "JABIRABAD", kn: "ಜಾಬಿರಬಾದ" }, { code: "10", en: "KONAMALA", kn: "ಕೋನಮಲಾ" }, { code: "11", en: "KALYANI", kn: "ಕಲ್ಯಾಣಿ" }, { code: "12", en: "KHATAK CHINCHOLI", kn: "ಖಟಕ ಚಿಂಚೋಳಿ" }, { code: "13", en: "LAKHANAGANVA", kn: "ಲಖನಗಾಂವ" }, { code: "14", en: "MUGANAL", kn: "ಮುಗನಾಳ" }, { code: "15", en: "NITTUR", kn: "ನಿಟ್ಟೂರ" }, { code: "16", en: "SONALA", kn: "ಸೋನಾಳ" }, { code: "17", en: "SADALAPUR", kn: "ಸಾದಲಾಪುರ" }, { code: "18", en: "YAKATPURA", kn: "ಯಕಾತ್ಪುರ" }, { code: "19", en: "KODAMBALA", kn: "ಕೊಡಂಬಳ" }, { code: "20", en: "JAMBAGI", kn: "ಜಂಬಗಿ" }, { code: "21", en: "MAKKANAHALLI", kn: "ಮಕ್ಕನಹಳ್ಳಿ" }, { code: "22", en: "DUBALAGUNDI", kn: "ದುಬಲಗುಂಡಿ" }]
-        }, {
-            code: "04",
-            en: "BAGADALA",
-            kn: "ಬಗಡಾಲ",
-            villages: [{ code: "01", en: "BAGADALA", kn: "ಬಗಡಾಲ" }, { code: "02", en: "BASAVANAHALLI", kn: "ಬಸವನಹಳ್ಳಿ" }, { code: "03", en: "CHINTAKI", kn: "ಚಿಂತಾಕಿ" }, { code: "04", en: "DHANURA", kn: "ಧನೂರಾ" }, { code: "05", en: "GUMMANAL", kn: "ಗುಮ್ಮನಾಳ" }, { code: "06", en: "HALLI", kn: "ಹಳ್ಳಿ" }, { code: "07", en: "HULLAL", kn: "ಹುಲ್ಲಾಳ" }, { code: "08", en: "HAKANALA", kn: "ಹಕನಾಳ" }, { code: "09", en: "KANHAL", kn: "ಕನ್ಹಾಳ" }, { code: "10", en: "KOLUR", kn: "ಕೋಳೂರ" }, { code: "11", en: "MADIYAL", kn: "ಮಡಿಯಾಳ" }, { code: "12", en: "MALLAPUR", kn: "ಮಲ್ಲಾಪುರ" }, { code: "13", en: "NAREGANALA", kn: "ನರೆಗನಾಳ" }, { code: "14", en: "NARAYANAPUR", kn: "ನಾರಾಯಣಪುರ" }, { code: "15", en: "SANTAPUR", kn: "ಸಂತಾಪುರ" }, { code: "16", en: "SIDDHESWAR", kn: "ಸಿದ್ಧೇಶ್ವರ" }, { code: "17", en: "SINDHOLA", kn: "ಸಿಂಧೋಳಾ" }, { code: "18", en: "SRINAGAR", kn: "ಶ್ರೀನಗರ" }, { code: "19", en: "SAYANALA", kn: "ಸಯನಾಳ" }, { code: "20", en: "YELADGI", kn: "ಯಲದಗಿ" }, { code: "21", en: "GHOLAPAKA", kn: "ಘೋಳಪಾಕ" }, { code: "22", en: "SAYADAPURA", kn: "ಸಯದಾಪುರ" }, { code: "23", en: "CHIKALI", kn: "ಚಿಕಾಲಿ" }, { code: "24", en: "MAKKANAHALLI", kn: "ಮಕ್ಕನಹಳ್ಳಿ" }]
-        }, {
-            code: "05",
-            en: "KAMATANA",
-            kn: "ಕಾಮಠಾಣ",
-            villages: [{ code: "01", en: "KAMATANA", kn: "ಕಾಮಠಾಣ" }, { code: "02", en: "CHANDUR", kn: "ಚಾಂದೂರ" }, { code: "03", en: "DAREGANVA", kn: "ದಾರೆಗಾಂವ" }, { code: "04", en: "DILWARA", kn: "ದಿಲ್ವಾರಾ" }, { code: "05", en: "JANGAMMAVADI", kn: "ಜಂಗಮ್ಮವಾಡಿ" }, { code: "06", en: "JANAVADA", kn: "ಜನವಾಡ" }, { code: "07", en: "KADAMADDI", kn: "ಕಡಮದ್ದಿ" }, { code: "08", en: "KODAGI", kn: "ಕೊಡಗಿ" }, { code: "09", en: "KOLUR", kn: "ಕೋಳೂರ" }, { code: "10", en: "LAGAVANTARAI", kn: "ಲಗವಂತರಾಯ" }, { code: "11", en: "NALA", kn: "ನಾಳ" }, { code: "12", en: "NAGANAHALLI", kn: "ನಾಗನಹಳ್ಳಿ" }, { code: "13", en: "RAKSHYAL", kn: "ರಕ್ಷ್ಯಾಳ" }, { code: "14", en: "SAYADAPURA", kn: "ಸಯದಾಪುರ" }, { code: "15", en: "TALAMADAGI", kn: "ತಳಮಡಗಿ" }, { code: "16", en: "MUGANAL", kn: "ಮುಗನಾಳ" }, { code: "17", en: "GHOLAPAKA", kn: "ಘೋಳಪಾಕ" }, { code: "18", en: "KAMBLAGA", kn: "ಕಂಬಳಗಾ" }, { code: "19", en: "TALAMADAGI", kn: "ತಳಮಡಗಿ" }, { code: "20", en: "KAREGOWRA", kn: "ಕರೆಗೌರಾ" }]
-        }, {
-            code: "06",
-            en: "JANAVADA",
-            kn: "ಜನವಾಡ",
-            villages: [{ code: "01", en: "JANAVADA", kn: "ಜನವಾಡ" }, { code: "02", en: "ALAGUDA", kn: "ಅಳಗುದಾ" }, { code: "03", en: "BUDAGI", kn: "ಬುಡಗಿ" }, { code: "04", en: "DHANUR", kn: "ಧನೂರ" }, { code: "05", en: "GUMMANALA", kn: "ಗುಮ್ಮನಾಳ" }, { code: "06", en: "HIREGAON", kn: "ಹಿರೇಗಾಂವ" }, { code: "07", en: "HOSAKERI", kn: "ಹೊಸಕೇರಿ" }, { code: "08", en: "HULLALA", kn: "ಹುಲ್ಲಾಳ" }, { code: "09", en: "KAREGOWRA", kn: "ಕರೆಗೌರಾ" }, { code: "10", en: "KOKANI", kn: "ಕೊಕಣಿ" }, { code: "11", en: "MADIYALA", kn: "ಮಡಿಯಾಳ" }, { code: "12", en: "NANDIGAON", kn: "ನಂದಿಗಾಂವ" }, { code: "13", en: "NANDURA", kn: "ನಂದೂರ" }, { code: "14", en: "NAREGANALA", kn: "ನರೆಗನಾಳ" }, { code: "15", en: "SONALA", kn: "ಸೋನಾಳ" }, { code: "16", en: "UTARANALLA", kn: "ಉತ್ತರನಾಳ" }, { code: "17", en: "YAKATPURA", kn: "ಯಕಾತ್ಪುರ" }, { code: "18", en: "HUMNABAD", kn: "ಹುಮ್ನಾಬಾದ್" }, { code: "19", en: "KAMTHANA", kn: "ಕಮಠಾಣ" }, { code: "20", en: "DHANURA", kn: "ಧನೂರಾ" }, { code: "21", en: "KADAMADDI", kn: "ಕಡಮದ್ದಿ" }, { code: "22", en: "CHIKALI", kn: "ಚಿಕಾಲಿ" }, { code: "23", en: "KODAMBALA", kn: "ಕೊಡಂಬಳ" }, { code: "24", en: "HALABARGA", kn: "ಹಲಬರ್ಗಾ" }, { code: "25", en: "JIDAGA", kn: "ಜೀದಗಾ" }]
-        }]
-    }, {
-        code: "05",
-        en: "HUMNABAD",
-        kn: "ಹುಮ್ನಾಬಾದ್",
-        hoblis: [{
-            code: "01",
-            en: "HUMANABADA",
-            kn: "ಹುಮನಾಬಾದ",
-            villages: [{ code: "01", en: "HUMANABADA", kn: "ಹುಮನಾಬಾದ" }, { code: "02", en: "BELKERA", kn: "ಬೆಲ್ಕೇರಾ" }, { code: "03", en: "GHATABALAPURA", kn: "ಘಟಬಲಪುರ" }, { code: "04", en: "GUNDURA", kn: "ಗುಂಡೂರ" }, { code: "05", en: "KONAL", kn: "ಕೋನಾಳ" }, { code: "06", en: "LOHAT", kn: "ಲೋಹಟ" }, { code: "07", en: "MADIYALA", kn: "ಮಡಿಯಾಳ" }, { code: "08", en: "MAHADAPURA", kn: "ಮಹಾದಾಪುರ" }, { code: "09", en: "NAWADAGI", kn: "ನವಡಗಿ" }, { code: "10", en: "NAGARAL", kn: "ನಾಗರಾಳ" }, { code: "11", en: "SAHAGANV", kn: "ಸಾಹಗಾಂವ" }, { code: "12", en: "SONALA", kn: "ಸೋನಾಳ" }, { code: "13", en: "TADAPUR", kn: "ತಡಪುರ" }, { code: "14", en: "WAGI", kn: "ವಾಗೀ" }, { code: "15", en: "YANAGI", kn: "ಯಾನಗಿ" }, { code: "16", en: "YELSANGI", kn: "ಯೆಳಸಂಗಿ" }]
-        }, {
-            code: "02",
-            en: "HALLILIKHEDABI",
-            kn: "ಹಳ್ಳಿಖೇಡಾ ಬಿ",
-            villages: [{ code: "01", en: "HALLILIKHEDABI", kn: "ಹಳ್ಳಿಖೇಡಾ ಬಿ" }, { code: "02", en: "BASAVANAHALLI", kn: "ಬಸವನಹಳ್ಳಿ" }, { code: "03", en: "BUDAGI", kn: "ಬುಡಗಿ" }, { code: "04", en: "CHANNAYIKHEDA", kn: "ಚನ್ನಾಯಿಖೇಡಾ" }, { code: "05", en: "HALEGALLI", kn: "ಹಳೆಗಲ್ಲಿ" }, { code: "06", en: "HATTARGA", kn: "ಹತ್ತರಗಾ" }, { code: "07", en: "HUMNAWAD", kn: "ಹುಮ್ನವಾಡ" }, { code: "08", en: "KAREGOWRA", kn: "ಕರೆಗೌರಾ" }, { code: "09", en: "KADAMADDI", kn: "ಕಡಮದ್ದಿ" }, { code: "10", en: "KOLUR", kn: "ಕೋಳೂರ" }, { code: "11", en: "SADDAMARGI", kn: "ಸದ್ದಮರಗಿ" }, { code: "12", en: "SAYADAPURA", kn: "ಸಯದಾಪುರ" }, { code: "13", en: "SAYADAPURA", kn: "ಸಯದಾಪುರ" }, { code: "14", en: "SHIRUR", kn: "ಶಿರೂರ" }, { code: "15", en: "SIRAGAPUR", kn: "ಸಿರಗಾಪುರ" }, { code: "16", en: "YEKATPUR", kn: "ಯೇಕತ್ಪುರ" }, { code: "17", en: "YEKATPUR", kn: "ಯೇಕತ್ಪುರ" }]
-        }, {
-            code: "03",
-            en: "DUBALAGUNDI",
-            kn: "ದುಬಲಗುಂಡಿ",
-            villages: [{ code: "01", en: "DUBALAGUNDI", kn: "ದುಬಲಗುಂಡಿ" }, { code: "02", en: "ANANTAKODI", kn: "ಅನಂತಕೋಡಿ" }, { code: "03", en: "DEVANAHALLI", kn: "ದೇವನಹಳ್ಳಿ" }, { code: "04", en: "DABAKA", kn: "ಡಾಬಕಾ" }, { code: "05", en: "DHANURA", kn: "ಧನೂರಾ" }, { code: "06", en: "GHOLAPAKA", kn: "ಘೋಳಪಾಕ" }, { code: "07", en: "GUMMANALA", kn: "ಗುಮ್ಮನಾಳ" }, { code: "08", en: "JAMBAGI", kn: "ಜಂಬಗಿ" }, { code: "09", en: "KODAMBALA", kn: "ಕೊಡಂಬಳ" }, { code: "10", en: "MUGANAL", kn: "ಮುಗನಾಳ" }, { code: "11", en: "NITTUR", kn: "ನಿಟ್ಟೂರ" }, { code: "12", en: "NITTUR", kn: "ನಿಟ್ಟೂರ" }, { code: "13", en: "RAKSHYAL", kn: "ರಕ್ಷ್ಯಾಳ" }, { code: "14", en: "SANGAM", kn: "ಸಂಗಮ" }, { code: "15", en: "SHELGI", kn: "ಶೇಲ್ಗಿ" }, { code: "16", en: "TAWARAGA", kn: "ತವರಗಾ" }, { code: "17", en: "VADAGAON", kn: "ವಾಡಗಾಂವ" }, { code: "18", en: "YADALAPUR", kn: "ಯಾದಲಪುರ" }]
-        }]
-    }, {
-        code: "06",
-        en: "CHITAGUPPA",
-        kn: "ಚಿಟಗುಪ್ಪ",
-        hoblis: [{
-            code: "01",
-            en: "CHITAGUPPA",
-            kn: "ಚಿಟಗುಪ್ಪ",
-            villages: [{ code: "01", en: "CHITAGUPPA", kn: "ಚಿಟಗುಪ್ಪ" }, { code: "02", en: "DHANURA", kn: "ಧನೂರಾ" }, { code: "03", en: "GORACHINCHOLI", kn: "ಗೋರಾಚಿಂಚೋಳಿ" }, { code: "04", en: "GHOLAPAK", kn: "ಘೋಳಪಾಕ" }, { code: "05", en: "HOSKERI", kn: "ಹೊಸ್ಕೇರಿ" }, { code: "06", en: "KAMALAPUR", kn: "ಕಮಲಾಪುರ" }, { code: "07", en: "KAREGOWRA", kn: "ಕರೆಗೌರಾ" }, { code: "08", en: "KODAMBALA", kn: "ಕೊಡಂಬಳ" }, { code: "09", en: "KOLUR", kn: "ಕೋಳೂರ" }, { code: "10", en: "LOHATA", kn: "ಲೋಹಟಾ" }, { code: "11", en: "MAHADAPURA", kn: "ಮಹಾದಾಪುರ" }, { code: "12", en: "MOTAGA", kn: "ಮೋಟಗಾ" }, { code: "13", en: "NIRNA", kn: "ನಿರ್ಣಾ" }, { code: "14", en: "SHIVANI", kn: "ಶಿವಣಿ" }, { code: "15", en: "SINDHOLA", kn: "ಸಿಂಧೋಳಾ" }, { code: "16", en: "TALAMADAGI", kn: "ತಳಮಡಗಿ" }]
-        }, {
-            code: "02",
-            en: "NIRNA",
-            kn: "ನಿರ್ಣಾ",
-            villages: [{ code: "01", en: "NIRNA", kn: "ನಿರ್ಣಾ" }, { code: "02", en: "CHAKRA", kn: "ಚಕ್ರ" }, { code: "03", en: "GHOLAPAKA", kn: "ಘೋಳಪಾಕ" }, { code: "04", en: "HIREGAON", kn: "ಹಿರೇಗಾಂವ" }, { code: "05", en: "HONGA", kn: "ಹೊಂಗಾ" }, { code: "06", en: "KANHAL", kn: "ಕನ್ಹಾಳ" }, { code: "07", en: "KAREGOWRA", kn: "ಕರೆಗೌರಾ" }, { code: "08", en: "KASARAGAON", kn: "ಕಸರಗಾಂವ" }, { code: "09", en: "KODAMBAL", kn: "ಕೊಡಂಬಳ" }, { code: "10", en: "NITTUR", kn: "ನಿಟ್ಟೂರ" }, { code: "11", en: "NANDURA", kn: "ನಂದೂರ" }]
-        }, {
-            code: "03",
-            en: "BEMALAKHEDA",
-            kn: "ಬೇಮಳಖೇಡ",
-            villages: [{ code: "01", en: "BEMALAKHEDA", kn: "ಬೇಮಳಖೇಡ" }, { code: "02", en: "DHANURA", kn: "ಧನೂರಾ" }, { code: "03", en: "GUMMANALA", kn: "ಗುಮ್ಮನಾಳ" }, { code: "04", en: "JALAKI", kn: "ಜಲಕಿ" }, { code: "05", en: "KARADIKOLA", kn: "ಕರಡಿಕೋಳ" }, { code: "06", en: "KASARAGAON", kn: "ಕಸರಗಾಂವ" }, { code: "07", en: "MUGANAL", kn: "ಮುಗನಾಳ" }, { code: "08", en: "NALA", kn: "ನಾಳ" }, { code: "09", en: "SAYADAPUR", kn: "ಸಯದಾಪುರ" }, { code: "10", en: "VADAGAON", kn: "ವಾಡಗಾಂವ" }]
-        }]
-    }, {
-        code: "07",
-        en: "KAMALANAGARA",
-        kn: "ಕಮಲಾನಗರ",
-        hoblis: [{
-            code: "04",
-            en: "TANAKUSANURA",
-            kn: "ತನಕುಸನೂರ",
-            villages: [{ code: "01", en: "TANAKUSANURA", kn: "ತನಕುಸನೂರ" }, { code: "02", en: "DAREGANV", kn: "ದಾರೆಗಾಂವ" }, { code: "03", en: "HALLI", kn: "ಹಳ್ಳಿ" }, { code: "04", en: "HOSAKERI", kn: "ಹೊಸಕೇರಿ" }, { code: "05", en: "HODALIKHED", kn: "ಹೋಡಲಿಖೇಡ" }, { code: "06", en: "KAMTHANA", kn: "ಕಮಠಾಣ" }, { code: "07", en: "KHAMBAG", kn: "ಖಂಬಾಗ" }, { code: "08", en: "KURUBHALLI", kn: "ಕುರುಬಹಳ್ಳಿ" }, { code: "09", en: "MALLEGAON", kn: "ಮಲ್ಲೆಗಾಂವ" }, { code: "10", en: "SAMPUR", kn: "ಸಂಪುರ" }, { code: "11", en: "SHETKARA", kn: "ಶೇತ್ಕರಾ" }, { code: "12", en: "SULTANAPUR", kn: "ಸುಲ್ತಾನಾಪುರ" }]
-        }, {
-            code: "05",
-            en: "KAMALANAGARA",
-            kn: "ಕಮಲಾನಗರ",
-            villages: [{ code: "01", en: "KAMALANAGARA", kn: "ಕಮಲಾನಗರ" }, { code: "02", en: "ARALLI", kn: "ಅರಳ್ಳಿ" }, { code: "03", en: "AANDURA", kn: "ಆಂದೂರಾ" }, { code: "04", en: "BAREKOT", kn: "ಬಾರೇಕೋಟ್" }, { code: "05", en: "CHANDUR", kn: "ಚಾಂದೂರ" }, { code: "06", en: "DEVANDI", kn: "ದೇವಂದಿ" }, { code: "07", en: "GANGANABEEDA", kn: "ಗಂಗನಬೀಡಾ" }, { code: "08", en: "HULEGAON", kn: "ಹುಲೇಗಾಂವ" }, { code: "09", en: "HALLI", kn: "ಹಳ್ಳಿ" }, { code: "10", en: "HONNALI", kn: "ಹೊನ್ನಾಳಿ" }, { code: "11", en: "KHAJAPUR", kn: "ಖಾಜಾಪುರ" }, { code: "12", en: "LAKHANAGANVA", kn: "ಲಖನಗಾಂವ" }, { code: "13", en: "MANHALLI", kn: "ಮನ್ನಹಳ್ಳಿ" }, { code: "14", en: "MUDHOL", kn: "ಮುದೋಳ" }, { code: "15", en: "RAMAPUR", kn: "ರಾಮಾಪುರ" }, { code: "16", en: "RAKSHYAL", kn: "ರಕ್ಷ್ಯಾಳ" }, { code: "17", en: "SAYADAPURA", kn: "ಸಯದಾಪುರ" }, { code: "18", en: "SAYADAPUR", kn: "ಸಯದಾಪುರ" }, { code: "19", en: "SAYANALA", kn: "ಸಯನಾಳ" }, { code: "20", en: "SINDHOLA", kn: "ಸಿಂಧೋಳಾ" }, { code: "21", en: "SHETAKARA", kn: "ಶೇತಕಾರ" }, { code: "22", en: "UTARANALLA", kn: "ಉತ್ತರನಾಳ" }, { code: "23", en: "WAGI", kn: "ವಾಗೀ" }, { code: "24", en: "HALLI", kn: "ಹಳ್ಳಿ" }, { code: "25", en: "AANDURA", kn: "ಆಂದೂರಾ" }]
-        }, {
-            code: "06",
-            en: "DABAKA",
-            kn: "ಡಾಬಕಾ",
-            villages: [{ code: "01", en: "DABAKA", kn: "ಡಾಬಕಾ" }, { code: "02", en: "ALAKHALLI", kn: "ಅಳಖಳ್ಳಿ" }, { code: "03", en: "MOGANAL", kn: "ಮೊಗನಾಳ" }, { code: "04", en: "KHADAKA", kn: "ಖಡಕ" }, { code: "05", en: "NIDODA", kn: "ನಿದೋಡಾ" }, { code: "06", en: "KODAMBALA", kn: "ಕೊಡಂಬಳ" }, { code: "07", en: "BHOSAGA", kn: "ಭೋಸಗಾ" }, { code: "08", en: "DABAKA", kn: "ಡಾಬಕಾ" }, { code: "09", en: "JALAKI", kn: "ಜಲಕಿ" }, { code: "10", en: "ALAKHALLI", kn: "ಅಳಖಳ್ಳಿ" }, { code: "11", en: "VILLAGE", kn: "ಗ್ರಾಮ" }, { code: "12", en: "MOGANAL", kn: "ಮೊಗನಾಳ" }, { code: "13", en: "NIDODA", kn: "ನಿದೋಡಾ" }, { code: "14", en: "KODAMBALA", kn: "ಕೊಡಂಬಳ" }, { code: "15", en: "BHOSAGA", kn: "ಭೋಸಗಾ" }]
-        }]
-    }, {
-        code: "08",
-        en: "HULASURA",
-        kn: "ಹುಲಸೂರ",
-        hoblis: [{
-            code: "06",
-            en: "HULASURA",
-            kn: "ಹುಲಸೂರ",
-            villages: [{ code: "01", en: "HULASURA", kn: "ಹುಲಸೂರ" }, { code: "02", en: "SOLADABAKA", kn: "ಸೋಲಡಾಬಕಾ" }, { code: "03", en: "KODAMBELA", kn: "ಕೊಡಂಬಳ" }, { code: "04", en: "HANDIKERA", kn: "ಹಂದಿಕೇರಾ" }, { code: "05", en: "HULASURA M", kn: "ಹುಲಸೂರ ಎಮ್" }, { code: "06", en: "CHIKALI", kn: "ಚಿಕಾಲಿ" }, { code: "07", en: "KAMBHALAGA", kn: "ಕಂಬಳಗಾ" }, { code: "08", en: "YELAKHA", kn: "ಯೆಳಖಾ" }, { code: "09", en: "GIRANIYALA", kn: "ಗಿರಣಿಯಾಳ" }, { code: "10", en: "DHANUR", kn: "ಧನೂರ" }, { code: "11", en: "HAMPURE", kn: "ಹಂಪುರೆ" }, { code: "12", en: "NAREGANALA", kn: "ನರೆಗನಾಳ" }, { code: "13", en: "KOLARA K", kn: "ಕೋಳಾರ ಕೆ" }, { code: "14", en: "SULYAGAON", kn: "ಸುಲ್ಯಾಗಾಂವ" }, { code: "15", en: "HONGA", kn: "ಹೊಂಗಾ" }, { code: "16", en: "JAMBULADADDA", kn: "ಜಂಬುಳದದ್ದ" }, { code: "17", en: "KODAMBELA", kn: "ಕೊಡಂಬಳ" }, { code: "18", en: "MARATHAVADI", kn: "ಮರಾಠವಾಡಿ" }]
-        }]
-    }];
-    
+    const locationData = [
+    {
+        "code": "1",
+        "en": "BASAVAKALYAN",
+        "kn": "ಬಸವಕಲ್ಯಾಣ",
+        "hoblis": [
+            {
+                "code": "1",
+                "en": "BASAVAKALYANA",
+                "kn": "ಬಸವಕಲ್ಯಾಣ",
+                "villages": [
+                    { "code": "1", "en": "BASAVAKALYANA", "kn": "ಬಸವಕಲ್ಯಾಣ" },
+                    { "code": "2", "en": "YADALAPURA", "kn": "ಯದಲಾಪೂರ" },
+                    { "code": "3", "en": "SHIVAPURA", "kn": "ಶಿವಾಪೂರ" },
+                    { "code": "4", "en": "TRIPURANKA", "kn": "ತ್ರಿಪುರಾಂಕ" },
+                    { "code": "5", "en": "TALABOGA", "kn": "ತಳಬೋಗ" },
+                    { "code": "6", "en": "PRATAPURA", "kn": "ಪ್ರತಾಪೂರ" },
+                    { "code": "7", "en": "MORAKHANDI", "kn": "ಮೊರಖಂಡಿ" },
+                    { "code": "8", "en": "GOWRA", "kn": "ಗೌರ" },
+                    { "code": "9", "en": "JANAPURA", "kn": "ಜಾನಾಪೂರ" },
+                    { "code": "10", "en": "GOKULA", "kn": "ಗೋಕುಳ" },
+                    { "code": "11", "en": "KITTA", "kn": "ಕಿಟ್ಟಾ" },
+                    { "code": "12", "en": "DHANNURA K", "kn": "ಧನ್ನುರಾ (ಕೆ)" },
+                    { "code": "13", "en": "KHANDALA", "kn": "ಖಂಡಾಳಾ" },
+                    { "code": "14", "en": "KHANAPURA K", "kn": "ಖಾನಾಪೂರ (ಕೆ)" },
+                    { "code": "15", "en": "NEELAKANTA", "kn": "ನೀಲಕಂಠ" },
+                    { "code": "16", "en": "LAHESHVARA", "kn": "ಲಾಹೇಶ್ವರ" },
+                    { "code": "17", "en": "NARAYANAPURA", "kn": "ನಾರಾಯಣಪೂರ" },
+                    { "code": "18", "en": "BETABALAKUNDA", "kn": "ಬೆಟಬಾಲಕುಂದಾ" }
+                ]
+            },
+            {
+                "code": "2",
+                "en": "MANTALA",
+                "kn": "ಮಂಠಾಳ",
+                "villages": [
+                    { "code": "1", "en": "MANTALA", "kn": "ಮಂಠಾಳ" },
+                    { "code": "2", "en": "ILYALA", "kn": "ಇಲ್ಯಾಳ" },
+                    { "code": "3", "en": "GUNDURA", "kn": "ಗುಂಡೂರ" },
+                    { "code": "4", "en": "ALAGUDA", "kn": "ಆಲಗೂಡ" },
+                    { "code": "5", "en": "VATTARAGA", "kn": "ವಟ್ಟರಗಾ" },
+                    { "code": "6", "en": "HIPPARAGA GHATA", "kn": "ಹಿಪ್ಪರಗಾ ಘಾಟ" },
+                    { "code": "7", "en": "HONNALLI", "kn": "ಹೋನ್ನಳ್ಳಿ" },
+                    { "code": "8", "en": "CHITTA KALLADEVA", "kn": "ಚಿಟ್ಟಾ ಕಲ್ಲದೇವ" },
+                    { "code": "9", "en": "URKI", "kn": "ಉರ್ಕಿ" },
+                    { "code": "10", "en": "MANNALLI", "kn": "ಮನ್ನಳ್ಳಿ" },
+                    { "code": "11", "en": "KAMALELUDI", "kn": "ಕಾಮಳೆಲೂಡಿ" },
+                    { "code": "12", "en": "ATALAPURA", "kn": "ಅತಲಾಪೂರ" },
+                    { "code": "13", "en": "SASTAPURA", "kn": "ಸಸ್ತಾಪೂರ" },
+                    { "code": "14", "en": "HANDRIYALA RU", "kn": "ಹಂದ್ರಿಯಾಳ (R)" },
+                    { "code": "15", "en": "JAJANAMUGALI", "kn": "ಜಾಜನಮುಗಳಿ" },
+                    { "code": "16", "en": "GHOTALA", "kn": "ಘೊಟಾಳಾ" },
+                    { "code": "17", "en": "RAMATIRTHAKH", "kn": "ರಾಮತಿರ್ಥ(K)" },
+                    { "code": "18", "en": "UMAPURA", "kn": "ಉಮಾಪೂರ" },
+                    { "code": "19", "en": "HALLI", "kn": "ಹಳ್ಳಿ" },
+                    { "code": "20", "en": "CHANDAKAPURA", "kn": "ಚಂಡಕಾಪೂರ" },
+                    { "code": "21", "en": "MIRJAPURA", "kn": "ಮಿರ್ಜಾಪೂರ" }
+                ]
+            },
+            {
+                "code": "3",
+                "en": "RAJESHVARA",
+                "kn": "ರಾಜೆಶ್ವರ",
+                "villages": [
+                    { "code": "1", "en": "RAJESHVARA", "kn": "ರಾಜೇಶ್ವರ" },
+                    { "code": "2", "en": "RAJOLA", "kn": "ರಾಜೋಳಾ" },
+                    { "code": "3", "en": "ISLAMPURA", "kn": "ಇಸ್ಲಾಂಪೂರ" },
+                    { "code": "4", "en": "HANDRALAKE", "kn": "ಹಂದ್ರಾಳ(ಕೆ)" },
+                    { "code": "5", "en": "LINGADALLI", "kn": "ಲಿಂಗದಳ್ಳಿ" },
+                    { "code": "6", "en": "NEERAGUDI", "kn": "ನೀರಗುಡಿ" },
+                    { "code": "7", "en": "KOWDIYALA S", "kn": "ಕೌಡಿಯಾಳ (S)" },
+                    { "code": "8", "en": "ROLA", "kn": "ರೋಳಾ" },
+                    { "code": "9", "en": "KOWDIYALARU", "kn": "ಕೌಡಿಯಾಳ(R)" },
+                    { "code": "10", "en": "KHERDABH", "kn": "ಖೇರ್ಡಾ(B)" },
+                    { "code": "11", "en": "SADALAPURA", "kn": "ಸದಲಾಪೂರ" },
+                    { "code": "12", "en": "DHANNURARU", "kn": "ಧನ್ನೂರ(R)" },
+                    { "code": "13", "en": "PANDARAGERA", "kn": "ಪಂಡರಗೇರಾ" },
+                    { "code": "14", "en": "YARANDI", "kn": "ಯರಂಡಿ" },
+                    { "code": "15", "en": "MANGALURA", "kn": "ಮಂಗಳೂರ" },
+                    { "code": "16", "en": "YARABAGA", "kn": "ಯರಬಾಗ" },
+                    { "code": "17", "en": "TADOLA", "kn": "ತಡೋಳಾ" },
+                    { "code": "18", "en": "GHOGGA", "kn": "ಘೊಗ್ಗಾ" }
+                ]
+            },
+            {
+                "code": "4",
+                "en": "MUDABI",
+                "kn": "ಮುಡಬಿ",
+                "villages": [
+                    { "code": "1", "en": "MUDABI", "kn": "ಮುಡಬಿ" },
+                    { "code": "2", "en": "KHANAPURA BH", "kn": "ಖಾನಾಪುರ B" },
+                    { "code": "3", "en": "BAGADHURI", "kn": "ಬಗಧೂರಿ" },
+                    { "code": "4", "en": "HATYALA", "kn": "ಹತ್ಯಾಳ" },
+                    { "code": "5", "en": "HARAKUDA", "kn": "ಹಾರಕೂಡ" },
+                    { "code": "6", "en": "SARAJAVALAGA", "kn": "ಸರಜವಳಗಾ" },
+                    { "code": "7", "en": "JANAVADA", "kn": "ಜನವಾಡಾ" },
+                    { "code": "8", "en": "HIPPARAGA BH", "kn": "ಹಿಪ್ಪರಗಾ B" },
+                    { "code": "9", "en": "MAISALAGA", "kn": "ಮೈಸಲಗಾ" },
+                    { "code": "10", "en": "KALAKHORA", "kn": "ಕಲಖೋರಾ" },
+                    { "code": "11", "en": "HIRANAGANVA", "kn": "ಹಿರನಾಗಾಂವ" },
+                    { "code": "12", "en": "SUNGATANA", "kn": "ಸುಂಗಠಾಣ" },
+                    { "code": "13", "en": "EKALURA", "kn": "ಎಕಲೂರ" },
+                    { "code": "14", "en": "GADALEGANVA BH", "kn": "ಗದಲೇಗಾಂವ (B)" },
+                    { "code": "15", "en": "YALAVANTI", "kn": "ಯಳವಂತಿ" },
+                    { "code": "16", "en": "KHERDA KH", "kn": "ಖೇರ್ಡಾ (K)" },
+                    { "code": "17", "en": "CHIKANAGANVA", "kn": "ಚಿಕನಗಾಂವ" },
+                    { "code": "18", "en": "SIRAGAPURA", "kn": "ಸಿರಗಾಪೂರ" },
+                    { "code": "19", "en": "KINNI", "kn": "ಕಿಣ್ಣಿ" },
+                    { "code": "20", "en": "YADALAGUNDI", "kn": "ಯದಲಗುಂಡಿ" },
+                    { "code": "21", "en": "SAIDAPURA", "kn": "ಸೈದಾಪೂರ" },
+                    { "code": "22", "en": "HAMUNAGARA", "kn": "ಹಾಮುನಗರ" }
+                ]
+            },
+            {
+                "code": "5",
+                "en": "KOHINURA",
+                "kn": "ಕೊಹಿನೂರ",
+                "villages": [
+                    { "code": "1", "en": "KOHINURA", "kn": "ಕೊಹಿನೂರ" },
+                    { "code": "2", "en": "LADAVANTI", "kn": "ಲಾಡವಂತಿ" },
+                    { "code": "3", "en": "EKKAMBA", "kn": "ಎಕ್ಕಂಬಾ" },
+                    { "code": "4", "en": "DHAMURI", "kn": "ಧಾಮುರಿ" },
+                    { "code": "5", "en": "UJALAMBA", "kn": "ಉಜಳಂಬ" },
+                    { "code": "6", "en": "CHITTAKOTA", "kn": "ಚಿತ್ತಕೋಟಾ" },
+                    { "code": "7", "en": "BHAKANALA", "kn": "ಭಾಕನಾಳ" },
+                    { "code": "8", "en": "BETAGERA", "kn": "ಬೆಟಗೇರಾ" },
+                    { "code": "9", "en": "GADALEGANVA", "kn": "ಗದಲೇಗಾಂವ" },
+                    { "code": "10", "en": "SIRAGURA", "kn": "ಸಿರಗುರ" },
+                    { "code": "11", "en": "RAMATIRTHAD", "kn": "ರಾಮತಿರ್ಥ(D)" },
+                    { "code": "12", "en": "GILIGILI", "kn": "ಗಿಲಿಗಿಲಿ" },
+                    { "code": "13", "en": "HATTARAGA S", "kn": "ಹತ್ತರಗಾ (s)" },
+                    { "code": "14", "en": "CHITTAKOTAK", "kn": "ಚಿತ್ತಕೋಟಾ(k)" },
+                    { "code": "15", "en": "BHOSAGA", "kn": "ಭೋಸಗಾ" },
+                    { "code": "16", "en": "MANAKHEDA", "kn": "ಮನಖೇಡ" },
+                    { "code": "17", "en": "ATTURA", "kn": "ಅಟ್ಟೂರ" },
+                    { "code": "18", "en": "SIRURI", "kn": "ಸಿರೂರಿ" }
+                ]
+            }
+        ]
+    },
+    {
+        "code": "2",
+        "en": "BHALKI",
+        "kn": "ಭಾಲ್ಕಿ",
+        "hoblis": [
+            {
+                "code": "1",
+                "en": "BHALKI",
+                "kn": "ಭಾಲ್ಕಿ",
+                "villages": [
+                    { "code": "1", "en": "BHALKI", "kn": "ಭಾಲ್ಕಿ" },
+                    { "code": "2", "en": "BAJULAGA", "kn": "ಬಾಜೂಳಗಾ" },
+                    { "code": "3", "en": "KORURA", "kn": "ಕೋರುರ" },
+                    { "code": "4", "en": "KARADIYALA", "kn": "ಕರಡಿಯಾಳ" },
+                    { "code": "5", "en": "KADALABADA", "kn": "ಕದಲಾಬಾದ" },
+                    { "code": "6", "en": "GUBYALA", "kn": "ಗುಬ್ಯಾಳ" },
+                    { "code": "8", "en": "DHARAJAVADI", "kn": "ಧಾರಜವಾಡಿ" },
+                    { "code": "9", "en": "TALAVADA KH", "kn": "ತಳವಾಡ (K)" },
+                    { "code": "10", "en": "SAIDAPURAVADI", "kn": "ಸೈದಾಪೂರವಾಡಿ" },
+                    { "code": "11", "en": "JOLADABAKA", "kn": "ಜೊಳದಾಬಕಾ" },
+                    { "code": "12", "en": "SIDDESHVARA", "kn": "ಸಿದ್ದೆಶ್ವರ" },
+                    { "code": "13", "en": "MARURA", "kn": "ಮರೂರ" },
+                    { "code": "14", "en": "CHIKALACHANDA", "kn": "ಚಿಕಲಚಾಂದಾ" },
+                    { "code": "15", "en": "KUNTESHIRSHI", "kn": "ಕೂಂಟೆಶಿರ್ಶಿ" },
+                    { "code": "16", "en": "MADAKATTI", "kn": "ಮದಕಟ್ಟಿ" },
+                    { "code": "17", "en": "KALAVADI", "kn": "ಕಲವಾಡಿ" },
+                    { "code": "18", "en": "HARANALA", "kn": "ಹರನಾಳ" },
+                    { "code": "19", "en": "DADAGI", "kn": "ದಾಡಗಿ" },
+                    { "code": "20", "en": "RAMATIRTHAVADI", "kn": "ರಾಮತಿರ್ಥವಾಡಿ" },
+                    { "code": "21", "en": "EKALASAPURAVADI", "kn": "ಎಕಲಸಾಪೂರವಾಡಿ" },
+                    { "code": "22", "en": "GORACHINCHOLI", "kn": "ಗೊರಚಿಂಚೊಳಿ" },
+                    { "code": "23", "en": "NIDEBAN", "kn": "ನಿಡೆಬನ್" },
+                    { "code": "24", "en": "ANANDAVADI", "kn": "ಆನಂದವಾಡಿ" },
+                    { "code": "25", "en": "KOTAGERA", "kn": "ಕೊಟಗೇರಾ" },
+                    { "code": "26", "en": "KOTAGYALAVADI", "kn": "ಕೊಟಗ್ಯಾಳವಾಡಿ" },
+                    { "code": "27", "en": "GANESHAPURAVADI", "kn": "ಗಣೇಶಪೂರವಾಡಿ" }
+                ]
+            },
+            {
+                "code": "2",
+                "en": "SAYAGANVA",
+                "kn": "ಸಾಯಗಾಂವ",
+                "villages": [
+                    { "code": "1", "en": "SAYAGANVA", "kn": "ಸಾಯಗಾಂವ" },
+                    { "code": "2", "en": "KHUDAVANDAPURA", "kn": "ಖುದಾವಂದಪೂರ" },
+                    { "code": "3", "en": "INCHURA", "kn": "ಇಂಚುರ" },
+                    { "code": "4", "en": "KESARA JAVALAGA", "kn": "ಕೇಸರ ಜವಳಗಾ" },
+                    { "code": "5", "en": "SHREEMALI", "kn": "ಶ್ರೀಮಾಳಿ" },
+                    { "code": "6", "en": "JAMAKHANDI", "kn": "ಜಾಮಖಂಡಿ" },
+                    { "code": "7", "en": "VANJARAKHEDA", "kn": "ವಾಂಜರಖೇಡಾ" },
+                    { "code": "8", "en": "KONGALI", "kn": "ಕೊಂಗಳಿ" },
+                    { "code": "9", "en": "RU GOWNDAGANVA", "kn": "R.ಗೌಂಡಗಾಂವ" },
+                    { "code": "10", "en": "KUNTEGANVA", "kn": "ಕುಂಟೆಗಾಂವ" },
+                    { "code": "11", "en": "LADA", "kn": "ಲಾದಾ" },
+                    { "code": "12", "en": "HALASI L", "kn": "ಹಲಸಿ (L)" },
+                    { "code": "13", "en": "JEERAGYALA", "kn": "ಜೀರಗ್ಯಾಳ" },
+                    { "code": "14", "en": "VAGALAGANVA", "kn": "ವಾಗಲಗಾಂವ" },
+                    { "code": "15", "en": "GUNJARAGA", "kn": "ಗುಂಜರಗಾ" },
+                    { "code": "16", "en": "ATTARAGA", "kn": "ಅಟ್ಟರಗಾ" },
+                    { "code": "17", "en": "ALAVAYI", "kn": "ಅಳವಾಯಿ" },
+                    { "code": "18", "en": "NARADASANGAMA", "kn": "ನಾರದಾಸಂಗಮ" },
+                    { "code": "19", "en": "MEHAKARA", "kn": "ಮೇಹಕರ" },
+                    { "code": "20", "en": "MANIKESHVARA", "kn": "ಮಾಣಿಕೇಶ್ವರ" },
+                    { "code": "21", "en": "TUGANVA H", "kn": "ತುಗಾಂವ (H)" },
+                    { "code": "22", "en": "BOLEGANVA", "kn": "ಬೊಳೆಗಾಂವ" },
+                    { "code": "23", "en": "ELAMAVADI", "kn": "ಎಲಮವಾಡಿ" }
+                ]
+            },
+            {
+                "code": "3",
+                "en": "NITTURABH",
+                "kn": "ನಿಟ್ಟೂರ(B)",
+                "villages": [
+                    { "code": "1", "en": "NITTURA BH", "kn": "ನಿಟ್ಟೂರ (B)" },
+                    { "code": "2", "en": "AMBESANGAVI", "kn": "ಅಂಬೆಸಾಂಗವಿ" },
+                    { "code": "3", "en": "HAJANALA", "kn": "ಹಜನಾಳ" },
+                    { "code": "4", "en": "GORANALA", "kn": "ಗೊರನಾಳ" },
+                    { "code": "5", "en": "BEERIKH", "kn": "ಬೀರಿ(K)" },
+                    { "code": "6", "en": "NAGARALA", "kn": "ನಾಗರಾಳ" },
+                    { "code": "7", "en": "MURALA", "kn": "ಮುರಾಳ" },
+                    { "code": "8", "en": "KUDLI", "kn": "ಕೂಡ್ಲಿ" },
+                    { "code": "9", "en": "HUPALA", "kn": "ಹುಪಳಾ" },
+                    { "code": "10", "en": "KERURA", "kn": "ಕೇರೂರ" },
+                    { "code": "11", "en": "AHMADABADA", "kn": "ಆಹ್ಮದಾಬಾದ" },
+                    { "code": "12", "en": "JAINAPURA", "kn": "ಜೈನಾಪೂರ" },
+                    { "code": "13", "en": "BALURA", "kn": "ಬಾಳೂರ" },
+                    { "code": "14", "en": "KOTAGYALA", "kn": "ಕೊಟಗ್ಯಾಳ" },
+                    { "code": "15", "en": "CHANDAPURA", "kn": "ಚಂದಾಪೂರ" },
+                    { "code": "16", "en": "KHASHAMAPURA", "kn": "ಖಾಶಮಪೂರ" },
+                    { "code": "17", "en": "DONGARAGI", "kn": "ಡೊಂಗರಗಿ" },
+                    { "code": "18", "en": "VALASANGA", "kn": "ವಳಸಂಗ" },
+                    { "code": "19", "en": "SIDDAPURA VADI", "kn": "ಸಿದ್ದಾಪೂರ ವಾಡಿ" }
+                ]
+            },
+            {
+                "code": "4",
+                "en": "KHATAKA CHINCHULI",
+                "kn": "ಖಟಕ ಚಿಂಚೂಳಿ",
+                "villages": [
+                    { "code": "1", "en": "KHATAKA CHINCHOLI", "kn": "ಖಟಕ ಚಿಂಚೊಳಿ" },
+                    { "code": "2", "en": "UCHYA", "kn": "ಉಚ್ಯಾ" },
+                    { "code": "3", "en": "BYALAHALLI W", "kn": "ಬ್ಯಾಲಹಳ್ಳಿ (W)" },
+                    { "code": "4", "en": "VARAVATTI", "kn": "ವರವಟ್ಟಿ" },
+                    { "code": "6", "en": "DAVARAGANVA", "kn": "ಡಾವರಗಾಂವ" },
+                    { "code": "7", "en": "TUGANVACH", "kn": "ತೂಗಾಂವ(C)" },
+                    { "code": "8", "en": "NELVADA", "kn": "ನೆಲ್ವಾಡ" },
+                    { "code": "9", "en": "MORAMBI", "kn": "ಮೊರಂಬಿ" },
+                    { "code": "10", "en": "HONNALLI", "kn": "ಹೊನ್ನಳ್ಳಿ" },
+                    { "code": "11", "en": "HALAGORTA", "kn": "ಹಾಳಗೋರ್ಟಾ" },
+                    { "code": "12", "en": "CHALAKAPURA", "kn": "ಚಳಕಾಪೂರ" },
+                    { "code": "13", "en": "NAVADAGI", "kn": "ನಾವದಗಿ" },
+                    { "code": "14", "en": "KAPALAPURA", "kn": "ಕಪಲಾಪೂರ" },
+                    { "code": "15", "en": "MAVINAHALLI", "kn": "ಮಾವಿನಹಳ್ಳಿ" },
+                    { "code": "16", "en": "ENAKURA", "kn": "ಎಣಕುರ" },
+                    { "code": "17", "en": "BARADAPURA", "kn": "ಬರದಾಪೂರ" },
+                    { "code": "18", "en": "KURABA KHELAGI", "kn": "ಕುರಬ ಖೇಳಗಿ" },
+                    { "code": "19", "en": "MASHIMADU", "kn": "ಮಾಶಿಮಾಡು" },
+                    { "code": "20", "en": "CHITTA", "kn": "ಚಿಟ್ಟಾ" },
+                    { "code": "21", "en": "SIKINDRABADA VADI", "kn": "ಸಿಕಿಂದ್ರಾಬಾದ ವಾಡಿ" }
+                ]
+            },
+            {
+                "code": "5",
+                "en": "LAKHANAGANVA",
+                "kn": "ಲಖಣಗಾಂವ",
+                "villages": [
+                    { "code": "1", "en": "LAKHANAGANVA", "kn": "ಲಖಣಗಾಂವ" },
+                    { "code": "2", "en": "ALANDI", "kn": "ಆಳಂದಿ" },
+                    { "code": "3", "en": "KALASADALA", "kn": "ಕಳಸದಾಳ" },
+                    { "code": "4", "en": "HACHCHIKAMATA", "kn": "ಹಚ್ಚಿಕಮಠ" },
+                    { "code": "5", "en": "DONAGAPURA", "kn": "ಡೊಣಗಾಪೂರ" },
+                    { "code": "6", "en": "KAKANALA", "kn": "ಕಾಕನಾಳ" },
+                    { "code": "7", "en": "METIMELAKUNDA", "kn": "ಮೇತಿಮೇಳಕುಂದಾ" },
+                    { "code": "8", "en": "BHATAMBRA", "kn": "ಭಾತಂಬ್ರಾ" },
+                    { "code": "9", "en": "BEERIBH", "kn": "ಬೀರಿ(B)" },
+                    { "code": "10", "en": "HUNAJIA", "kn": "ಹುಣಜಿ(A)" },
+                    { "code": "12", "en": "LANJAVADA", "kn": "ಲಂಜವಾಡ" },
+                    { "code": "13", "en": "BHATASANGAVI", "kn": "ಭಾಟಸಾಂಗವಿ" },
+                    { "code": "14", "en": "SHIVANI", "kn": "ಶಿವಣಿ" },
+                    { "code": "15", "en": "TALAVADAM", "kn": "ತಳವಾಡ(M)" },
+                    { "code": "16", "en": "TELAGANVA", "kn": "ತೇಲಗಾಂವ" },
+                    { "code": "17", "en": "SOMAPURA", "kn": "ಸೋಮಪುರ" },
+                    { "code": "18", "en": "ATANURA", "kn": "ಅತನೂರ" },
+                    { "code": "19", "en": "KALASARATUGANVA", "kn": "ಕಾಳಸಾರತುಗಾಂವ" },
+                    { "code": "20", "en": "JAYAGANVA", "kn": "ಜಾಯಗಾಂವ" },
+                    { "code": "21", "en": "TAMAGYALA", "kn": "ತಮಗ್ಯಾಳ" },
+                    { "code": "22", "en": "SHAMASHERAPURA", "kn": "ಶಮಶೆರಪೂರ" },
+                    { "code": "25", "en": "METIMELAKUNDA VADI", "kn": "ಮೇತಿಮೆಳಕುಂದಾ ವಾಡಿ" },
+                    { "code": "26", "en": "KASARATUGANVA VADI", "kn": "ಕಾಸರತುಗಾಂವ ವಾಡಿ" }
+                ]
+            },
+            {
+                "code": "6",
+                "en": "HALABARGA",
+                "kn": "ಹಲಬರ್ಗಾ",
+                "villages": [
+                    { "code": "1", "en": "HALABARGA", "kn": "ಹಲಬರ್ಗಾ" },
+                    { "code": "2", "en": "KANAJI", "kn": "ಕಣಜಿ" },
+                    { "code": "3", "en": "TEGAMPURA", "kn": "ತೆಗಂಪೂರ" },
+                    { "code": "4", "en": "HALAHIPPARAGA", "kn": "ಹಾಲಹಿಪ್ಪರಗಾ" },
+                    { "code": "5", "en": "KOSAMA", "kn": "ಕೊಸಮ" },
+                    { "code": "6", "en": "NAGURAKE", "kn": "ನಾಗೂರ(ಕೆ)" },
+                    { "code": "7", "en": "ALIYABADA", "kn": "ಅಲಿಯಾಬಾದ" },
+                    { "code": "8", "en": "TARANALLI", "kn": "ತರನಳ್ಳಿ" },
+                    { "code": "9", "en": "HUNAJEE K", "kn": "ಹುಣಜೀ (ಕೆ)" },
+                    { "code": "10", "en": "GODIHIPPARGA", "kn": "ಗೋದಿಹಿಪ್ಪರ್ಗಾ" },
+                    { "code": "11", "en": "DHANNURAH", "kn": "ಧನ್ನೂರ(H)" },
+                    { "code": "12", "en": "KONAMELAKUNDA", "kn": "ಕೋನಮೇಳಕುಂದಾ" },
+                    { "code": "13", "en": "KHANAPURA", "kn": "ಖಾನಾಪೂರ" },
+                    { "code": "14", "en": "RUDANURA", "kn": "ರೂದನೂರ" },
+                    { "code": "15", "en": "MALACHAPURA", "kn": "ಮಳಚಾಪೂರ" },
+                    { "code": "16", "en": "JANTI", "kn": "ಜಾಂತಿ" },
+                    { "code": "17", "en": "NELAGI", "kn": "ನೆಳಗಿ" },
+                    { "code": "18", "en": "BYALAHALLIKH", "kn": "ಬ್ಯಾಲಹಳ್ಳಿ(K)" },
+                    { "code": "19", "en": "KAMALAPURA", "kn": "ಕಮಲಪುರ" },
+                    { "code": "20", "en": "NIRAMANAHALLI", "kn": "ನಿರಮನಹಳ್ಳಿ" },
+                    { "code": "21", "en": "SEVANAGARA", "kn": "ಸೇವಾನಗರ" },
+                    { "code": "22", "en": "HALAHALLI K", "kn": "ಹಾಲಹಳ್ಳಿ (ಕೆ)" }
+                ]
+            }
+        ]
+    },
+    {
+        "code": "3",
+        "en": "AURAD",
+        "kn": "ಔರಾದ್",
+        "hoblis": [
+            {
+                "code": "1",
+                "en": "OWRADABI",
+                "kn": "ಔರಾದ(ಬಿ)",
+                "villages": [
+                    { "code": "1", "en": "OWRADABI", "kn": "ಔರಾದ(ಬಿ)" },
+                    { "code": "2", "en": "MAMADAPURA", "kn": "ಮಮದಪೂರ" },
+                    { "code": "3", "en": "NARAYANAPURA", "kn": "ನಾರಾಯಣಪೂರ" },
+                    { "code": "4", "en": "GANESHAPURE", "kn": "ಗಣೇಶಪೂರ(ಎ)" },
+                    { "code": "5", "en": "ALLAPURA", "kn": "ಅಲ್ಲಾಪೂರ" },
+                    { "code": "6", "en": "NARASINHAPURA", "kn": "ನರಸಿಂಹಪೂರ" },
+                    { "code": "7", "en": "EKALARA", "kn": "ಎಕಲಾರ" },
+                    { "code": "8", "en": "TULAJAPURA", "kn": "ತುಳಜಾಪೂರ" },
+                    { "code": "9", "en": "BORALA", "kn": "ಬೊರಳ" },
+                    { "code": "10", "en": "BADALAGANVA", "kn": "ಬಾದಲಗಾಂವ" },
+                    { "code": "11", "en": "DUDUKANALA", "kn": "ದುಡುಕನಾಳ" },
+                    { "code": "12", "en": "VANAMARAPALLI", "kn": "ವನಮಾರಪಳ್ಳಿ" },
+                    { "code": "13", "en": "MUNGANALA", "kn": "ಮುಂಗನಾಳ" },
+                    { "code": "14", "en": "KAPPIKERI", "kn": "ಕಪ್ಪಿಕೇರಿ" },
+                    { "code": "15", "en": "HASSIKERI", "kn": "ಹಸ್ಸಿಕೇರಿ" },
+                    { "code": "16", "en": "KHANDIKERI", "kn": "ಖಂಡಿಕೇರಿ" },
+                    { "code": "17", "en": "HULLYALA", "kn": "ಹುಲ್ಲ್ಯಾಳ" },
+                    { "code": "18", "en": "EKAMBA", "kn": "ಎಕಂಬಾ" },
+                    { "code": "19", "en": "JAMALAPURA", "kn": "ಜಮಾಲಪೂರ" },
+                    { "code": "20", "en": "KOLLURA", "kn": "ಕೊಳ್ಳುರ" },
+                    { "code": "21", "en": "JONNIKERI", "kn": "ಜೊನ್ನಿಕೇರಿ" },
+                    { "code": "22", "en": "MAHADONAGANVA", "kn": "ಮಹಾಡೊಣಗಾಂವ" },
+                    { "code": "23", "en": "TEGAMPURA", "kn": "ತೆಗಂಪೂರ" },
+                    { "code": "24", "en": "GOWNDAGANVA", "kn": "ಗೌಂಡಗಾಂವ" },
+                    { "code": "26", "en": "BONTI", "kn": "ಬೊಂತಿ" },
+                    { "code": "27", "en": "HANGARAGABI", "kn": "ಹಂಗರಗಾ(ಬಿ)" },
+                    { "code": "28", "en": "HOKRANA", "kn": "ಹೊಕ್ರಾಣಾ" },
+                    { "code": "29", "en": "KHERDABI", "kn": "ಖೇರ್ಡಾ(ಬಿ)" },
+                    { "code": "30", "en": "KARAKYALA", "kn": "ಕರಕ್ಯಾಳ" },
+                    { "code": "31", "en": "DONGARAGAVA", "kn": "ಡೋಂಗರಗಾವ" },
+                    { "code": "32", "en": "BANDARA KUMATA", "kn": "ಬಂಡಾರ ಕುಮಟಾ" },
+                    { "code": "33", "en": "LINGI", "kn": "ಲಿಂಗಿ" },
+                    { "code": "34", "en": "BAVALAGANVA", "kn": "ಬಾವಲಗಾಂವ" },
+                    { "code": "35", "en": "SAVARAGANVA", "kn": "ಸಾವರಗಾಂವ" }
+                ]
+            },
+            {
+                "code": "2",
+                "en": "CHINTAKI",
+                "kn": "ಚಿಂತಾಕಿ",
+                "villages": [
+                    { "code": "1", "en": "CHINTAKI", "kn": "ಚಿಂತಾಕಿ" },
+                    { "code": "2", "en": "BELDALA", "kn": "ಬೆಲ್ದಾಳ" },
+                    { "code": "3", "en": "JOJANA", "kn": "ಜೊಜನಾ" },
+                    { "code": "4", "en": "NAGURAN", "kn": "ನಾಗೂರ(N)" },
+                    { "code": "5", "en": "LINGADALSHIKH", "kn": "ಲಿಂಗದಳ್ಶಿ(K)" },
+                    { "code": "6", "en": "KARANJIBI", "kn": "ಕರಂಜಿ(ಬಿ)" },
+                    { "code": "7", "en": "KARANJIKE", "kn": "ಕರಂಜಿ(ಕೆ)" },
+                    { "code": "8", "en": "MANURAKE", "kn": "ಮಾನೂರ(ಕೆ)" },
+                    { "code": "9", "en": "RAYAPALLI", "kn": "ರಾಯಪಳ್ಳಿ" },
+                    { "code": "10", "en": "NAGANAPALLI", "kn": "ನಾಗನಪಲ್ಲಿ" },
+                    { "code": "11", "en": "LINGADALLI J", "kn": "ಲಿಂಗದಳ್ಳಿ (ಜೆ)" },
+                    { "code": "12", "en": "SUNDALA", "kn": "ಸುಂದಾಳ" },
+                    { "code": "13", "en": "KHASEMPURAA", "kn": "ಖಾಸೆಂಪೂರ(A)" },
+                    { "code": "14", "en": "UJANI", "kn": "ಉಜನಿ" },
+                    { "code": "15", "en": "SUNKANALA", "kn": "ಸುಂಕನಾಳ" },
+                    { "code": "16", "en": "GUDAPALLI", "kn": "ಗುಡಪಳ್ಳಿ" },
+                    { "code": "17", "en": "NAGAMARAPALLI", "kn": "ನಾಗಮಾರಪಳ್ಳಿ" },
+                    { "code": "18", "en": "NANDYALA", "kn": "ನಂದ್ಯಾಳ" },
+                    { "code": "19", "en": "JAKANALA", "kn": "ಜಕನಾಳ" },
+                    { "code": "20", "en": "ITAGYALA", "kn": "ಇಟಗ್ಯಾಳ" },
+                    { "code": "21", "en": "ENAGUNDA", "kn": "ಎನಗುಂದಾ" },
+                    { "code": "22", "en": "MEDAPALLI", "kn": "ಮೆಡಪಳ್ಳಿ" },
+                    { "code": "23", "en": "NAGUREM", "kn": "ನಾಗೂರ(ಎಂ)" },
+                    { "code": "24", "en": "CHIKLIJE", "kn": "ಚಿಕ್ಲಿ(ಜೆ)" },
+                    { "code": "25", "en": "BARADAPURA", "kn": "ಬರದಾಪೂರ" }
+                ]
+            },
+            {
+                "code": "3",
+                "en": "SANTAPURA",
+                "kn": "ಸಂತಪೂರ",
+                "villages": [
+                    { "code": "1", "en": "SANTAPURA", "kn": "ಸಂತಪೂರ" },
+                    { "code": "2", "en": "JIRGABI", "kn": "ಜಿರ್ಗಾ(ಬಿ)" },
+                    { "code": "3", "en": "JEERGAKE", "kn": "ಜೀರ್ಗಾ(ಕೆ)" },
+                    { "code": "4", "en": "JAMBAGI", "kn": "ಜಂಬಗಿ" },
+                    { "code": "5", "en": "MAHARAJAVADI", "kn": "ಮಹಾರಾಜವಾಡಿ" },
+                    { "code": "6", "en": "SHEMBELLI", "kn": "ಶೆಂಬೆಳ್ಳಿ" },
+                    { "code": "7", "en": "CHATANALA", "kn": "ಚಟನಾಳ" },
+                    { "code": "8", "en": "GADIKUSANURA", "kn": "ಗಡಿಕುಸನೂರ" },
+                    { "code": "9", "en": "PASHAPURA", "kn": "ಪಾಶಾಪೂರ" },
+                    { "code": "10", "en": "BALURAJE", "kn": "ಬಲೂರ(ಜೆ)" },
+                    { "code": "11", "en": "KOWTABI", "kn": "ಕೌಠಾ(ಬಿ)" },
+                    { "code": "12", "en": "KOWTAKE", "kn": "ಕೌಠಾ(ಕೆ)" },
+                    { "code": "13", "en": "BELUREN", "kn": "ಬೆಲೂರ(ಎನ್)" },
+                    { "code": "14", "en": "VALLEPURA", "kn": "ವಲ್ಲೆಪೂರ" },
+                    { "code": "15", "en": "ALURAKE", "kn": "ಆಲೂರ(ಕೆ)" },
+                    { "code": "16", "en": "SORALLI", "kn": "ಸೋರಳ್ಳಿ" },
+                    { "code": "17", "en": "KOWDAGANVA", "kn": "ಕೌಡಗಾಂವ" },
+                    { "code": "18", "en": "ALURABI", "kn": "ಆಲೂರ(ಬಿ)" },
+                    { "code": "19", "en": "MUSTAPURA", "kn": "ಮುಸ್ತಾಪೂರ" },
+                    { "code": "20", "en": "BORGIJE", "kn": "ಬೋರ್ಗಿ(ಜೆ)" },
+                    { "code": "22", "en": "KANDAGULA", "kn": "ಕಂದಗೂಳ" },
+                    { "code": "23", "en": "KHANAPURA", "kn": "ಖಾನಾಪೂರ" },
+                    { "code": "24", "en": "VADAGANVAD", "kn": "ವಡಗಾಂವ(D)" },
+                    { "code": "25", "en": "KHASEMPURA B", "kn": "ಖಾಸೇಂಪೂರ (ಬಿ)" },
+                    { "code": "26", "en": "RAKSHSHALA K", "kn": "ರಕ್ಷ್ಶಾಳ (ಕೆ)" },
+                    { "code": "27", "en": "MASKALA", "kn": "ಮಸ್ಕಲ" },
+                    { "code": "28", "en": "NAGURA B", "kn": "ನಾಗೂರ (ಬಿ)" },
+                    { "code": "29", "en": "BELAKONI CHOWDARI", "kn": "ಬೆಳಕೋಣಿ (ಚೌದರಿ)" },
+                    { "code": "30", "en": "RAKSHYALA B", "kn": "ರಕ್ಷ್ಯಾಳ (ಬಿ)" },
+                    { "code": "31", "en": "DUPATAMAHAGANVA", "kn": "ದುಪತಮಾಹಗಾಂವ" },
+                    { "code": "32", "en": "MANIGEMPURA", "kn": "ಮಣಿಗೆಂಪೂರ" },
+                    { "code": "33", "en": "LADHA", "kn": "ಲಾಧಾ" },
+                    { "code": "34", "en": "BACHEPALLI", "kn": "ಬಾಚೇಪಳ್ಳಿ" },
+                    { "code": "35", "en": "BABALI", "kn": "ಬಾಬಳಿ" },
+                    { "code": "36", "en": "HEDAGAPURA", "kn": "ಹೆಡಗಾಪುರ" },
+                    { "code": "37", "en": "NITDORA K", "kn": "ನಿಟ್ಡೊರ (ಕೆ)" }
+                ]
+            },
+            {
+                "code": "4",
+                "en": "TANAKUSANURA",
+                "kn": "ಠಾಣಾಕುಸನೂರ",
+                "villages": [
+                    { "code": "1", "en": "TANAKUSANURA", "kn": "ಠಾಣಾಕುಸನೂರ" },
+                    { "code": "2", "en": "RAKSHSHALA K", "kn": "ರಕ್ಷ್ಶಾಳ (ಕೆ)" },
+                    { "code": "3", "en": "MASKALA", "kn": "ಮಸ್ಕಲ" },
+                    { "code": "4", "en": "NAGURA B", "kn": "ನಾಗೂರ (ಬಿ)" },
+                    { "code": "5", "en": "BELAKONI CHOWDARI", "kn": "ಬೆಳಕೋಣಿ (ಚೌದರಿ)" },
+                    { "code": "6", "en": "RAKSHYALA B", "kn": "ರಕ್ಷ್ಯಾಳ (ಬಿ)" },
+                    { "code": "10", "en": "DUPATAMAHAGANVA", "kn": "ದುಪತಮಾಹಗಾಂವ" },
+                    { "code": "11", "en": "MANIGEMPURA", "kn": "ಮಣಿಗೆಂಪೂರ" },
+                    { "code": "14", "en": "LADHA", "kn": "ಲಾಧಾ" },
+                    { "code": "15", "en": "BACHEPALLI", "kn": "ಬಾಚೇಪಳ್ಳಿ" },
+                    { "code": "16", "en": "BABALI", "kn": "ಬಾಬಳಿ" },
+                    { "code": "17", "en": "HEDAGAPURA", "kn": "ಹೆಡಗಾಪುರ" },
+                    { "code": "18", "en": "NITDORA K", "kn": "ನಿಟ್ಡೊರ (ಕೆ)" }
+                ]
+            },
+            {
+                "code": "6",
+                "en": "DABAKA",
+                "kn": "ದಾಬಕಾ",
+                "villages": [
+                    { "code": "1", "en": "DABAKA", "kn": "ದಾಬಕಾ" },
+                    { "code": "2", "en": "VAGANAGERA", "kn": "ವಾಗಣಗೇರಾ" },
+                    { "code": "3", "en": "AKANAPURA", "kn": "ಅಕನಾಪೂರ" },
+                    { "code": "4", "en": "BONTI", "kn": "ಬೊಂತಿ" },
+                    { "code": "5", "en": "HANGARAGABI", "kn": "ಹಂಗರಗಾ(ಬಿ)" },
+                    { "code": "6", "en": "HOKRANA", "kn": "ಹೊಕ್ರಾಣಾ" },
+                    { "code": "7", "en": "KHERDABI", "kn": "ಖೇರ್ಡಾ(ಬಿ)" },
+                    { "code": "8", "en": "KARAKYALA", "kn": "ಕರಕ್ಯಾಳ" },
+                    { "code": "9", "en": "DONGARAGAVA", "kn": "ಡೋಂಗರಗಾವ" },
+                    { "code": "14", "en": "BANDARA KUMATA", "kn": "ಬಂಡಾರ ಕುಮಟಾ" },
+                    { "code": "15", "en": "LINGI", "kn": "ಲಿಂಗಿ" },
+                    { "code": "20", "en": "BAVALAGANVA", "kn": "ಬಾವಲಗಾಂವ" },
+                    { "code": "21", "en": "SAVARAGANVA", "kn": "ಸಾವರಗಾಂವ" }
+                ]
+            }
+        ]
+    },
+    {
+        "code": "4",
+        "en": "BIDAR",
+        "kn": "ಬೀದರ್",
+        "hoblis": [
+            {
+                "code": "1",
+                "en": "BEEDARA UTTARA",
+                "kn": "ಬೀದರ ಉತ್ತರ",
+                "villages": [
+                    { "code": "1", "en": "CHILLARGI", "kn": "ಚಿಲ್ಲರ್ಗಿ" },
+                    { "code": "2", "en": "CHIMAKODA", "kn": "ಚಿಮಕೋಡ" },
+                    { "code": "3", "en": "KHAJAPURA", "kn": "ಖಾಜಾಪೂರ" },
+                    { "code": "4", "en": "BASANTAPURA", "kn": "ಬಸಂತಪೂರ" },
+                    { "code": "5", "en": "KANGATI", "kn": "ಕಂಗಟಿ" },
+                    { "code": "6", "en": "FATTEPURACH", "kn": "ಫತ್ತೇಪೂರ(C)" },
+                    { "code": "7", "en": "KAPALAPURAJH", "kn": "ಕಪಲಾಪೂರ(J)" },
+                    { "code": "8", "en": "JAMPADA", "kn": "ಜಾಂಪಡ" },
+                    { "code": "9", "en": "AMADALAPADA", "kn": "ಅಮದಲಪಾಡ" },
+                    { "code": "10", "en": "ALAMASAPURA", "kn": "ಅಲಮಸಪೂರ" },
+                    { "code": "11", "en": "RASULABADA", "kn": "ರಸೂಲಾಬಾದ" },
+                    { "code": "12", "en": "MALEGANVA", "kn": "ಮಾಳೆಗಾಂವ" },
+                    { "code": "13", "en": "NANDAGANVA", "kn": "ನಂದಗಾಂವ" },
+                    { "code": "14", "en": "MIRAJAPURAKH", "kn": "ಮಿರಜಾಪೂರ(K)" },
+                    { "code": "15", "en": "GADAGI", "kn": "ಗಾದಗಿ" },
+                    { "code": "16", "en": "HAMILAPURA", "kn": "ಹಮಿಲಾಪೂರ" },
+                    { "code": "17", "en": "CHIKKAPETA", "kn": "ಚಿಕ್ಕಪೇಟ" },
+                    { "code": "18", "en": "NAVADAGERI", "kn": "ನಾವದಗೇರಿ" },
+                    { "code": "19", "en": "GUMMA", "kn": "ಗುಮ್ಮಾ" },
+                    { "code": "20", "en": "SHAMARAJAPURA", "kn": "ಶಾಮರಾಜಪೂರ" },
+                    { "code": "21", "en": "SOLAPURA", "kn": "ಸೋಲಪುರ" },
+                    { "code": "22", "en": "SIPPALAGERA", "kn": "ಸಿಪ್ಪಲಗೇರಾ" },
+                    { "code": "23", "en": "MAMANAKERI", "kn": "ಮಾಮನಕೇರಿ" },
+                    { "code": "24", "en": "KABEERAVADA", "kn": "ಕಬೀರಾವಾಡಾ" },
+                    { "code": "25", "en": "TAJALAPURA", "kn": "ತಾಜಾಲಾಪೂರ" },
+                    { "code": "26", "en": "ODAVADA", "kn": "ಓಡವಾಡಾ" },
+                    { "code": "27", "en": "ALIYABADA", "kn": "ಅಲಿಯಾಬಾದ" },
+                    { "code": "28", "en": "IMAMABADA", "kn": "ಇಮಾಮಬಾದ" },
+                    { "code": "29", "en": "FATTEPURAJH", "kn": "ಫತ್ತೇಪೂರ(J)" },
+                    { "code": "30", "en": "SHERIHUSENI", "kn": "ಶೇರಿಹುಸೇನಿ" },
+                    { "code": "31", "en": "BAVAPURA", "kn": "ಬಾವಪುರ" },
+                    { "code": "32", "en": "DATTANAKERI", "kn": "ದತ್ತನಕೇರಿ" },
+                    { "code": "33", "en": "ALANKERI", "kn": "ಆಲಂಕೇರಿ" },
+                    { "code": "34", "en": "KHILLARKA", "kn": "ಖಿಲ್ಲಾರ್ಕ" },
+                    { "code": "35", "en": "SULTANAPURAKH", "kn": "ಸುಲ್ತಾನಪುರ(K)" },
+                    { "code": "36", "en": "BAGE KARANJA", "kn": "ಬಾಗೆ ಕಾರಾಂಜಾ" }
+                ]
+            },
+            {
+                "code": "2",
+                "en": "BEEDARADAKSHINA",
+                "kn": "ಬೀದರದಕ್ಷಿಣ",
+                "villages": [
+                    { "code": "1", "en": "ASHTURA", "kn": "ಅಷ್ಟೂರ" },
+                    { "code": "2", "en": "MIRAJAPURAT", "kn": "ಮಿರಜಾಪೂರ(T)" },
+                    { "code": "3", "en": "MALKAPURA", "kn": "ಮಲ್ಕಾಪೂರ" },
+                    { "code": "4", "en": "SULTANAPURAJH", "kn": "ಸುಲ್ತಾನಪೂರ(J)" },
+                    { "code": "5", "en": "HALADAKERI KH", "kn": "ಹಳದಕೇರಿ (K)" },
+                    { "code": "6", "en": "MAILURA", "kn": "ಮೈಲೂರ" },
+                    { "code": "7", "en": "KUMBARAVADA", "kn": "ಕುಂಬಾರವಾಡಾ" },
+                    { "code": "8", "en": "AMALAPURA", "kn": "ಅಮಲಾಪೂರ" },
+                    { "code": "9", "en": "GORANALLI BH", "kn": "ಗೋರನಳ್ಳಿ (B)" },
+                    { "code": "10", "en": "CHITTA", "kn": "ಚಿಟ್ಟಾ" },
+                    { "code": "11", "en": "GUNNALLI", "kn": "ಗುನ್ನಳ್ಳಿ" },
+                    { "code": "12", "en": "SHAHAPURA", "kn": "ಶಾಹಪೂರ" },
+                    { "code": "13", "en": "HALADAKERI JH", "kn": "ಹಳದಕೇರಿ (J)" },
+                    { "code": "14", "en": "BRAHMAPURA", "kn": "ಬ್ರಹ್ಮಪುರ" },
+                    { "code": "15", "en": "BAGEHAMAMA", "kn": "ಬಾಗೆಹಮಾಮ" },
+                    { "code": "16", "en": "SHERICHAMPA", "kn": "ಶೇರಿಚಂಪಾ" },
+                    { "code": "17", "en": "GULLARAHAVEELI", "kn": "ಗುಲ್ಲರಹವೀಲಿ" },
+                    { "code": "18", "en": "JANGALAKOYI", "kn": "ಜಂಗಲಕೋಯಿ" },
+                    { "code": "19", "en": "BAGEIBRAHIMA", "kn": "ಬಾಗೆಇಬ್ರಾಹಿಮ" },
+                    { "code": "20", "en": "MAILATEGAIRABI", "kn": "ಮೈಲಾತೆಗೈರಾಬಿ" },
+                    { "code": "21", "en": "BAGE-KHARIDI", "kn": "ಬಾಗೆ-ಖರಿದಿ" },
+                    { "code": "22", "en": "MAILATEGORANALLI", "kn": "ಮೈಲಾತೆಗೋರನಳ್ಳಿ" },
+                    { "code": "23", "en": "BAGE-SHAHI", "kn": "ಬಾಗೆ-ಶಾಹಿ" },
+                    { "code": "24", "en": "BAGEGORANALLI", "kn": "ಬಾಗೆಗೋರನಳ್ಳಿ" }
+                ]
+            },
+            {
+                "code": "3",
+                "en": "MANNALLI",
+                "kn": "ಮನ್ನಳ್ಳಿ",
+                "villages": [
+                    { "code": "1", "en": "MANNALLI", "kn": "ಮನ್ನಳ್ಳಿ" },
+                    { "code": "2", "en": "HOKRANABH", "kn": "ಹೊಕ್ರಾಣಾ(B)" },
+                    { "code": "3", "en": "HOKRANAKH", "kn": "ಹೊಕ್ರಾಣಾ(K)" },
+                    { "code": "4", "en": "NAGORA", "kn": "ನಾಗೋರಾ" },
+                    { "code": "5", "en": "GHODEPALLI", "kn": "ಘೋಡೆಪಳ್ಲಿ" },
+                    { "code": "6", "en": "BUDHERA", "kn": "ಬುಧೇರಾ" },
+                    { "code": "7", "en": "T MIRJAPURA", "kn": "(T) ಮಿರ್ಜಾಪೂರ" },
+                    { "code": "8", "en": "CHINTALAGERA", "kn": "ಚಿಂತಲಗೇರಾ" },
+                    { "code": "9", "en": "DHARMAPURA", "kn": "ಧರ್ಮಾಪೂರ" },
+                    { "code": "10", "en": "GOWSAPURA", "kn": "ಗೌಸಪೂರ" },
+                    { "code": "11", "en": "YAKATAPURA", "kn": "ಯಾಕತಪೂರ" },
+                    { "code": "12", "en": "SATOLI", "kn": "ಸಾತೋಳಿ" },
+                    { "code": "13", "en": "BARURA", "kn": "ಬರೂರ" },
+                    { "code": "14", "en": "RAJAGIRA", "kn": "ರಾಜಗಿರಾ" },
+                    { "code": "15", "en": "SINDHOLA", "kn": "ಸಿಂಧೋಲ" },
+                    { "code": "16", "en": "REKULAGI", "kn": "ರೇಕುಳಗಿ" },
+                    { "code": "17", "en": "TADAPALLI", "kn": "ತಡಪಳ್ಳಿ" },
+                    { "code": "18", "en": "BAMBALAGI", "kn": "ಬಂಬಳಗಿ" },
+                    { "code": "19", "en": "MARAKUNDA", "kn": "ಮರಕುಂದಾ" },
+                    { "code": "20", "en": "BHANGURA", "kn": "ಭಂಗೂರ" },
+                    { "code": "21", "en": "MUGADALA", "kn": "ಮುಗದಾಳ" },
+                    { "code": "22", "en": "BAPURA", "kn": "ಬಾಪೂರ" }
+                ]
+            },
+            {
+                "code": "4",
+                "en": "BAGADALA",
+                "kn": "ಬಗದಲ",
+                "villages": [
+                    { "code": "1", "en": "BAGADALA", "kn": "ಬಗದಲ" },
+                    { "code": "2", "en": "OWRADES", "kn": "ಔರಾದ(ಎಸ್)" },
+                    { "code": "3", "en": "SIRASI A", "kn": "ಸಿರಸಿ (ಎ)" },
+                    { "code": "4", "en": "HONNADDI", "kn": "ಹೊನ್ನಾಡ್ಡಿ" },
+                    { "code": "5", "en": "SHEKHAPURA", "kn": "ಶೇಖಾಪೂರ" },
+                    { "code": "6", "en": "PATARAPALLI", "kn": "ಪಾತರಪಳ್ಳಿ" },
+                    { "code": "7", "en": "BHAIRANALLI CH", "kn": "ಭೈರನಳ್ಳಿ (C)" },
+                    { "code": "8", "en": "KHASHEMPURACH", "kn": "ಖಾಶೆಂಪೂರ(C)" },
+                    { "code": "9", "en": "BAVAGI", "kn": "ಬಾವಗಿ" },
+                    { "code": "10", "en": "NELAVADA", "kn": "ನೆಲವಾಡ" },
+                    { "code": "11", "en": "KHASHEMPURAP", "kn": "ಖಾಶೆಂಪೂರ(P)" },
+                    { "code": "12", "en": "MALIKA MEERJAPURA", "kn": "ಮಲಿಕ ಮೀರ್ಜಾಪುರ" },
+                    { "code": "13", "en": "MANDAKANALLI", "kn": "ಮಂದಕನಳ್ಳಿ" },
+                    { "code": "14", "en": "KANGANAKOTA", "kn": "ಕಂಗನಕೋಟ" },
+                    { "code": "15", "en": "KADAVADA", "kn": "ಕಾಡವಾದ" },
+                    { "code": "16", "en": "SHEMASHANAGARA", "kn": "ಶೆಮಶನಗರ" },
+                    { "code": "17", "en": "CHATNALLI", "kn": "ಚಟ್ನಳ್ಳಿ" },
+                    { "code": "18", "en": "BARIDABADA", "kn": "ಬರಿದಾಬಾದ" },
+                    { "code": "19", "en": "SANGOLAGI", "kn": "ಸಂಗೋಳಗಿ" },
+                    { "code": "20", "en": "RANJOLA KHENI", "kn": "ರಂಜೋಲ ಖೇಣಿ" },
+                    { "code": "21", "en": "NIDAVANCHA", "kn": "ನಿಡವಂಚಾ" },
+                    { "code": "22", "en": "SIRAKATANALLI", "kn": "ಸಿರಕಟನಳ್ಳಿ" },
+                    { "code": "23", "en": "HOCHAKANALLI", "kn": "ಹೊಚಕನಳ್ಳಿ" },
+                    { "code": "24", "en": "HAJJARAGI", "kn": "ಹಜ್ಜರಗಿ" }
+                ]
+            },
+            {
+                "code": "5",
+                "en": "KAMATANA",
+                "kn": "ಕಮಠಾಣಾ",
+                "villages": [
+                    { "code": "1", "en": "KAMATANA", "kn": "ಕಮಠಾಣಾ" },
+                    { "code": "2", "en": "SIKINDRAPURA", "kn": "ಸಿಕಿಂದ್ರಪೂರ" },
+                    { "code": "3", "en": "KHADARANAGARA", "kn": "ಖಾದರನಗರ" },
+                    { "code": "4", "en": "BAKACHOWDI", "kn": "ಬಕಚೌಡಿ" },
+                    { "code": "5", "en": "NIJAMAPURA", "kn": "ನಿಜಾಮಪೂರ" },
+                    { "code": "6", "en": "BELLURA", "kn": "ಬೇಳ್ಳೂರಾ" },
+                    { "code": "7", "en": "JAMISTANAPURA", "kn": "ಜಮಿಸ್ತಾನಪೂರ" },
+                    { "code": "8", "en": "YADLAPURA", "kn": "ಯದ್ಲಾಪೂರ" },
+                    { "code": "9", "en": "KUTTABADA", "kn": "ಕುತ್ತಾಬಾದ" },
+                    { "code": "10", "en": "AYASAPURA", "kn": "ಅಯಸಪೂರ" },
+                    { "code": "11", "en": "NOWBADA", "kn": "ನೌಬಾದ" },
+                    { "code": "12", "en": "CHONDI", "kn": "ಚೊಂಡಿ" },
+                    { "code": "13", "en": "CHOWLI", "kn": "ಚೌಳಿ" },
+                    { "code": "14", "en": "KOLARAKE", "kn": "ಕೊಳರ(ಕೆ)" },
+                    { "code": "15", "en": "CHIDRI", "kn": "ಚಿದ್ರಿ" },
+                    { "code": "16", "en": "KOLARABI", "kn": "ಕೊಳಾರ(ಬಿ)" },
+                    { "code": "17", "en": "ANADURA", "kn": "ಅಣದೂರ" },
+                    { "code": "18", "en": "KAPALAPURAA", "kn": "ಕಪಲಾಪೂರ(A)" },
+                    { "code": "19", "en": "ATIVALA", "kn": "ಅತಿವಾಳ" },
+                    { "code": "20", "en": "HONNIKERI", "kn": "ಹೊನ್ನಿಕೇರಿ" }
+                ]
+            },
+            {
+                "code": "6",
+                "en": "JANAVADA",
+                "kn": "ಜನವಾಡ",
+                "villages": [
+                    { "code": "1", "en": "JANAVADA", "kn": "ಜನವಾಡ" },
+                    { "code": "2", "en": "KHANAJAMALAPURA", "kn": "ಖಾನಜಮಾಲಪೂರ" },
+                    { "code": "3", "en": "ALIYAMBARA", "kn": "ಅಲಿಯಂಬರ" },
+                    { "code": "4", "en": "MAMADAPURA", "kn": "ಮಮದಾಪೂರ" },
+                    { "code": "5", "en": "YARANALLIPI", "kn": "ಯರನಳ್ಳಿ(ಪಿ)" },
+                    { "code": "6", "en": "YARANALLIDI", "kn": "ಯರನಳ್ಳಿ(ಡಿ)" },
+                    { "code": "7", "en": "BAMPALLI", "kn": "ಬಂಪಳ್ಳಿ" },
+                    { "code": "8", "en": "ISLAMPURA", "kn": "ಇಸ್ಲಾಂಪೂರ" },
+                    { "code": "9", "en": "MARAKHALA", "kn": "ಮರಖಲ" },
+                    { "code": "10", "en": "BENAKANALLI", "kn": "ಬೆನಕನಳ್ಳಿ" },
+                    { "code": "11", "en": "DADDAPURA", "kn": "ದದ್ದಾಪೂರ" },
+                    { "code": "12", "en": "SHREEMANDALA", "kn": "ಶ್ರೀಮಂಡಲ" },
+                    { "code": "13", "en": "NEMATABADA", "kn": "ನೇಮತಾಬಾದ" },
+                    { "code": "14", "en": "NAVALASAPURA", "kn": "ನವಲಸಪೂರ" },
+                    { "code": "15", "en": "CHAMBOLA", "kn": "ಚಾಂಬೋಳ" },
+                    { "code": "16", "en": "HIPPALAGANVA", "kn": "ಹಿಪ್ಪಳಗಾಂವ" },
+                    { "code": "17", "en": "KANNALLI", "kn": "ಕನ್ನಳ್ಳಿ" },
+                    { "code": "18", "en": "ALLAPURA", "kn": "ಅಲ್ಲಾಪೂರ" },
+                    { "code": "19", "en": "RAJANALA", "kn": "ರಾಜನಾಳ" },
+                    { "code": "20", "en": "SIDDAPURA", "kn": "ಸಿದ್ದಾಪೂರ" },
+                    { "code": "21", "en": "SANGAVI", "kn": "ಸಾಂಗವಿ" },
+                    { "code": "22", "en": "VILASAPURA", "kn": "ವಿಲಾಸಪೂರ" },
+                    { "code": "23", "en": "BHAIRANALLIDI", "kn": "ಭೈರನಳ್ಳಿ(ಡಿ)" },
+                    { "code": "24", "en": "GUMATAPURA", "kn": "ಗುಮತಾಪೂರ" },
+                    { "code": "25", "en": "IMAMAPURA", "kn": "ಇಮಾಮಪೂರ" }
+                ]
+            }
+        ]
+    },
+    {
+        "code": "5",
+        "en": "HUMNABAD",
+        "kn": "ಹುಮನಾಬಾದ",
+        "hoblis": [
+            {
+                "code": "1",
+                "en": "HUMANABADA",
+                "kn": "ಹುಮನಾಬಾದ",
+                "villages": [
+                    { "code": "1", "en": "HUMANABADA", "kn": "ಹುಮನಾಬಾದ" },
+                    { "code": "2", "en": "DHUMMANASURA", "kn": "ಧೂಮ್ಮನಸೂರ" },
+                    { "code": "3", "en": "HUDAGI", "kn": "ಹುಡಗಿ" },
+                    { "code": "4", "en": "GADAVANTI", "kn": "ಗಡವಂತಿ" },
+                    { "code": "5", "en": "MANIKANAGARA", "kn": "ಮಾಣಿಕನಗರ" },
+                    { "code": "6", "en": "MOLAKERA", "kn": "ಮೊಳಕೇರಾ" },
+                    { "code": "7", "en": "HANAKUNI", "kn": "ಹಣಕುಣಿ" },
+                    { "code": "8", "en": "BORAMPALLI", "kn": "ಬೋರಂಪಳ್ಳಿ" },
+                    { "code": "9", "en": "KAPPARAGANVA", "kn": "ಕಪ್ಪರಗಾಂವ" },
+                    { "code": "10", "en": "NANDAGANVA", "kn": "ನಂದಗಾಂವ" },
+                    { "code": "11", "en": "HALLIKHEDAKE", "kn": "ಹಳ್ಳಿಖೇಡ(ಕೆ)" },
+                    { "code": "12", "en": "MUSTAPURA", "kn": "ಮುಸ್ತಾಪೂರ" },
+                    { "code": "13", "en": "CHITAKOTA", "kn": "ಚಿತಕೊಟಾ" },
+                    { "code": "14", "en": "KALLURA", "kn": "ಕಲ್ಲೂರ" },
+                    { "code": "15", "en": "KATALLI", "kn": "ಕಠಳ್ಳಿ" },
+                    { "code": "16", "en": "SINDHANAKERA", "kn": "ಸಿಂಧನಕೇರಾ" }
+                ]
+            },
+            {
+                "code": "2",
+                "en": "HALLILIKHEDABI",
+                "kn": "ಹಳ್ಳಿಳಿಖೇಡ(ಬಿ)",
+                "villages": [
+                    { "code": "1", "en": "HALLILIKHEDABI", "kn": "ಹಳ್ಳಿಳಿಖೇಡ(ಬಿ)" },
+                    { "code": "2", "en": "SINDABANDAGI", "kn": "ಸಿಂದಬಂದಗಿ" },
+                    { "code": "3", "en": "ATIVALA", "kn": "ಅತಿವಾಳ" },
+                    { "code": "4", "en": "NAMADAPURA", "kn": "ನಾಮದಾಪುರ" },
+                    { "code": "5", "en": "BENACHINCHOLI", "kn": "ಬೇನಚಿಂಚೊಳಿ" },
+                    { "code": "6", "en": "KABEERABADA", "kn": "ಕಬೀರಾಬಾದ" },
+                    { "code": "7", "en": "MADARAGANVA", "kn": "ಮದರಗಾಂವ" },
+                    { "code": "8", "en": "MALKAPURA VADI", "kn": "ಮಲ್ಕಾಪೂರ ವಾಡಿ" },
+                    { "code": "9", "en": "DAKULAGI", "kn": "ಡಾಕುಳಗಿ" },
+                    { "code": "10", "en": "AMIRABADA", "kn": "ಅಮಿರಾಬಾದ" },
+                    { "code": "11", "en": "ALLURA", "kn": "ಅಲ್ಲೂರ" },
+                    { "code": "12", "en": "BOTAGI", "kn": "ಬೊತಗಿ" },
+                    { "code": "13", "en": "MARAKHALA", "kn": "ಮರಖಲ" },
+                    { "code": "14", "en": "HILALAPURA", "kn": "ಹಿಲಾಲಪೂರ" },
+                    { "code": "15", "en": "SHAKKARAGANJA", "kn": "ಶಕ್ಕರಗಂಜ" },
+                    { "code": "16", "en": "SITALAGERA", "kn": "ಸಿತಳಗೇರಾ" },
+                    { "code": "17", "en": "NIMBURA", "kn": "ನಿಂಬೂರ" }
+                ]
+            },
+            {
+                "code": "3",
+                "en": "DUBALAGUNDI",
+                "kn": "ದುಬಲಗುಂಡಿ",
+                "villages": [
+                    { "code": "1", "en": "DUBALAGUNDI", "kn": "ದುಬಲಗುಂಡಿ" },
+                    { "code": "2", "en": "GHODAVADI", "kn": "ಘೋಡವಾಡಿ" },
+                    { "code": "3", "en": "GHATABORALA", "kn": "ಘಾಟಬೋರಳ" },
+                    { "code": "4", "en": "HUNASAGERA", "kn": "ಹುಣಸಗೇರಾ" },
+                    { "code": "5", "en": "KANAKATTA", "kn": "ಕನಕಟ್ಟಾ" },
+                    { "code": "6", "en": "HUNASANALA", "kn": "ಹುಣಸನಾಳ" },
+                    { "code": "7", "en": "SEDOLA", "kn": "ಸೇಢೊಳ" },
+                    { "code": "8", "en": "JALASINGI", "kn": "ಜಲಸಿಂಗಿ" },
+                    { "code": "9", "en": "KUMARA CHINCHOLI", "kn": "ಕುಮಾರ ಚಿಂಚೋಳಿ" },
+                    { "code": "10", "en": "HANDIKERA", "kn": "ಹಂದಿಕೇರಾ" },
+                    { "code": "11", "en": "VARAVATTIKE", "kn": "ವರವಟ್ಟಿ(ಕೆ)" },
+                    { "code": "12", "en": "OTAGI", "kn": "ಓತಗಿ" },
+                    { "code": "13", "en": "SULTANABADA", "kn": "ಸುಲ್ತಾನಾಬಾದ" },
+                    { "code": "14", "en": "CHEENAKERA", "kn": "ಚೀನಕೇರಾ" },
+                    { "code": "15", "en": "MUGANURA", "kn": "ಮುಗನೂರ" },
+                    { "code": "16", "en": "CHANDANAHALLI", "kn": "ಚಂದನಹಳ್ಳಿ" },
+                    { "code": "17", "en": "SONAKERA", "kn": "ಸೋನಕೇರಾ" }
+                ]
+            }
+        ]
+    },
+    {
+        "code": "6",
+        "en": "CHITAGUPPA",
+        "kn": "ಚಿಟಗುಪ್ಪಾ",
+        "hoblis": [
+            {
+                "code": "4",
+                "en": "CHITAGUPPA",
+                "kn": "ಚಿಟಗುಪ್ಪಾ",
+                "villages": [
+                    { "code": "1", "en": "CHITAGUPPA", "kn": "ಚಿಟಗುಪ್ಪಾ" },
+                    { "code": "2", "en": "MUSTARI", "kn": "ಮುಸ್ತರಿ" },
+                    { "code": "3", "en": "GURUDALA", "kn": "ಗುರುದಾಳ" },
+                    { "code": "4", "en": "KODAMBALA", "kn": "ಕೊಡಂಬಲ" },
+                    { "code": "5", "en": "BELAKERA", "kn": "ಬೇಳಕೇರಾ" },
+                    { "code": "6", "en": "VALAKHINDI", "kn": "ವಳಖಿಂಡಿ" },
+                    { "code": "7", "en": "RAMAPURA", "kn": "ರಾಮಪೂರ" },
+                    { "code": "8", "en": "TALAMADAGI", "kn": "ತಾಳಮಡಗಿ" },
+                    { "code": "9", "en": "HIPPARGA", "kn": "ಹಿಪ್ಪರ್ಗಾ" },
+                    { "code": "10", "en": "MUDANALA", "kn": "ಮುದನಾಳ" },
+                    { "code": "11", "en": "ITAGA", "kn": "ಇಟಗಾ" },
+                    { "code": "12", "en": "SHAMATABADA", "kn": "ಶಾಮತಾಬಾದ" },
+                    { "code": "13", "en": "KANDAGOLA", "kn": "ಕಂದಗೊಳ" },
+                    { "code": "14", "en": "VADDANAKERA", "kn": "ವಡ್ಡನಕೇರಾ" },
+                    { "code": "15", "en": "MADAGOLA", "kn": "ಮಾಡಗೊಳ" },
+                    { "code": "16", "en": "BHASKARA NAGARA", "kn": "ಭಾಸ್ಕರ ನಗರ" }
+                ]
+            },
+            {
+                "code": "5",
+                "en": "NIRNA",
+                "kn": "ನಿರ್ಣಾ",
+                "villages": [
+                    { "code": "1", "en": "NIRNA", "kn": "ನಿರ್ಣಾ" },
+                    { "code": "2", "en": "MADARAGI", "kn": "ಮದರಗಿ" },
+                    { "code": "3", "en": "BHADRAPURA", "kn": "ಭದ್ರಪೂರ" },
+                    { "code": "4", "en": "BASHEERAPURA", "kn": "ಬಶೀರಾಪೂರ" },
+                    { "code": "5", "en": "DEVAGEERI", "kn": "ದೇವಗೀರಿ" },
+                    { "code": "6", "en": "MUTTANGI", "kn": "ಮುತ್ತಂಗಿ" },
+                    { "code": "7", "en": "ALIPURA", "kn": "ಅಲಿಪೂರ" },
+                    { "code": "8", "en": "UDABALA", "kn": "ಉಡಬಾಳ" },
+                    { "code": "9", "en": "BANNALLI", "kn": "ಬನ್ನಳ್ಳಿ" },
+                    { "code": "10", "en": "MANGALAGI", "kn": "ಮಂಗಲಗಿ" },
+                    { "code": "11", "en": "NAGANAKERA", "kn": "ನಾಗನಕೇರಾ" }
+                ]
+            },
+            {
+                "code": "6",
+                "en": "BEMALAKHEDA",
+                "kn": "ಬೇಮಳಖೇಡ",
+                "villages": [
+                    { "code": "1", "en": "BEMALAKHEDA", "kn": "ಬೇಮಳಖೇಡ" },
+                    { "code": "2", "en": "UDAMANALLI", "kn": "ಉಡಮನಳ್ಳಿ" },
+                    { "code": "3", "en": "POLAKAPALLI", "kn": "ಪೋಲಕಪಳ್ಳಿ" },
+                    { "code": "4", "en": "KARAPAPALLI", "kn": "ಕಾರಪಾಪಳ್ಳಿ" },
+                    { "code": "5", "en": "KARAKANALLI", "kn": "ಕರಕನಳ್ಳಿ" },
+                    { "code": "6", "en": "SAIDAPURA", "kn": "ಸೈದಾಪೂರ" },
+                    { "code": "7", "en": "MEENAKERA", "kn": "ಮೀನಕೇರಾ" },
+                    { "code": "8", "en": "BORALA", "kn": "ಬೋರಳ" },
+                    { "code": "9", "en": "MANNAEKHELLI", "kn": "ಮನ್ನಾಎಖೇಳ್ಳಿ" },
+                    { "code": "10", "en": "CHANGALERA", "kn": "ಚಾಂಗಲೇರಾ" }
+                ]
+            }
+        ]
+    },
+    {
+        "code": "7",
+        "en": "KAMALANAGARA",
+        "kn": "ಕಮಲನಗರ",
+        "hoblis": [
+            {
+                "code": "4",
+                "en": "TANAKUSANURA",
+                "kn": "ಠಾಣಾಕುಸನೂರ",
+                "villages": [
+                    { "code": "1", "en": "TANAKUSANURA", "kn": "ಠಾಣಾಕುಸನೂರ" },
+                    { "code": "7", "en": "BALATA B", "kn": "ಬಳತ (ಬಿ)" },
+                    { "code": "8", "en": "BALATA K", "kn": "ಬಳತ (ಕೆ)" },
+                    { "code": "9", "en": "CHANDORI", "kn": "ಚಾಂದೋರಿ" },
+                    { "code": "12", "en": "BEDAKUNDA", "kn": "ಬೇಡಕುಂದಾ" },
+                    { "code": "13", "en": "HIPPALAGANVA", "kn": "ಹಿಪ್ಪಳಗಾಂವ" },
+                    { "code": "19", "en": "NIDODA", "kn": "ನಿಡೋದಾ" },
+                    { "code": "20", "en": "HALAHALLI", "kn": "ಹಾಲಹಳ್ಳಿ" },
+                    { "code": "21", "en": "KOREKALA", "kn": "ಕೋರೆಕಲ" },
+                    { "code": "22", "en": "BEMBRA", "kn": "ಬೆಂಬ್ರಾ" },
+                    { "code": "23", "en": "LINGADALLIYU", "kn": "ಲಿಂಗದಳ್ಳಿ(ಯೂ)" },
+                    { "code": "24", "en": "MUDHOLABI", "kn": "ಮುಧೋಳ(ಬಿ)" },
+                    { "code": "25", "en": "MUDHOLA K", "kn": "ಮುಧೋಳ (ಕೆ)" },
+                    { "code": "26", "en": "SANGAMA", "kn": "ಸಂಗಮ" }
+                ]
+            },
+            {
+                "code": "5",
+                "en": "KAMALANAGARA",
+                "kn": "ಕಮಲನಗರ",
+                "villages": [
+                    { "code": "1", "en": "KAMALANAGARA", "kn": "ಕಮಲನಗರ" },
+                    { "code": "2", "en": "TORANA", "kn": "ತೋರಣಾ" },
+                    { "code": "3", "en": "DONAGANVA M", "kn": "ಡೋಣಗಾಂವ (M)" },
+                    { "code": "4", "en": "BAVANIBIJALAGANVA", "kn": "ಬವಾನಿಬಿಜಲಗಾಂವ" },
+                    { "code": "5", "en": "SAVALI", "kn": "ಸಾವಳಿ" },
+                    { "code": "6", "en": "BELAKUNIBHO", "kn": "ಬೆಳಕುಣಿ(ಭೋ)" },
+                    { "code": "7", "en": "SONALA", "kn": "ಸೋನಾಳ" },
+                    { "code": "8", "en": "HORANDI", "kn": "ಹೊರಂಡಿ" },
+                    { "code": "9", "en": "BALURA K", "kn": "ಬಾಲೂರ (ಕೆ)" },
+                    { "code": "10", "en": "MADANURA", "kn": "ಮದನೂರ" },
+                    { "code": "11", "en": "MURGAKE", "kn": "ಮುರ್ಗ(ಕೆ)" },
+                    { "code": "12", "en": "CHANDESHVARA", "kn": "ಚಾಂಡೆಶ್ವರ" },
+                    { "code": "13", "en": "KHEDA", "kn": "ಖೇಡ" },
+                    { "code": "14", "en": "KHATAGANVA", "kn": "ಖತಗಾಂವ" },
+                    { "code": "15", "en": "RANDYALA", "kn": "ರಂಡ್ಯಾಳ" },
+                    { "code": "16", "en": "KALAGAPURA", "kn": "ಕಳಗಾಪೂರ" },
+                    { "code": "17", "en": "HULASURAKHEDA", "kn": "ಹುಲಸೂರ(ಖೇಡ)" },
+                    { "code": "18", "en": "DIGGI", "kn": "ಡಿಗ್ಗಿ" },
+                    { "code": "19", "en": "KOTAGYALA", "kn": "ಕೊಟಗ್ಯಾಳ" },
+                    { "code": "20", "en": "RAMAPURA", "kn": "ರಾಮಪೂರ" },
+                    { "code": "21", "en": "TAPASHYALA", "kn": "ತಪಶ್ಯಾಳ" },
+                    { "code": "22", "en": "BASANALA", "kn": "ಬಸನಾಳ" },
+                    { "code": "23", "en": "KORIYALA", "kn": "ಕೋರಿಯಾಳ" },
+                    { "code": "24", "en": "HAKYALA", "kn": "ಹಕ್ಯಾಳ" },
+                    { "code": "25", "en": "HOLA SAMUDRA", "kn": "ಹೋಳ ಸಮುದ್ರ" }
+                ]
+            },
+            {
+                "code": "6",
+                "en": "DABAKA",
+                "kn": "ದಾಬಕಾ",
+                "villages": [
+                    { "code": "1", "en": "DABAKA", "kn": "ದಾಬಕಾ" },
+                    { "code": "2", "en": "VAGANAGERA", "kn": "ವಾಗಣಗೇರಾ" },
+                    { "code": "3", "en": "AKANAPURA", "kn": "ಅಕನಾಪೂರ" },
+                    { "code": "10", "en": "MALEGANVA", "kn": "ಮಾಳೆಗಾಂವ" },
+                    { "code": "11", "en": "MUTAKHEDA", "kn": "ಮುತಖೇಡ" },
+                    { "code": "12", "en": "CHONDIMUKHEDA", "kn": "ಚೊಂಡಿಮುಖೇಡ" },
+                    { "code": "13", "en": "NANDIBIJALAGANVA", "kn": "ನಂದಿಬಿಜಲಗಾಂವ" },
+                    { "code": "16", "en": "CHIMEGANVA", "kn": "ಚಿಮೆಗಾಂವ" },
+                    { "code": "17", "en": "HANDIKERA", "kn": "ಹಂದಿಕೇರಾ" },
+                    { "code": "18", "en": "CHIKALI U", "kn": "ಚಿಕಲಿ (ಯು)" },
+                    { "code": "19", "en": "GANESHAPURAYU", "kn": "ಗಣೇಶಪೂರ(ಯು)" },
+                    { "code": "22", "en": "SANGANALA", "kn": "ಸಂಗನಾಳ" },
+                    { "code": "23", "en": "DAREGANVA", "kn": "ದರೆಗಾಂವ" },
+                    { "code": "24", "en": "MURKI", "kn": "ಮುರ್ಕಿ" },
+                    { "code": "25", "en": "GANGANABEEDA", "kn": "ಗಂಗನಬೀಡ" }
+                ]
+            }
+        ]
+    },
+    {
+        "code": "8",
+        "en": "HULASURA",
+        "kn": "ಹುಲಸೂರ",
+        "hoblis": [
+            {
+                "code": "6",
+                "en": "HULASURA",
+                "kn": "ಹುಲಸೂರ",
+                "villages": [
+                    { "code": "1", "en": "HULASURA", "kn": "ಹುಲಸೂರ" },
+                    { "code": "2", "en": "SOLADABAKA", "kn": "ಸೋಲದಾಬಕಾ" },
+                    { "code": "3", "en": "TOGALURA", "kn": "ತೋಗಲೂರ" },
+                    { "code": "4", "en": "KADARABADA", "kn": "ಕಾದರಾಬಾದ" },
+                    { "code": "5", "en": "DEVANALA", "kn": "ದೇವನಾಳ" },
+                    { "code": "6", "en": "HALAHALLI", "kn": "ಹಾಲಹಳ್ಳಿ" },
+                    { "code": "7", "en": "MACHANALA", "kn": "ಮಾಚನಾಳ" },
+                    { "code": "8", "en": "GADIGOWNDAGANVA", "kn": "ಗಡಿಗೌಂಡಗಾಂವ" },
+                    { "code": "9", "en": "MIRKALA", "kn": "ಮಿರ್ಕಲ" },
+                    { "code": "10", "en": "GUTTI", "kn": "ಗುತ್ತಿ" },
+                    { "code": "11", "en": "BELURA", "kn": "ಬೇಲೂರಾ" },
+                    { "code": "12", "en": "GORTABH", "kn": "ಗೊರ್ಟಾ(B)" },
+                    { "code": "13", "en": "MACHALAMBA", "kn": "ಮಚಳಂಬ" },
+                    { "code": "14", "en": "GADIRAYAPALLI", "kn": "ಗಡಿರಾಯಪಳ್ಳಿ" },
+                    { "code": "15", "en": "KADEPURA", "kn": "ಕಾದೇಪುರ" },
+                    { "code": "16", "en": "LIMBAPURA", "kn": "ಲಿಂಬಾಪುರ" },
+                    { "code": "17", "en": "MUSTAPURA", "kn": "ಮುಸ್ತಾಪುರ" },
+                    { "code": "18", "en": "KOTAMALA", "kn": "ಕೊಟಮಾಳ" }
+                ]
+            }
+        ]
+    }
+];
+
     const translations = {
         en: {
             title: "Bidar District Bhoomi Complaint",
@@ -608,14 +1350,14 @@
     
     // Add Taluk codes to the password map for a more secure login
     const talukPasswords = {
-        "BASAVAKALYAN (01)": "B'kalyan01",
-        "BHALKI (02)": "Bhalki02",
-        "AURAD (03)": "Aurad03",
-        "BIDAR (04)": "Bidar04",
-        "HUMNABAD (05)": "Humnabad05",
-        "CHITAGUPPA (06)": "Chitguppa06",
-        "KAMALANAGARA (07)": "Kamal07",
-        "HULASURA (08)": "Hulasur08"
+        "BASAVAKALYAN (1)": "B'kalyan01",
+        "BHALKI (2)": "Bhalki02",
+        "AURAD (3)": "Aurad03",
+        "BIDAR (4)": "Bidar04",
+        "HUMNABAD (5)": "Humnabad05",
+        "CHITAGUPPA (6)": "Chitguppa06",
+        "KAMALANAGARA (7)": "Kamal07",
+        "HULASURA (8)": "Hulasur08"
     };
 
     let currentLanguage = 'en';
@@ -637,16 +1379,18 @@
 
     function populateDropdown(selectElement, items, placeholderKey) {
         selectElement.innerHTML = `<option value="">${translations[currentLanguage][placeholderKey]}</option>`;
-        items.forEach(item => {
-            const newOption = document.createElement('option');
-            // Store the full formatted string as the value for form submission
-            newOption.value = `${item.en} (${item.code})`;
-            // Set the display text based on the current language
-            newOption.textContent = `${item[currentLanguage]} (${item.code})`;
-            selectElement.appendChild(newOption);
-        });
-        if (items.length > 0) {
-            selectElement.disabled = false;
+        if (items) {
+            items.forEach(item => {
+                const newOption = document.createElement('option');
+                // Store the full formatted string as the value for form submission
+                newOption.value = `${item.en} (${item.code})`;
+                // Set the display text based on the current language
+                newOption.textContent = `${item[currentLanguage]} (${item.code})`;
+                selectElement.appendChild(newOption);
+            });
+            if (items.length > 0) {
+                selectElement.disabled = false;
+            }
         }
     }
 
